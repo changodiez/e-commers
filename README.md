@@ -1,6 +1,6 @@
-# e-Vegan
+# Hasan's Tailor
 
-Development of a ecommerce for homemade local vegan food.
+Development of a ecommerce for a small local business.
 
 ## Local setup
 

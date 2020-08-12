@@ -1,18 +1,13 @@
+
+
 [{
-    "name": "2. Cloudwater Gyle",
-    "description": "DDH Pale Ale - Anglaterra - 5.5%",
-    "price": "7.50 / 4.70",
-    "tags": "cervesa afruitada lupulada fresca",
-    "img": ""
+    "name": "CRISPY BUFFALO CAULIFLOWER BITES",
+    "description": "Replace greasy wings at a Super Bowl party with these spicy-crunchy cauliflower bites. Thanks to a clever combination of hot sauce, salt, and savory spices, these crispy nibbles are packed with flavor—and completely oil-free.",
+    "price": "7.50",
+    "tags": "crispy cauliflower spicy crunchy bites oil-free",
+    "img": "https://www.forksoverknives.com/recipes/vegan-snacks-appetizers/crispy-buffalo-cauliflower-bites/"
  
-  },
-  {
-    "name": "2. Cloudwater Gyle",
-    "description": "DDH Pale Ale - Anglaterra - 5.5%",
-    "price": "7.50 / 4.70",
-    "tags": "cervesa afruitada lupulada fresca",
-    "img": ""
- 
-  }]
+  }
+]
   
   
