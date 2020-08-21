@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
 import Register from "./Register";
@@ -16,7 +16,6 @@ const CloseLogin = (Close) => {
 }
 
 // Register Button
-  // Login Button
   const [ isRegisterOpen, setRegisterOpen ] = React.useState(false)
   const RegisterOpen = () => {
     setRegisterOpen(!isRegisterOpen)
@@ -24,6 +23,12 @@ const CloseLogin = (Close) => {
   const CloseRegister = (Close) => { 
     setRegisterOpen(Close)
   }
+
+// Search Button 
+const [ isSearchOpen, setSearchOpen ] = React.useState(false)
+const SearchOpen = () => {
+  setSearchOpen(!isSearchOpen)
+}
   
   
 
@@ -31,17 +36,21 @@ const CloseLogin = (Close) => {
     <div>
     <div className="nav-bar">
       <div className="nav-container">
-        <div className="logo">LOGO</div>
-        <SearchBar />
+        <div className="logo">Hasan's Tailor</div>
+        <button onClick={SearchOpen}>Search</button>
         <button onClick={LoginOpen}>Login</button>
         <button onClick={RegisterOpen}>Register</button>
         
       
         <Cart />
+       
       </div>
+      { isSearchOpen ? <SearchBar /> : null }
     </div>
+    
       { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null }
       { isRegisterOpen ? <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} /> : null }
+      
       </div>
        
   );

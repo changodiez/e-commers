@@ -13,12 +13,15 @@ const Login = (props) => {
   return (
     <div>
       <div className="modal">
-        <button id="LoginbuttonClose" onClick={CloseLogin}>
-          CLOSE
-        </button>
+        
     
           <div className="Login-modal">
-            <form>
+          <a id="LoginbuttonClose" onClick={CloseLogin}>
+          X
+        </a>
+                       <form>
+                       <h2>Login in to your account</h2>
+            <p>Don't have an account? Register</p>
               <input
                 type="text"
                 placeholder="Enter Username"
@@ -34,6 +37,7 @@ const Login = (props) => {
               ></input>
 
               <button type="submit">Login</button>
+              <a>Can't remember your password?</a>
             </form>
           </div>
     

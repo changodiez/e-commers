@@ -15,12 +15,13 @@ const Register = (props) => {
         <div>
              <div>
       <div className="modal">
-        <button id="LoginbuttonClose" onClick={CloseRegister}>
-          CLOSE
-        </button>
-    
+        
           <div className="Login-modal">
+          <a id="LoginbuttonClose" onClick={CloseRegister}>
+          X
+        </a>
             <form>
+            <h2>Register</h2>
               <input
                 type="text"
                 placeholder="Enter Username"
