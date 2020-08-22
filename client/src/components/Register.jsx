@@ -17,32 +17,36 @@ const Register = (props) => {
       <div className="modal">
         
           <div className="Login-modal">
-          <a id="LoginbuttonClose" onClick={CloseRegister}>
+          <button id="LoginbuttonClose" onClick={CloseRegister}>
           X
-        </a>
+        </button>
             <form>
-            <h2>Register</h2>
+            <h2>Create an account</h2>
+            <p>Already have an account? Sign In</p>
+            <p>Enter your Username</p>
               <input
                 type="text"
-                placeholder="Enter Username"
+                placeholder="Username..."
                 name="uname"
                 required
               ></input>
+              <p>Enter your email</p>
 
 <input
                 type="email"
-                placeholder="Enter email"
+                placeholder="Email..."
                 name="uname"
                 required
               ></input>
+              <p>Enter your password</p>
               <input
                 type="password"
-                placeholder="Enter Password"
+                placeholder="Password..."
                 name="psw"
                 required
               ></input>
-
               <button type="submit">Register</button>
+              <p>By providing your email address, you agree to our Privacy Policy and Terms & Conditions</p>
             </form>
           </div>
     

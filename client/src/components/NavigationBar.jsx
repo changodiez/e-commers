@@ -37,18 +37,17 @@ const SearchOpen = () => {
     <div className="nav-bar">
       <div className="nav-container">
         <div className="logo">Hasan's Tailor</div>
-        <button onClick={SearchOpen}>Search</button>
-        <button onClick={LoginOpen}>Login</button>
-        <button onClick={RegisterOpen}>Register</button>
-        
-      
-        <Cart />
-       
+        <ul>
+        <li onClick={SearchOpen}>Search</li>
+        <li onClick={LoginOpen}>Login</li>
+        <li onClick={RegisterOpen}>Register</li>
+        <li onClick="">Cart</li> 
+        </ul>      
       </div>
-      { isSearchOpen ? <SearchBar /> : null }
+      <SearchBar isOpen={isSearchOpen} />
     </div>
     
-      { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null }
+       { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null}
       { isRegisterOpen ? <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} /> : null }
       
       </div>
