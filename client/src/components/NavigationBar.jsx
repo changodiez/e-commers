@@ -29,6 +29,15 @@ const [ isSearchOpen, setSearchOpen ] = React.useState(false)
 const SearchOpen = () => {
   setSearchOpen(!isSearchOpen)
 }
+
+// Cart Button 
+const [ isCartOpen, setCartOpen ] = React.useState(false)
+const CartOpen = () => {
+  setCartOpen(!isCartOpen)
+}
+const CloseCart = (Close) => { 
+  setCartOpen(Close)
+}
   
   
 
@@ -41,7 +50,7 @@ const SearchOpen = () => {
         <li onClick={SearchOpen}>Search</li>
         <li onClick={LoginOpen}>Login</li>
         <li onClick={RegisterOpen}>Register</li>
-        <li onClick="">Cart</li> 
+        <li onClick={CartOpen}>Cart</li> 
         </ul>      
       </div>
       <SearchBar isOpen={isSearchOpen} />
@@ -49,7 +58,7 @@ const SearchOpen = () => {
     
        { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null}
       { isRegisterOpen ? <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} /> : null }
-      
+      <Cart isCartOpen={isCartOpen} CloseCart={CloseCart}/>
       </div>
        
   );
