@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const SearchBar = () => {
-    return ( 
-        <div>
-            Search ICON
-        </div>
-     );
-}
- 
+const SearchBar = (props) => {
+
+  const isOpen = props.isOpen
+
+
+  return (
+    <div className={isOpen ? "search-bar-open" :  "search-bar-closed"}>
+    <div className="search-bar">
+      <div className={isOpen ? "container-open" :  "container-closed"}>
+        <p>What are you looking for?</p>
+        <div>  <input type="text" placeholder="Search.."></input>
+        <button className="search-button">Search</button></div>
+      
+      </div>
+    </div></div>
+  );
+};
+
 export default SearchBar;
