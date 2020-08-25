@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import Login from "./Login";
 import Register from "./Register";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
 
@@ -45,7 +46,8 @@ const CloseCart = (Close) => {
     <div>
     <div className="nav-bar">
       <div className="nav-container">
-        <div className="logo">Hasan's Tailor</div>
+        
+        <div className="logo"><Link to="/">Hasan's Tailor</Link></div>
         <ul>
         <li onClick={SearchOpen}>Search</li>
         <li onClick={LoginOpen}>Login</li>

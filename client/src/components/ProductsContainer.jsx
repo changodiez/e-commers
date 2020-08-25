@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
+import Banner from "./Banner";
+
 //import Men from "./../Assets/4.jpeg";
 //import Women from "./../Assets/5.jpeg";
 
-const ProductsContainer = () => {
-  const [productsData, setProductsData] = useState();
+const ProductsContainer = (props) => {
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=10")
-      .then((res) => res.json())
-      .then((json) => {
-        setProductsData(json);
-        console.log(json);
-      });
-  }, []);
+const productsData = props.Data
 
   return (
-    <div className="products-container">
-      <div id="mini-banner">
-        <h1>All our products!</h1>
-      </div>
-      <div className="cards-grid">
-        {productsData ? (
-          productsData.map((product, index) => (
-            <ProductCard value={product} key={index} />
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+    <div>
+      <Banner />
+      <div className="products-container">
+        <div id="mini-banner">
+          <h1>All our products!</h1>
+        </div>
+        <div className="cards-grid">
+          {productsData ? (
+            productsData.map((product, index) => (
+              <ProductCard value={product} key={index} />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
       </div>
     </div>
   );

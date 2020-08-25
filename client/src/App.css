@@ -1,5 +1,5 @@
 :root {
-  --background: #f5f5f5;
+  --background: #ffffff;
   --color1: #040c10;
   --color2: #846c5b;
   --color3: #7645e7;
@@ -10,6 +10,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  color:inherit;
+  text-decoration: none;
 }
 
 .App {
@@ -64,6 +69,7 @@ p {
   position: fixed;
   background-color: var(--background);
   opacity: 0.9;
+  z-index: 499;
 }
 
 .nav-container {
@@ -118,8 +124,8 @@ p {
   margin: auto;
   text-align: center;
 }
+/* /////////////////////////////////// modal Login ///////////////////////////////////////////// */
 
-/*  ------------ modal Login ---------------  */
 
 .modal {
   background-color: rgba(0, 0, 0, 0.6);
@@ -159,8 +165,9 @@ p {
   z-index: 500;
   cursor: pointer;
 }
+/* /////////////////////////////////// Search button ///////////////////////////////////////////// */
 
-/*  ------------ Search button ---------------  */
+
 
 .search-bar-open {
   width: 100%;
@@ -195,12 +202,12 @@ p {
   font-size: 1.5rem;
 }
 
-.search-bar .search-button {
-  width: 10%;
+.search-button {
   color: var(--color1);
 }
 
-/*  ------------ CART ---------------  */
+/* /////////////////////////////////// CART ///////////////////////////////////////////// */
+
 .cart-open {
   transition: ease-in all 400ms;
   background-color: rgba(0, 0, 0, 0.8);
@@ -212,6 +219,7 @@ p {
   pointer-events: all;
   color: var(--background);
   display: flex;
+  z-index: 500;
 }
 .cart-closed {
   transition: ease-out all 400ms;
@@ -222,6 +230,7 @@ p {
   width: 30%;
   height: 100%;
   pointer-events: all;
+  z-index: 500;
 }
 
 .cart-container {
@@ -240,7 +249,8 @@ p {
   font-size: 2rem;
 }
 
-/*  ------------ Products Container ---------------  */
+/* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
+
 .products-container {
   height: 100%;
   display: flex;
@@ -292,7 +302,8 @@ p {
   object-fit: cover;
 }
 
-/* ------------ Products Grid ------------------*/
+/* /////////////////////////////////// PRODUCTS GRID ///////////////////////////////////////////// */
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -301,12 +312,77 @@ p {
   margin: 40px;
 }
 
-.cards-grid .card {
+.card {
   max-height: 500px;
-  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
 }
 
-/*  ------------ Footer ---------------  */
+.card:hover {
+  opacity: 0.65;
+}
+
+#view-item {
+  transition: ease-in 200ms;
+ opacity: 0;
+ 
+}
+
+.card:hover #view-item {
+  transition: ease-in 200ms;
+  opacity: 1;
+}
+
+
+
+.card .card-img {
+  height: 300px;
+  width: 200px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin:auto;
+}
+/* /////////////////////////////////// PRODUCTS DETAIL///////////////////////////////////////////// */
+
+.product-detail {
+  padding-top: 20vh;
+  padding-bottom: 2rem;
+  display: flex;
+flex-direction: row;
+}
+
+.product-detail .img-container {
+  width: 50%;
+  margin: auto;
+}
+
+.detail-img{
+  display:block;
+  margin: auto;
+width: 50%;
+}
+
+.detail-body{
+  padding: 2rem;
+width: 50%;
+display: flex;
+flex-direction: column;
+}
+
+.detail-price {
+  color: var(--color3);
+  float: right;
+}
+
+.detail-button {
+  color: var(--color1);
+  width: 30%;
+}
+
+/*  ------------ FOOTER ---------------  */
 .footer {
   background-color: var(--color1);
   color: var(--color3);
