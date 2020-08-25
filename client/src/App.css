@@ -242,14 +242,9 @@ p {
 
 /*  ------------ Products Container ---------------  */
 .products-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.products-category {
-  display: flex;
-  flex-direction: row;
 }
 
 #mini-banner {
@@ -295,6 +290,20 @@ p {
   height: 80vh;
   object-position: center;
   object-fit: cover;
+}
+
+/* ------------ Products Grid ------------------*/
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  margin: 40px;
+}
+
+.cards-grid .card {
+  max-height: 500px;
+  min-height: 500px;
 }
 
 /*  ------------ Footer ---------------  */
