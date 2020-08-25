@@ -36,7 +36,7 @@ input {
 }
 
 button {
-  border:1px solid var(--color3);
+  border: 1px solid var(--color3);
   color: whitesmoke;
   background-color: transparent;
   font-size: 1rem;
@@ -98,7 +98,7 @@ p {
 .nav-bar li:hover {
   transition: ease-out 100ms;
   color: var(--color3);
-border-bottom: 1px solid var(--color3);
+  border-bottom: 1px solid var(--color3);
 }
 
 .banner {
@@ -151,8 +151,6 @@ border-bottom: 1px solid var(--color3);
   display: flex;
   flex-direction: column;
 }
-
-
 
 #LoginbuttonClose {
   font-weight: bolder;
@@ -213,7 +211,7 @@ border-bottom: 1px solid var(--color3);
   height: 100%;
   pointer-events: all;
   color: var(--background);
- display: flex;
+  display: flex;
 }
 .cart-closed {
   transition: ease-out all 400ms;
@@ -232,39 +230,31 @@ border-bottom: 1px solid var(--color3);
   width: 90%;
   display: flex;
   flex-direction: column;
-
-  }
-
+}
 
 #cart-close-button {
   float: right;
   padding: 1rem;
 }
-.cart-open .title{
+.cart-open .title {
   font-size: 2rem;
 }
 
-
 /*  ------------ Products Container ---------------  */
 .products-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.products-category {
-  display: flex;
-  flex-direction: row;
 }
 
 #mini-banner {
   display: flex;
   align-items: center;
   justify-content: center;
-width: 100%;
-height: 15vh;
-background-color: var(--color2);
-text-align: center;
+  width: 100%;
+  height: 15vh;
+  background-color: var(--color2);
+  text-align: center;
 }
 
 #mini-banner:hover {
@@ -295,13 +285,26 @@ text-align: center;
   opacity: 0.55;
 }
 
-.products-category img {  
+.products-category img {
   width: 100%;
   height: 80vh;
   object-position: center;
   object-fit: cover;
 }
 
+/* ------------ Products Grid ------------------*/
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  margin: 40px;
+}
+
+.cards-grid .card {
+  max-height: 500px;
+  min-height: 500px;
+}
 
 /*  ------------ Footer ---------------  */
 .footer {
