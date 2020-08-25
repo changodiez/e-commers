@@ -24,16 +24,16 @@
   height: 10vh;
   width: 100%;
   position: fixed;
- 
+
   background-color: var(--background);
 }
 .nav-container {
-    width:90%;
-    margin: auto;
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .nav-bar .logo {
@@ -48,7 +48,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
 }
 
 .banner-text {
@@ -57,5 +56,21 @@
   color: var(--background);
   padding-top: 40vh;
   margin: auto;
-text-align: center;
+  text-align: center;
+}
+
+/*//////PRODUCT GRID//////*/
+
+.products-container {
+  display: grid;
+  border: 1px black solid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  grid-gap: 2em;
+}
+
+.card {
+  width: 250px;
+  border: 1px red solid;
+  text-align: center;
 }
