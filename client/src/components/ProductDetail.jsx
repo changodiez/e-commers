@@ -5,6 +5,10 @@ const ProductDetail = (props) => {
 
   const product = data.find((e) => e.id == props.match.params.id);
 
+  const AddProduct = () => {
+    console.log ("add product")
+  }
+
   return (
     <div >
       {product ? (
@@ -18,7 +22,7 @@ const ProductDetail = (props) => {
             <h1 className="detail-price">{product.price} €</h1>
             <button
               className="detail-button"
-              onClick={console.log("To define")}
+              onClick={AddProduct}
             >
               Add to cart
             </button>
