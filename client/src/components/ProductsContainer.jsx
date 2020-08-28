@@ -12,11 +12,11 @@ const productsData = props.Data
   return (
     <div>
       <Banner />
-      <div className="products-container">
+      <div  className="products-container">
         <div id="mini-banner">
           <h1>All our products!</h1>
         </div>
-        <div className="cards-grid">
+        <div id="products-list" className="cards-grid">
           {productsData ? (
             productsData.map((product, index) => (
               <ProductCard value={product} key={index} />

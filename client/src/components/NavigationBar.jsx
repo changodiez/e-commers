@@ -5,7 +5,8 @@ import Register from "./Register";
 import Cart from "./Cart";
 import { Link } from "react-router-dom";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+
 
   // Login Button
 const [ isLoginOpen, setLoginOpen ] = React.useState(false)
@@ -31,6 +32,27 @@ const SearchOpen = () => {
   setSearchOpen(!isSearchOpen)
 }
 
+// Search FUNCTION
+const data = props.Data
+const [ inputValue, setInputValue ] = React.useState("")
+const [ filterProducts, setfilterProducts ] = React.useState(data)
+let datavalid
+
+data ? datavalid = data : datavalid = []
+
+const filterOnChange = (e) => {
+  setInputValue (e.target.value)
+  let searchValue = e.target.value.toLowerCase();
+  let filteredProducts = datavalid.filter(
+    (data) =>
+      data.title.toLowerCase().includes(searchValue) ||
+      data.description.toLowerCase().includes(searchValue)
+      );
+     
+  
+      setfilterProducts(filteredProducts)
+      console.log(filterProducts)
+  }
 // Cart Button 
 const [ isCartOpen, setCartOpen ] = React.useState(false)
 const CartOpen = () => {
@@ -55,7 +77,8 @@ const CloseCart = (Close) => {
         <li onClick={CartOpen}>Cart</li> 
         </ul>      
       </div>
-      <SearchBar isOpen={isSearchOpen} />
+      <SearchBar isOpen={isSearchOpen}  filterOnChange={filterOnChange}
+          inputValue={inputValue}/>
     </div>
     
        { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null}
