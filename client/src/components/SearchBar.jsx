@@ -10,7 +10,14 @@ const SearchBar = (props) => {
     <div className="search-bar">
       <div className={isOpen ? "container-open" :  "container-closed"}>
         <p>What are you looking for?</p>
-        <div>  <input type="text" placeholder="Search.."></input>
+        <div>  
+          <input 
+          type="text" 
+          placeholder="Search.."
+          autoFocus={true}
+          value={props.inputValue}
+          onChange={props.filterOnChange}
+          ></input>
         <button className="search-button">Search</button></div>
       
       </div>

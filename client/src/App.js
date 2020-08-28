@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App">
-      <NavigationBar />
+      <NavigationBar Data={productsData} />
       <Route path="/" exact={true} render={(props)=><ProductsContainer {...props} Data={productsData} />} />
       <Route path="/product/:id" render={(props)=><ProductDetail {...props} Data={productsData} />} />
       <Footer />
