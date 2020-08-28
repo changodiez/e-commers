@@ -14,6 +14,9 @@ app.use(express.json());
 //* Product Route *//
 app.use("/products", require("./routes/products"));
 
+//* Authenticaion Route*//
+app.use("/auth", require("./routes/auth"));
+
 /*TODO*/
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
