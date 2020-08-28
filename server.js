@@ -24,15 +24,16 @@ fetch("https://fakestoreapi.com/products")
   .then((data) => {
     data.map((event) => {
       pool
-        .query("SELECT * FROM products WHERE product_name=$1", [event.title])
+        .query("SELECT * FROM products WHERE id=$1", [event.id])
         .then((result) => {
           if (result.rows.length > 0) {
             console.log("A Products with the same name already exists!");
           } else {
             const query =
-              "INSERT INTO products (product_name, category, unit_price, image) VALUES ($1, $2, $3, $4)";
+              "INSERT INTO products (id, product_name, category, unit_price, image) VALUES ($1, $2, $3, $4, $5)";
             pool
               .query(query, [
+                event.id,
                 event.title,
                 event.category,
                 event.price,
@@ -52,15 +53,16 @@ fetch("https://fakestoreapi.com/users")
   .then((data) => {
     data.map((event) => {
       pool
-        .query("SELECT * FROM products WHERE product_name=$1", [event.email])
+        .query("SELECT * FROM products WHERE id=$1", [event.id])
         .then((result) => {
           if (result.rows.length > 0) {
             console.log("A Customer with the same name already exists!");
           } else {
             const query =
-              "INSERT INTO customers (first_name, last_name, email, password, address, city, postcode, country, mobile) VALUES ($1, $2, $3, crypt($4, gen_salt('bf')),$5, $6, $7, $8, $9)";
+              "INSERT INTO customers (id, first_name, last_name, email, password, address, city, postcode, country, mobile) VALUES ($1, $2, $3, $4, crypt($5, gen_salt('bf')), $6, $7, $8, $9, $10)";
             pool
               .query(query, [
+                event.id,
                 event.name.firstname,
                 event.name.lastname,
                 event.email,
@@ -78,22 +80,23 @@ fetch("https://fakestoreapi.com/users")
     });
   });
 
-//==============================================================orders==========================================================
+//==============================================================suppliers==========================================================
 
 fetch("https://fakestoreapi.com/users")
   .then((response) => response.json())
   .then((data) => {
     data.map((event) => {
       pool
-        .query("SELECT * FROM suppliers WHERE mobile=$1", [event.mobile])
+        .query("SELECT * FROM suppliers WHERE id=$1", [event.id])
         .then((result) => {
           if (result.rows.length > 0) {
             console.log("A suppliers with the same name already exists!");
           } else {
             const query =
-              "INSERT INTO suppliers (address, city, postcode, country, email, mobile) VALUES ($1, $2, $3, $4,$5, $6)";
+              "INSERT INTO suppliers (id, address, city, postcode, country, email, mobile) VALUES ($1, $2, $3, $4,$5, $6, $7)";
             pool
               .query(query, [
+                event.id,
                 `${event.address.street} ${event.address.number}`,
                 event.address.city,
                 event.address.zipcode,
@@ -107,6 +110,3 @@ fetch("https://fakestoreapi.com/users")
         });
     });
   });
-
-
-module.exports = pool;
