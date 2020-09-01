@@ -10,10 +10,10 @@ app.listen(8000, function () {
 });
 
 const pool = new Pool({
-  user: "postgres",
+  user: "migracode",
   host: "localhost",
-  database: "etailor",
-  password: "Bird14",
+  database: "migracode_project",
+  password: "occlaptop1",
   port: 5432,
 });
 
