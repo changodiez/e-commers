@@ -1,38 +1,28 @@
-import React from 'react';
+import React from "react";
 
 const Register = (props) => {
+  const RegisterOpen = props.RegisterOpen;
 
-    const RegisterOpen = props.RegisterOpen;
-  
-    const Close = props.CloseRegister
-    
-    const CloseRegister = () => {
-     Close(!RegisterOpen)
-   
-    }
+  const Close = props.CloseRegister;
 
-    return ( 
-        <div>
-             <div>
-      <div className="modal">
-        
+  const CloseRegister = () => {
+    Close(!RegisterOpen);
+  };
+
+  return (
+    <div>
+      <div>
+        <div className="modal">
           <div className="Login-modal">
-          <button id="LoginbuttonClose" onClick={CloseRegister}>
-          X
-        </button>
+            <button id="LoginbuttonClose" onClick={CloseRegister}>
+              X
+            </button>
             <form>
-            <h2>Create an account</h2>
-            <p>Already have an account? Sign In</p>
-            <p>Enter your Username</p>
-              <input
-                type="text"
-                placeholder="Username..."
-                name="uname"
-                required
-              ></input>
+              <h2>Create an account</h2>
+              <p>Already have an account? Sign In</p>
               <p>Enter your email</p>
 
-<input
+              <input
                 type="email"
                 placeholder="Email..."
                 name="uname"
@@ -46,14 +36,16 @@ const Register = (props) => {
                 required
               ></input>
               <button type="submit">Register</button>
-              <p>By providing your email address, you agree to our Privacy Policy and Terms & Conditions</p>
+              <p>
+                By providing your email address, you agree to our Privacy Policy
+                and Terms & Conditions
+              </p>
             </form>
           </div>
-    
+        </div>
       </div>
     </div>
-        </div>
-     );
-}
- 
+  );
+};
+
 export default Register;
