@@ -18,7 +18,7 @@ const SearchBar = (props) => {
           value={props.inputValue}
           onChange={props.filterOnChange}
           ></input>
-        <button className="search-button">Search</button></div>
+        <button onClick={props.filterOnClick}className="search-button">Search</button></div>
       
       </div>
     </div></div>

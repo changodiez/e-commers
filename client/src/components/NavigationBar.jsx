@@ -31,28 +31,12 @@ const [ isSearchOpen, setSearchOpen ] = React.useState(false)
 const SearchOpen = () => {
   setSearchOpen(!isSearchOpen)
 }
+// Search Function
+const filterOnChange = props.filterOnChange
+const filterOnClick = props.filterOnClick
+const inputValue = props.inputValue
 
-// Search FUNCTION
-const data = props.Data
-const [ inputValue, setInputValue ] = React.useState("")
-const [ filterProducts, setfilterProducts ] = React.useState(data)
-let datavalid
 
-data ? datavalid = data : datavalid = []
-
-const filterOnChange = (e) => {
-  setInputValue (e.target.value)
-  let searchValue = e.target.value.toLowerCase();
-  let filteredProducts = datavalid.filter(
-    (data) =>
-      data.title.toLowerCase().includes(searchValue) ||
-      data.description.toLowerCase().includes(searchValue)
-      );
-     
-  
-      setfilterProducts(filteredProducts)
-      console.log(filterProducts)
-  }
 // Cart Button 
 const [ isCartOpen, setCartOpen ] = React.useState(false)
 const CartOpen = () => {
@@ -78,7 +62,7 @@ const CloseCart = (Close) => {
         </ul>      
       </div>
       <SearchBar isOpen={isSearchOpen}  filterOnChange={filterOnChange}
-          inputValue={inputValue}/>
+          inputValue={inputValue} filterOnClick={filterOnClick}/>
     </div>
     
        { isLoginOpen ? <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin}/> : null}
