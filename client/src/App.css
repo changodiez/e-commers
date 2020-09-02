@@ -70,6 +70,7 @@ p {
   background-color: var(--background);
   opacity: 0.9;
   z-index: 499;
+  pointer-events: all;
 }
 
 .nav-container {
@@ -167,6 +168,10 @@ p {
 }
 /* /////////////////////////////////// Search button ///////////////////////////////////////////// */
 
+.search-bar {
+  pointer-events: none;
+}
+
 .search-bar-open {
   width: 100%;
   transition: ease-in all 200ms;
@@ -184,6 +189,7 @@ p {
   transition: 400ms;
   width: 50%;
   margin: auto;
+ 
 }
 
 .search-bar .container-closed {
@@ -193,6 +199,7 @@ p {
   width: 50%;
   margin: auto;
   opacity: 0;
+ 
 }
 
 .search-bar input {

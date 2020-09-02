@@ -23,10 +23,12 @@ function App() {
   // Search FUNCTION
   const data = productsData;
   let datavalid;
-  data ? (datavalid = data.flat()) : (datavalid = []);
+  data ? (datavalid = data) : (datavalid = []);
 
   const [inputValue, setInputValue] = React.useState("");
 
+  console.log(data)
+  
   const filterOnChange = (e) => {
     setInputValue(e.target.value);
   };

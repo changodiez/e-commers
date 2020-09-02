@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
 
   try {
    const {id} = req.params
-   const product =  await pool.query ("SELECT * FROM products WHERE id = $1", [id])
+   let product =  await pool.query ("SELECT * FROM products WHERE id = $1", [id])
    res.json(product.rows);
   } catch (error) {
       console.error (error.message)
@@ -23,11 +23,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.get("/:id", (req, res) => {
-//   const {id} = req.params
-//   pool.query ("SELECT * FROM products WHERE id = $1", [id])
-//     .then(rows => res.json(rows.json()))
-// });
 
 
 module.exports = router;

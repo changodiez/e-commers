@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const ProductDetail = () => {
   
-  let { id } = useParams();
+  let id  = useParams();
   const [product, setProducts] = useState();
 
   useEffect(() => {
