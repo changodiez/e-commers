@@ -17,9 +17,9 @@ const ProductDetail = (props) => {
           <img className="detail-img" src={product.image} alt="Product" />
           </div>
           <div className="detail-body ">
-            <h1 className="detail-title">{product.title}</h1>
+            <h1 className="detail-title">{product.product_name}</h1>
             <h3 className="detail-description">{product.description} </h3>
-            <h1 className="detail-price">{product.price} €</h1>
+            <h1 className="detail-price">{product.unit_price} €</h1>
             <button
               className="detail-button"
               onClick={AddProduct}

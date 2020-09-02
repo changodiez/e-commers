@@ -10,10 +10,10 @@ const ProductCard = (props) => {
     <div className="card">      
       <img className="card-img" src={product.image} alt="Product" />
       <div className="card-body ">
-        <h5 className="card-title">{product.title}</h5>
-        <h5 className="card-title">{product.price} €</h5>
+        <h5 className="card-title">{product.product_name}</h5>
+        <h5 className="card-title">{product.unit_price} €</h5>
         <h5 id="view-item">VIEW ITEM</h5>
-        {/* <button className="search-button" onClick={console.log("To define")}>Add to cart</button> */}
+       
       </div>
     </div>
     </Link>
