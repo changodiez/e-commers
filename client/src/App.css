@@ -3,6 +3,7 @@
   --color1: #040c10;
   --color2: #846c5b;
   --color3: #7645e7;
+
 }
 
 /* ///////////////////////////////////GENERALES ///////////////////////////////////////////// */
@@ -346,6 +347,7 @@ p {
   padding-bottom: 2rem;
   display: flex;
   flex-direction: row;
+
 }
 
 .product-detail .img-container {
@@ -364,11 +366,11 @@ p {
   width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .detail-price {
   color: var(--color3);
-  float: right;
 }
 
 .detail-button {

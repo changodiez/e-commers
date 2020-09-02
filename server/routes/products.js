@@ -5,13 +5,10 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
   const dbquery = "SELECT * FROM products";
 
-  try {
+
     const allProducts = await pool.query(dbquery);
     res.json(allProducts.rows);
-  } catch (error) {
-      console.error (error.message)
-      res.status(error.status).json("Something went wrong")
-  }
+
 });
 
 router.get("/:id", async (req, res) => {
@@ -26,18 +23,11 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/:men", async (req, res) => {
-
-  try {
-    const {men} = "men clothing"
-      const menProducts =  await pool.query ("SELECT * FROM products WHERE category = $1", [men])
-   res.json(menProducts.rows);
-  } catch (error) {
-      console.error (error.message)
-      res.status(error.status).json("Something went wrong")
-  }
-});
-
+// router.get("/:id", (req, res) => {
+//   const {id} = req.params
+//   pool.query ("SELECT * FROM products WHERE id = $1", [id])
+//     .then(rows => res.json(rows.json()))
+// });
 
 
 module.exports = router;
