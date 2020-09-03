@@ -11,6 +11,11 @@ import ProductsCategory from "./components/ProductsCategory";
 
 function App() {
   const [productsData, setProductsData] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
 
   useEffect(() => {
     fetch("http://localhost:4000/products")
@@ -50,18 +55,19 @@ function App() {
           filterOnChange={filterOnChange}
           inputValue={inputValue}
           filterOnClick={filterOnClick}
+          setAuth={setAuth}
         />
         <Route
           path="/"
           exact={true}
           render={() => (
             <div>
-            <Banner />  
-            <ProductsCategory/>
+              <Banner />
+              <ProductsCategory />
             </div>
           )}
         />
-         
+
         <Route
           path="/products"
           exact={true}
