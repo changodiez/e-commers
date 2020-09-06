@@ -3,35 +3,35 @@ import { Link } from "react-router-dom";
 
 import Men from "./../Assets/4.jpeg";
 import Women from "./../Assets/5.jpeg";
-
+import ProductsContainer from "./ProductsContainer";
 
 const ProductsCategory = () => {
   return (
     <div className="products-category">
-      <Link  to={`/products`}>
-      <div id="mini-banner">
+      <Link to={`/products`}>
+        <div id="mini-banner">
           <h1>All our products!</h1>
         </div>
       </Link>
-      
-        <Link to={`/products/category/men`}>
-      <div className="img-category">
-        <img src={Men} alt="" />
-        <div className="text-block">
-          <h2>MEN</h2>
+
+      <Link to={`/products/category/men`}>
+        <div className="img-category">
+          <img src={Men} alt="" />
+          <div className="text-block">
+            <h2>MEN</h2>
+          </div>
         </div>
-      </div></Link>
+      </Link>
 
       <Link to={`/products/category/women`}>
-      <div className="img-category">
-        <img src={Women} alt="" />
-        <div className="text-block">
-          <h2>Women</h2>
+        <div className="img-category">
+          <img src={Women} alt="" />
+          <div className="text-block">
+            <h2>Women</h2>
+          </div>
         </div>
-      </div></Link>  
- 
-
-     </div>
+      </Link>
+    </div>
   );
 };
 
