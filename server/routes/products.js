@@ -34,11 +34,18 @@ router.get("/category/:category", (req, res) => {
       })
       .catch((err) => {
         console.error(err);
+        return res.status(err.status).json("Something went wrong");
       });
   } else if (category === "women") {
-    pool.query(dbQuery, ["women clothing"]).then((response) => {
-      return res.json(response.rows);
-    });
+    pool
+      .query(dbQuery, ["women clothing"])
+      .then((response) => {
+        return res.json(response.rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        return res.status(err.status).json("Something went wrong");
+      });
   }
 });
 module.exports = router;
