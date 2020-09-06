@@ -29,10 +29,6 @@ const NavigationBar = (props) => {
   const SearchOpen = () => {
     setSearchOpen(!isSearchOpen);
   };
-  // Search Function
-  const filterOnChange = props.filterOnChange;
-  const filterOnClick = props.filterOnClick;
-  const inputValue = props.inputValue;
 
   // Cart Button
   const [isCartOpen, setCartOpen] = React.useState(false);
@@ -43,6 +39,8 @@ const NavigationBar = (props) => {
     setCartOpen(Close);
   };
 
+  const setAuth = props.setAuth;
+  const auth = props.auth;
   return (
     <div>
       <div className="nav-bar">
@@ -50,23 +48,30 @@ const NavigationBar = (props) => {
           <div className="logo">
             <Link to="/">Hasan's Tailor</Link>
           </div>
-          <ul>
-            <li onClick={SearchOpen}>Search</li>
-            <li onClick={LoginOpen}>Login</li>
-            <li onClick={RegisterOpen}>Register</li>
-            <li onClick={CartOpen}>Cart</li>
-          </ul>
+          {!auth ? (
+            <ul>
+              <li onClick={LoginOpen}>Login</li>
+              <li onClick={RegisterOpen}>Register</li>
+              <li onClick={SearchOpen}>Search</li>
+              <li onClick={CartOpen}>Cart</li>
+            </ul>
+          ) : (
+            <ul>
+              <li>Hello Ricardo!</li>
+              <li onClick={SearchOpen}>Search</li>
+              <li onClick={CartOpen}>Cart</li>
+            </ul>
+          )}
         </div>
-        <SearchBar
-          isOpen={isSearchOpen}
-          filterOnChange={filterOnChange}
-          inputValue={inputValue}
-          filterOnClick={filterOnClick}
-        />
+        <SearchBar isOpen={isSearchOpen} />
       </div>
 
       {isLoginOpen ? (
-        <Login LoginOpen={isLoginOpen} CloseLogin={CloseLogin} />
+        <Login
+          LoginOpen={isLoginOpen}
+          CloseLogin={CloseLogin}
+          setAuth={setAuth}
+        />
       ) : null}
       {isRegisterOpen ? (
         <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} />

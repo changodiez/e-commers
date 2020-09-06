@@ -7,6 +7,8 @@ const Login = (props) => {
     password: "",
   });
 
+  const setAuth = props.setAuth;
+
   //Managing login
   const { email, password } = inputs;
   const onChange = (e) => {
@@ -26,7 +28,7 @@ const Login = (props) => {
 
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      props.setAuth(true);
+      setAuth(true);
     } catch (error) {
       console.error(error.message);
     }

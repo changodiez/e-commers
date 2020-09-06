@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -16,10 +16,29 @@ function App() {
     setIsAuthenticated(boolean);
   };
 
+  const checkAuthentication = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/auth/verify", {
+        method: "POST",
+        headers: { jwt_token: localStorage.token },
+      });
+
+      const parseRes = await res.json();
+
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar setAuth={setAuth} />
+        <NavigationBar auth={isAuthenticated} setAuth={setAuth} />
         <Route
           path="/"
           exact={true}
