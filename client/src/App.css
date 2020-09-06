@@ -169,7 +169,7 @@ p {
 /* /////////////////////////////////// Search button ///////////////////////////////////////////// */
 
 .search-bar {
-  pointer-events: none;
+  pointer-events: inherit;
 }
 
 .search-bar-open {
@@ -183,6 +183,7 @@ p {
 .search-bar-closed {
   transition: ease-out all 400ms;
   height: 1rem;
+  pointer-events: all;
 }
 
 .search-bar .container-open {
@@ -199,7 +200,7 @@ p {
   width: 50%;
   margin: auto;
   opacity: 0;
- 
+  display: none;
 }
 
 .search-bar input {
