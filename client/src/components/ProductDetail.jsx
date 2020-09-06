@@ -13,9 +13,6 @@ const ProductDetail = () => {
       });
   }, []);
 
-  console.log(product)
-  console.log(id)
-
   const AddProduct = () => {
     console.log("add product");
   };

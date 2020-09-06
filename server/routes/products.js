@@ -41,4 +41,5 @@ router.get("/category/:category", (req, res) => {
     });
   }
 });
+
 module.exports = router;

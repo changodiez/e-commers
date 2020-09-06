@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 
 import Men from "./../Assets/4.jpeg";
 import Women from "./../Assets/5.jpeg";
-import ProductsContainer from "./ProductsContainer";
+
 
 const ProductsCategory = () => {
   return (
-    <div className="products-category">
-      <Link to={`/products`}>
+<div>
+    <Link to={`/products`}>
         <div id="mini-banner">
           <h1>All our products!</h1>
         </div>
       </Link>
+    <div className="products-category">
+      
 
       <Link to={`/products/category/men`}>
         <div className="img-category">
@@ -31,6 +33,7 @@ const ProductsCategory = () => {
           </div>
         </div>
       </Link>
+    </div>
     </div>
   );
 };
