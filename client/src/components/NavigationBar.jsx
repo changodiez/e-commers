@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
 import Register from "./Register";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const NavigationBar = (props) => {
   // Login Button
-  const [isLoginOpen, setLoginOpen] = React.useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
   const LoginOpen = () => {
     setLoginOpen(!isLoginOpen);
   };
@@ -16,7 +16,7 @@ const NavigationBar = (props) => {
   };
 
   // Register Button
-  const [isRegisterOpen, setRegisterOpen] = React.useState(false);
+  const [isRegisterOpen, setRegisterOpen] = useState(false);
   const RegisterOpen = () => {
     setRegisterOpen(!isRegisterOpen);
   };
@@ -25,13 +25,13 @@ const NavigationBar = (props) => {
   };
 
   // Search Button
-  const [isSearchOpen, setSearchOpen] = React.useState(false);
+  const [isSearchOpen, setSearchOpen] = useState(false);
   const SearchOpen = () => {
     setSearchOpen(!isSearchOpen);
   };
 
   // Cart Button
-  const [isCartOpen, setCartOpen] = React.useState(false);
+  const [isCartOpen, setCartOpen] = useState(false);
   const CartOpen = () => {
     setCartOpen(!isCartOpen);
   };
@@ -39,8 +39,37 @@ const NavigationBar = (props) => {
     setCartOpen(Close);
   };
 
+  // Authentication and getting the user's name
   const setAuth = props.setAuth;
   const auth = props.auth;
+
+  const [name, setName] = useState("");
+
+  async function getName() {
+    try {
+      const response = await fetch("http://localhost:4000/auth/dashboard", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+
+      setName(parseRes.first_name);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  //Log out button
+
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setAuth(false);
+  };
+  useEffect(() => {
+    getName();
+  });
+
   return (
     <div>
       <div className="nav-bar">
@@ -57,7 +86,8 @@ const NavigationBar = (props) => {
             </ul>
           ) : (
             <ul>
-              <li>Hello Ricardo!</li>
+              <li>Hello {name}!</li>
+              <li onClick={(e) => logout(e)}>Logout</li>
               <li onClick={SearchOpen}>Search</li>
               <li onClick={CartOpen}>Cart</li>
             </ul>
