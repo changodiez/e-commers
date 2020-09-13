@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const Login = (props) => {
   const [inputs, setInputs] = useState({
     email: "",
@@ -29,6 +28,7 @@ const Login = (props) => {
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
       setAuth(true);
+      window.location.href = "/";
     } catch (error) {
       console.error(error.message);
     }

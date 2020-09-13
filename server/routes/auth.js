@@ -6,6 +6,7 @@ const express = require("express");
 const jwtGenerator = require("../utils/jwtGenerator");
 const authorize = require("../middleware/authorize");
 
+//REGISTER NEW USER
 router.post("/register", validInfo, async (req, res) => {
   const { email, password } = req.body;
 
@@ -33,6 +34,7 @@ router.post("/register", validInfo, async (req, res) => {
   }
 });
 
+//LOGIN FOR EXISTING USER
 router.post("/login", validInfo, async (req, res) => {
   const { email, password } = req.body;
 
@@ -52,20 +54,35 @@ router.post("/login", validInfo, async (req, res) => {
     }
 
     //Missing using JWT
-    const jwtToken = jwtGenerator(user.rows[0].id);
-    return res.json({ jwtToken });
+    const token = jwtGenerator(user.rows[0].id);
+    return res.json({ token });
   } catch (error) {
     console.error(error.message);
     return res.status(error.status).json("Something went wrong");
   }
 });
 
+//VERIFICATION ROUTE. GETS CALLED ON EACH RENDER
 router.post("/verify", authorize, (req, res) => {
   try {
     res.json(true);
   } catch (error) {
     console.error(error.message);
     return res.status(500).send("Server error");
+  }
+});
+
+//USED TO GET THE USER NAME
+router.get("/dashboard", authorize, async (req, res) => {
+  try {
+    const { id } = req.user;
+    const nameQuery = "SELECT first_name FROM customers WHERE id=$1";
+    const name = await pool.query(nameQuery, [id]);
+
+    res.json(name.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json("Server error");
   }
 });
 
