@@ -8,12 +8,12 @@ const authorize = require("../middleware/authorize");
 
 //REGISTER NEW USER
 router.post("/register", validInfo, async (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     const verificationQuery = "SELECT * FROM customers WHERE email=$1";
     const insertQuery =
-      "INSERT INTO customers (email, password) VALUES ($1, $2)";
+      "INSERT INTO customers (first_name, email, password) VALUES ($1, $2, $3)";
 
     const user = await pool.query(verificationQuery, [email]);
 
@@ -24,7 +24,7 @@ router.post("/register", validInfo, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const bcryptpassword = await bcrypt.hash(password, salt);
 
-    const newUser = await pool.query(insertQuery, [email, bcryptpassword]);
+    const newUser = await pool.query(insertQuery, [username, email, bcryptpassword]);
 
     //Do we assign jwt here? ask in meeting
     return res.status(200).json("User created succesfully");

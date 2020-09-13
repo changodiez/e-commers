@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Register = (props) => {
   const [inputs, setInputs] = useState({
+    username:"",
     email: "",
     password: "",
     registrationSuccessful: "",
@@ -9,7 +10,7 @@ const Register = (props) => {
   });
 
   //Managing register form
-  const { email, password, registrationError, registrationSuccessful } = inputs; // <- This is just to use these variables without having to write inputs.email and inputs.password everytime
+  const { username, email, password, registrationError, registrationSuccessful } = inputs; // <- This is just to use these variables without having to write inputs.email and inputs.password everytime
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
@@ -17,7 +18,7 @@ const Register = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const body = { email, password };
+    const body = { username, email, password };
     try {
       const response = await fetch("http://localhost:4000/auth/register", {
         method: "POST",
@@ -63,6 +64,18 @@ const Register = (props) => {
             <form onSubmit={onSubmit}>
               <h2>Create an account</h2>
               <p>Already have an account? Sign In</p>
+              
+              <p>Enter your name</p>
+
+              <input
+                type="text"
+                placeholder="Your name..."
+                name="username"
+                required
+                value={username}
+                onChange={(e) => onChange(e)}
+              ></input>
+
               <p>Enter your email</p>
 
               <input
