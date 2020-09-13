@@ -4,12 +4,14 @@ const Login = (props) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
+    loginError: "",
+    loginSuccess: "",
   });
 
   const setAuth = props.setAuth;
 
   //Managing login
-  const { email, password } = inputs;
+  const { email, password, loginError, loginSuccess } = inputs;
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
@@ -26,9 +28,21 @@ const Login = (props) => {
       });
 
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      setAuth(true);
-      window.location.href = "/";
+
+      if (response.ok) {
+        setInputs({
+          ...inputs,
+          loginSuccess: "Login successful",
+          loginError: "",
+        });
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      } else {
+        setInputs({ ...inputs, loginError: parseRes });
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -70,7 +84,18 @@ const Login = (props) => {
               value={password}
               onChange={(e) => onChange(e)}
             ></input>
-
+            <p
+              className="error-message"
+              style={{ display: loginError ? "block" : "none" }}
+            >
+              {loginError}
+            </p>
+            <p
+              className="success-message"
+              style={{ display: loginSuccess ? "block" : "none" }}
+            >
+              {loginSuccess}
+            </p>
             <button type="submit">Login</button>
             <p>Can't remember your password?</p>
           </form>
