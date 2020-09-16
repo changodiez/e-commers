@@ -2,25 +2,28 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useParams } from "react-router-dom";
 
-const ProductsContainer = () => {
+const ProductsContainer = (props) => {
+  //Search
+  console.log(window.location.search);
+
+  const searchValue = props.searchValue;
+
+  // console.log(searchValue)
+  const [value, setValue] = useState("");
+
   const [productsData, setProductsData] = useState([]);
-  let { category } = useParams();
-
-  let fetchLink = "";
-
+  let fetchLink;
+  setValue (searchValue)
+  
   useEffect(() => {
-    if (category === "men") {
-      fetchLink = "http://localhost:4000/products/category/men";
-    } else if (category === "women") {
-      fetchLink = "http://localhost:4000/products/category/women";
-    } else {
-      fetchLink = "http://localhost:4000/products";
-    }
-    fetch(fetchLink)
-      .then((res) => res.json())
-      .then((json) => {
-        setProductsData(json);
-      });
+    searchValue ? setValue(searchValue) : setValue("")
+    if ( value === "") {fetchLink = "http://localhost:4000/products"} else {fetchLink = `http://localhost:4000/products?name=${value}`}
+    
+      fetch(fetchLink)
+        .then((res) => res.json())
+        .then((json) => {
+          setProductsData(json);
+        });
   }, []);
 
   return (

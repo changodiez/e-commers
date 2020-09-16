@@ -35,10 +35,20 @@ function App() {
     checkAuthentication();
   }, []);
 
+//Seach Function
+
+const [ search, setSearchValue ] = useState("")  
+
+const searchValue = (inputValue) => {
+  setSearchValue(inputValue);
+  
+}
+console.log(search)
+
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar auth={isAuthenticated} setAuth={setAuth} />
+        <NavigationBar auth={isAuthenticated} setAuth={setAuth} searchValue={searchValue} />
         <Route
           path="/"
           exact={true}
@@ -53,15 +63,9 @@ function App() {
         <Route
           path="/products"
           exact={true}
-          render={() => <ProductsContainer />}
+          render={(props) => <ProductsContainer {...props} searchValue={search} />}
         />
         <Route path="/product/:id" render={() => <ProductDetail />} />
-
-        <Route
-          path="/products/category/:category"
-          exact={true}
-          render={() => <ProductsContainer />}
-        />
 
         <Footer />
       </div>

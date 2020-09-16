@@ -16,7 +16,7 @@ const ProductsCategory = () => {
     <div className="products-category">
       
 
-      <Link to={`/products/category/men`}>
+      <Link to={`/products?name=men`}>
         <div className="img-category">
           <img src={Men} alt="" />
           <div className="text-block">
@@ -25,7 +25,7 @@ const ProductsCategory = () => {
         </div>
       </Link>
 
-      <Link to={`/products/category/women`}>
+      <Link to={`/products?name=women`}>
         <div className="img-category">
           <img src={Women} alt="" />
           <div className="text-block">

@@ -1,8 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 
 const SearchBar = (props) => {
 
   const isOpen = props.isOpen
+
+
+
+  const [inputValue, setInputValue] = useState ("")
+
+  const searchValue = props.searchValue
+
+  const searchOnClick = () => {
+searchValue(inputValue)
+  }
+//   const searchOnClick = async e => {
+// e.preventDefault()
+// try {
+//   const response = await fetch(`http://localhost:4000/products?name=${inputValue}`)
+  
+//   const res = await response.json()
+
+//   console.log(res)
+// } catch (error) {
+//   console.error(error.message)
+// }
+//   };
+
+  
 
 
   return (
@@ -15,10 +39,10 @@ const SearchBar = (props) => {
           type="text" 
           placeholder="Search.."
           autoFocus={true}
-          value={props.inputValue}
-          onChange={props.filterOnChange}
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value) }
           ></input>
-        <button onClick={props.filterOnClick}className="search-button">Search</button></div>
+        <button type="submit" onClick={searchOnClick}className="search-button">Search</button></div>
       
       </div>
     </div></div>
