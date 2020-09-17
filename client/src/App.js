@@ -39,23 +39,17 @@ function App() {
 
 const [ search, setSearchValue ] = useState("")  
 
-const searchValue = (inputValue) => {
-  setSearchValue(inputValue);
-  
-}
-console.log(search)
-
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar auth={isAuthenticated} setAuth={setAuth} searchValue={searchValue} />
+        <NavigationBar auth={isAuthenticated} setAuth={setAuth} searchValue={setSearchValue} />
         <Route
           path="/"
           exact={true}
-          render={() => (
+          render={(props) => (
             <div>
               <Banner />
-              <ProductsCategory />
+              <ProductsCategory {...props} choseCategory={setSearchValue} />
             </div>
           )}
         />

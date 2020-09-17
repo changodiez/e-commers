@@ -30,11 +30,10 @@ const NavigationBar = (props) => {
     setSearchOpen(!isSearchOpen);
   };
 
+  
 
   const searchValue = props.searchValue
-  const searchOnClick = (inputValue) => {
-    searchValue(inputValue)
-  };
+
 
   // Cart Button
   const [isCartOpen, setCartOpen] = useState(false);
@@ -99,7 +98,7 @@ const NavigationBar = (props) => {
             </ul>
           )}
         </div>
-        <SearchBar isOpen={isSearchOpen} searchValue={searchOnClick}  />
+        <SearchBar isOpen={isSearchOpen} searchValue={searchValue}  />
       </div>
 
       {isLoginOpen ? (

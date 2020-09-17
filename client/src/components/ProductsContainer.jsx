@@ -4,21 +4,26 @@ import { useParams } from "react-router-dom";
 
 const ProductsContainer = (props) => {
   //Search
-  console.log(window.location.search);
+  // console.log(window.location.search);
 
   const searchValue = props.searchValue;
 
-  // console.log(searchValue)
-  const [value, setValue] = useState("");
+  const [ wordToSearch, setWordToSearch ] = useState("")
+
+  console.log(searchValue)
 
   const [productsData, setProductsData] = useState([]);
-  let fetchLink;
-  setValue (searchValue)
   
-  useEffect(() => {
-    searchValue ? setValue(searchValue) : setValue("")
-    if ( value === "") {fetchLink = "http://localhost:4000/products"} else {fetchLink = `http://localhost:4000/products?name=${value}`}
-    
+  
+  useEffect((x) => {
+    console.log(x)
+    if (searchValue) {
+      setWordToSearch(searchValue)
+    }
+    console.log(wordToSearch)
+
+    const fetchLink = `http://localhost:4000/products?name=${wordToSearch}`
+
       fetch(fetchLink)
         .then((res) => res.json())
         .then((json) => {
