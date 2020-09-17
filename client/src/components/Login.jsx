@@ -55,9 +55,10 @@ const Login = (props) => {
     Close(!LoginOpen);
   };
 
+
   return (
     <div>
-      <div className="modal">
+      <div className="modal" >
         <div className="Login-modal">
           <button id="LoginbuttonClose" onClick={CloseLogin}>
             X

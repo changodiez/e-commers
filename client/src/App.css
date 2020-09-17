@@ -129,7 +129,11 @@ p {
 .banner-text {
   /*font-family: "Antic Slab", serif;*/
   font-family: "Overlock", cursive;
-  font-size: 3rem;
+  font-size: 2rem;
+  background-color: var(--color3);
+  opacity: .7;
+  max-width: 35%;
+  padding: 2rem;
   color: var(--white);
   margin: auto;
   text-align: center;
@@ -228,6 +232,7 @@ p {
 .search-bar input {
   width: 80%;
   font-size: 1.5rem;
+  color: var(--white);
 }
 
 .search-button {
@@ -277,15 +282,7 @@ p {
   font-size: 2rem;
 }
 
-/* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
-
-.products-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 15vh;
-}
-
+/* /////////////////////////////////// HOME ///////////////////////////////////////////// */
 #mini-banner {
   display: flex;
   align-items: center;
@@ -346,6 +343,15 @@ p {
   height: 100%;
 }
 
+/* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
+
+.products-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15vh;
+}
+
 .nothing-here {
   width: 100%;
   height: 80vh;
@@ -364,6 +370,7 @@ display: block;
 /* /////////////////////////////////// PRODUCTS GRID ///////////////////////////////////////////// */
 
 .cards-grid {
+  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-column-gap: 40px;
@@ -408,6 +415,7 @@ display: block;
   padding-bottom: 2rem;
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
 }
 
 .product-detail .img-container {

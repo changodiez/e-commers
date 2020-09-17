@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 const ProductDetail = () => {
   
-   // eslint-disable-next-line
-  let {id}  = useParams();
+// eslint-disable-next-line
+let {id}  = useParams();
+ 
   const [product, setProducts] = useState();
 
   useEffect(() => {

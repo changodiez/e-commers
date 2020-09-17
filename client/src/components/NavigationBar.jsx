@@ -98,7 +98,7 @@ const NavigationBar = (props) => {
             </ul>
           )}
         </div>
-        <SearchBar isOpen={isSearchOpen} searchValue={searchValue}  />
+        <SearchBar isOpen={isSearchOpen} searchValue={searchValue}/>
       </div>
 
       {isLoginOpen ? (

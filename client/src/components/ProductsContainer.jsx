@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { useParams } from "react-router-dom";
 
 const ProductsContainer = (props) => {
   //Search
