@@ -12,13 +12,16 @@ const SearchBar = (props) => {
     setInputValue("");
   };
 
+  
   return (
     <div className={isOpen ? "search-bar-open" : "search-bar-closed"}>
+      
       <div className="search-bar">
         <div className={isOpen ? "container-open" : "container-closed"}>
-          <p>What are you looking for?</p>
+          <p style={{color:"white"}}>What are you looking for?</p>
           <div>
             <input
+              id="inputSearch"
               type="text"
               placeholder="Search.."
               autoFocus={true}

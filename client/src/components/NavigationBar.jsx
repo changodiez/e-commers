@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
 import Register from "./Register";
@@ -30,10 +30,27 @@ const NavigationBar = (props) => {
     setSearchOpen(!isSearchOpen);
   };
 
-  
+  const searchValue = props.searchValue;
 
-  const searchValue = props.searchValue
+  const ref = useRef(null);
 
+  const handleClickOutside = (e) => {
+    if (!ref.current.contains(e.target)) {
+      SearchOpen();
+    } else if (e.target.id === "cartbutton") {
+      SearchOpen();
+    }
+  };
+
+  useEffect(() => {
+    if (isSearchOpen) {
+      document.addEventListener("click", handleClickOutside, true);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, false);
+    };
+  }, [isSearchOpen]);
 
   // Cart Button
   const [isCartOpen, setCartOpen] = useState(false);
@@ -76,29 +93,33 @@ const NavigationBar = (props) => {
   });
 
   return (
-    <div>
+    <Fragment>
       <div className="nav-bar">
-        <div className="nav-container">
-          <div className="logo">
-            <Link to="/">Hasan's Tailor</Link>
+        <div ref={ref}>
+          <div className="nav-container">
+            <div className="logo">
+              <Link to="/">Hasan's Tailor</Link>
+            </div>
+            {!auth ? (
+              <ul>
+                <li onClick={LoginOpen}>Login</li>
+                <li onClick={RegisterOpen}>Register</li>
+                <li onClick={SearchOpen}>Search</li>
+                <li onClick={CartOpen} id="cartbutton">
+                  Cart
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>Hello {name}!</li>
+                <li onClick={(e) => logout(e)}>Logout</li>
+                <li onClick={SearchOpen}>Search</li>
+                <li onClick={CartOpen}>Cart</li>
+              </ul>
+            )}
           </div>
-          {!auth ? (
-            <ul>
-              <li onClick={LoginOpen}>Login</li>
-              <li onClick={RegisterOpen}>Register</li>
-              <li onClick={SearchOpen}>Search</li>
-              <li onClick={CartOpen}>Cart</li>
-            </ul>
-          ) : (
-            <ul>
-              <li>Hello {name}!</li>
-              <li onClick={(e) => logout(e)}>Logout</li>
-              <li onClick={SearchOpen}>Search</li>
-              <li onClick={CartOpen}>Cart</li>
-            </ul>
-          )}
-        </div>
-        <SearchBar isOpen={isSearchOpen} searchValue={searchValue}/>
+          <SearchBar isOpen={isSearchOpen} searchValue={searchValue} />
+          </div>
       </div>
 
       {isLoginOpen ? (
@@ -112,7 +133,7 @@ const NavigationBar = (props) => {
         <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} />
       ) : null}
       <Cart isCartOpen={isCartOpen} CloseCart={CloseCart} />
-    </div>
+    </Fragment>
   );
 };
 

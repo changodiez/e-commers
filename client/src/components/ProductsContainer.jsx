@@ -8,8 +8,6 @@ const ProductsContainer = (props) => {
 
   const [productsData, setProductsData] = useState([]);
   
-  console.log(productsData, "searchaismd")
-  
   useEffect(() => {
 
       const fetchLink = `http://localhost:4000/products?name=${searchValue}`
