@@ -4,43 +4,37 @@ import { useParams } from "react-router-dom";
 
 const ProductsContainer = (props) => {
   //Search
-  // console.log(window.location.search);
 
   const searchValue = props.searchValue;
 
-  const [ wordToSearch, setWordToSearch ] = useState("")
-
-  console.log(searchValue)
-
   const [productsData, setProductsData] = useState([]);
   
+  console.log(productsData, "searchaismd")
   
-  useEffect((x) => {
-    console.log(x)
-    if (searchValue) {
-      setWordToSearch(searchValue)
-    }
-    console.log(wordToSearch)
+  useEffect(() => {
 
-    const fetchLink = `http://localhost:4000/products?name=${wordToSearch}`
+      const fetchLink = `http://localhost:4000/products?name=${searchValue}`
 
       fetch(fetchLink)
         .then((res) => res.json())
         .then((json) => {
           setProductsData(json);
         });
-  }, []);
+  }, [searchValue]);
 
   return (
     <div>
       <div className="products-container">
         <div id="products-list" className="cards-grid">
-          {productsData ? (
+          {productsData.length === 0 ? (
+            <div className="nothing-here">
+           <p>No exact matches found for {searchValue} try again</p>
+           </div>
+          ) : (
             productsData.map((product, index) => (
               <ProductCard value={product} key={index} />
             ))
-          ) : (
-            <p>Loading</p>
+            
           )}
         </div>
       </div>

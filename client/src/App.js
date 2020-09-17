@@ -38,6 +38,10 @@ function App() {
 //Seach Function
 
 const [ search, setSearchValue ] = useState("")  
+console.log(search)
+useEffect(() => {
+  setSearchValue("");
+}, []);
 
   return (
     <BrowserRouter>
@@ -57,7 +61,7 @@ const [ search, setSearchValue ] = useState("")
         <Route
           path="/products"
           exact={true}
-          render={(props) => <ProductsContainer {...props} searchValue={search} />}
+          render={(props) => <ProductsContainer {...props} searchValue={search}  />}
         />
         <Route path="/product/:id" render={() => <ProductDetail />} />
 

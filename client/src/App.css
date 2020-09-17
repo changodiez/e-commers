@@ -1,5 +1,5 @@
 :root {
-  --background: #ffffff;
+  --white: #ffffff;
   --color1: #040c10;
   --color2: #846c5b;
   --color3: #7645e7;
@@ -15,12 +15,12 @@
 }
 
 a {
-  color: inherit;
+  color: var(--color1);
   text-decoration: none;
 }
 
 .App {
-  background-color: var(--background);
+  background-color: var(--white);
   color: var(--color1);
 }
 
@@ -54,7 +54,7 @@ button {
 button:hover {
   transition: all 200ms;
   background-color: var(--color3);
-  color: var(--background);
+  color: var(--white);
 }
 
 p {
@@ -68,10 +68,11 @@ p {
 .nav-bar {
   width: 100%;
   position: fixed;
-  background-color: var(--background);
+  background-color: var(--color1);
   opacity: 0.9;
   z-index: 499;
   pointer-events: all;
+  padding: 1rem;
 }
 
 .nav-container {
@@ -87,6 +88,11 @@ p {
   font-weight: 700;
   letter-spacing: 2px;
   width: 50%;
+
+}
+
+.nav-bar .logo a {
+  color: var(--white)
 }
 
 .nav-bar ul {
@@ -101,6 +107,7 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
   font-weight: bold;
+  color: var(--white);
 }
 
 .nav-bar li:hover {
@@ -123,7 +130,7 @@ p {
   /*font-family: "Antic Slab", serif;*/
   font-family: "Overlock", cursive;
   font-size: 3rem;
-  color: var(--background);
+  color: var(--white);
   margin: auto;
   text-align: center;
 }
@@ -191,7 +198,7 @@ p {
 .search-bar-open {
   width: 100%;
   transition: ease-in all 200ms;
-  background-color: var(--background);
+  background-color: var(--color1);
   margin-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -224,7 +231,7 @@ p {
 }
 
 .search-button {
-  color: var(--color1);
+  color: var(--white);
 }
 
 /* /////////////////////////////////// CART ///////////////////////////////////////////// */
@@ -238,7 +245,7 @@ p {
   width: 30%;
   height: 100%;
   pointer-events: all;
-  color: var(--background);
+  color: var(--white);
   display: flex;
   z-index: 500;
 }
@@ -303,7 +310,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--background);
+  background-color: var(--white);
   color: var(--color1);
   width: 100%;
   height: 100%;
@@ -327,6 +334,31 @@ p {
   height: 80vh;
   object-position: center;
   object-fit: cover;
+}
+
+.chose-category-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  padding-bottom:0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nothing-here {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  margin: auto;
+  color: #040c10;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.nothing-here p {
+display: block;
 }
 
 /* /////////////////////////////////// PRODUCTS GRID ///////////////////////////////////////////// */
