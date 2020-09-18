@@ -1,5 +1,5 @@
 import React ,{ useEffect, useState}from 'react'
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import NavigationBar from "./NavigationBar";
 import NavigationBarMovile from "./NavigationBarMovile";
@@ -64,6 +64,9 @@ const User = () => {
     window.addEventListener("resize", showMovile);
 
     return (  
+     
+      <BrowserRouter> 
+      
         <div className="App">
         {isMovile ? (
           <NavigationBarMovile
@@ -93,6 +96,7 @@ const User = () => {
 
           <Route
             path="/products"
+            exact={true}
             render={(props) => (
               <ProductsContainer {...props} searchValue={search} />
             )}
@@ -101,6 +105,7 @@ const User = () => {
         </Switch>
         <Footer />
       </div>
+      </BrowserRouter>
     );
 }
  

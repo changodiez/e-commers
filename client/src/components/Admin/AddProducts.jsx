@@ -26,7 +26,6 @@ const AddProducts = (props) => {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      const res = await response.json();
       console.log(response)
     } catch (error) {
       console.error(error);
@@ -81,7 +80,7 @@ const AddProducts = (props) => {
                 onChange={(e) => onChange(e)}
               ></input>
               <p>Image Preview</p>
-              <img src={image} className="img-preview"></img>
+              <img src={image} className="img-preview" alt={image}></img>
             </div>
             <div className="col">
               <input

@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const ShowProducts = (props) => {
   const data = props.data;
 
-  
-
   //DELETE FUNCTION
-  const deletecliked = props.deletedcliked
 
   const deleteProduct = async (id) => {
-
     let respuesta = window.confirm(
       `Are you sure you wanna delete the product ${data.product_name}?? `
     );
     if (respuesta) {
-    try {
-        const response = await fetch(`http://localhost:4000/admin/products/${id}`, {
-        method: "DELETE",
-       
-      });const res = await response.json() }
-
-      catch (error) {
-        console.error(error)
-    }
-    props.refresh(true)
+      try {
+        const response = await fetch(
+          `http://localhost:4000/admin/products/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        const res = await response.json();
+        console.log(res)
+      } catch (error) {
+        console.error(error);
+      }
+      props.refresh(true);
     }
   };
-
-  
 
   return (
     <tr>
@@ -47,7 +44,10 @@ const ShowProducts = (props) => {
         </Link>
       </th>
       <th>
-        <button onClick={() => deleteProduct(data.id)} className="button-delete">
+        <button
+          onClick={() => deleteProduct(data.id)}
+          className="button-delete"
+        >
           DELETE
         </button>
       </th>

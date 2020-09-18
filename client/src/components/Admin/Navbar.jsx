@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 
-import SearchBar from "../SearchBar";
 
 const NavBar = () => {
   return (

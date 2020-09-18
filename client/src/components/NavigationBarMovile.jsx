@@ -118,9 +118,15 @@ const NavigationBar = (props) => {
             <div className="menu-icon" onClick={menuOpen}>
               |||
             </div>
-            
           </div>
-          {auth ? <div className="customer-name">Hello {name}!</div> :<div className="customer-name" style={{fontSize:"0"}}> Hello! </div>}
+          {auth ? (
+            <div className="customer-name">Hello {name}!</div>
+          ) : (
+            <div className="customer-name" style={{ fontSize: "0" }}>
+              {" "}
+              Hello!{" "}
+            </div>
+          )}
           <SearchBar isOpen={isSearchOpen} searchValue={searchValue} />
           {!auth ? (
             <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -151,7 +157,6 @@ const NavigationBar = (props) => {
             </ul>
           ) : (
             <ul className={click ? "nav-menu active" : "nav-menu"}>
-              
               <li onClick={(e) => logout(e)} className="nav-item">
                 Logout
               </li>

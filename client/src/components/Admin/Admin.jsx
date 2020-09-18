@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./Navbar";
 import ProductsAdmin from "./ProductsAdmin";
 import "./Admin.css";
@@ -7,13 +7,13 @@ import UpdateProduct from "./UpdateProducts";
 
 const Admin = () => {
   return (
-    <Fragment>
+    <BrowserRouter>
       <NavBar />
       <Switch>
-      <ProductsAdmin />
-      <UpdateProduct/>
+        <Route path="/admin" exact render={() => <ProductsAdmin />} />
+        <Route path="/admin/:id" exact render={() => <UpdateProduct />} />
       </Switch>
-  </Fragment>
+    </BrowserRouter>
   );
 };
 

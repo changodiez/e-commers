@@ -1,18 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { Fragment } from "react";
+import {
+  BrowserRouter,
+  
+  Route
+} from "react-router-dom";
 import "./App.css";
 
 import User from "./components/User";
 import Admin from "./components/Admin/Admin";
 
 function App() {
-   return (
-    <Router>
-      <Switch>
+  return (
+    <BrowserRouter>
+      <Fragment>
         <Route path="/" exact={true} render={() => <User />} />
-        <Route path="/admin" exact={true} render={() => <Admin />} />
-      </Switch>
-    </Router>
+        <Route path="/admin"  render={() => <Admin />} />
+      </Fragment>
+    </BrowserRouter>
   );
 }
 
