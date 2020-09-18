@@ -23,6 +23,8 @@ app.use("/products", require("./routes/products"));
 //* Authenticaion Route*//
 app.use("/auth", require("./routes/auth"));
 
-/*TODO*/
+/*ADMIN TOOLS*/
+
+app.use("/admin", require("./routes/admin"));
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

@@ -5,7 +5,6 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
 
   const  { name }  = req.query
-  console.log (name)
 
   if (name === undefined){
     const dbquery =
