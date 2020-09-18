@@ -5,10 +5,16 @@ const AddRows = (props) => {
 
   return (
     <Fragment>
-      <div className="col">
-        <input type="text" className="form-control" placeholder={rows}></input>
-        <img></img>
-      </div>
+      {/* <div className="col">
+      <input
+                type="text"
+                placeholder={rows}
+                name={rows}
+                required
+                value={rows}
+                onChange={(e) => onChange(e)}
+              ></input>
+      </div> */}
     </Fragment>
   );
 };

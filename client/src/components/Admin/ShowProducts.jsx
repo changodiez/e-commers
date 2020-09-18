@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 const ShowProducts = (props) => {
   const data = props.data;
 
-  //DELETE FUNCTION
   
+
+  //DELETE FUNCTION
+  const deletecliked = props.deletedcliked
 
   const deleteProduct = async (id) => {
 
@@ -17,11 +19,12 @@ const ShowProducts = (props) => {
         const response = await fetch(`http://localhost:4000/admin/products/${id}`, {
         method: "DELETE",
        
-      });
-               
-    } catch (error) {
+      });const res = await response.json() }
+
+      catch (error) {
         console.error(error)
     }
+    props.refresh(true)
     }
   };
 

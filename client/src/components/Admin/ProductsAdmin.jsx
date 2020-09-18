@@ -4,6 +4,10 @@ import AddProducts from "./AddProducts";
 import ShowProducts from "./ShowProducts";
 
 const ProductsAdmin = () => {
+
+  
+    const  [ refres, setRefres ] = useState (false)
+
   const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
@@ -14,13 +18,12 @@ const ProductsAdmin = () => {
       .then((json) => {
         setProductsData(json);
       });
-  }, []);
-
-  console.log (productsData[0])
+      setRefres(false)
+  }, [refres]);
 
   return (
     <Fragment>
-      <AddProducts data={productsData[0]} />)
+      <AddProducts data={productsData[0]} refresh={setRefres} />)
 
 <div className="all-products-container">
     <div className="titles">
@@ -39,7 +42,7 @@ const ProductsAdmin = () => {
           </tr>
         </thead>
         <tbody>
-        {productsData ? productsData.map((product, index) => <ShowProducts data={product} index={index} /> ): null}
+        {productsData ? productsData.map((product, index) => <ShowProducts data={product} index={index} refresh={setRefres}   /> ): null}
         </tbody>
       </table>
       </div>

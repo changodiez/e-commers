@@ -86,3 +86,7 @@ th button {
     font-weight: bold;
     background-color: red;
 }
+
+.img-preview {
+    width: 15vw;
+}

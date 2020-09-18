@@ -93,10 +93,30 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+// Add Products 
+
+router.post("/products/add", async (req, res) => {
+  const { product_name, category, price, image, description } = req.body;
+  console.log(req.body)
+  try {
+   const insertQuery =
+      "INSERT INTO products (product_name, category, unit_price, image, description ) VALUES ($1, $2, $3, $4, $5)";
+   
+    const newUser = await pool.query(insertQuery, [product_name, category, price, image, description]);
+
+    //Do we assign jwt here? ask in meeting
+    return res.status(200).json("Product created succesfully");
+  } catch (error) {
+    console.error(error.message);
+    return res.status(error.status).json("Something went wrong");
+  }
+});
+
+
 //Modificate products
 router.put("/products/:id", async (req, res) => { 
   const { product_name, category, price, image, description } = req.body;
-  console.log(product_name)
+  
   try {   
     const { id } = req.params;
     const insertQuery =
