@@ -1,0 +1,140 @@
+.navbar {
+    background: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: fixed;
+    z-index: 999;
+    opacity: 0.85;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    max-width: 90%;
+    flex-direction: column;
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 1rem auto 0.3rem auto;
+    align-items: center;
+  }
+  .navbar-logo {
+    justify-self: start;
+    cursor: pointer;    
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.7rem;
+  }
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 9vh;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+  
+  .nav-item {
+    border-bottom: solid 1px white;
+    height: calc(92vh/3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+   }
+  
+  .nav-item:hover,.nav-item:active  {
+    border-bottom: 4px solid #fff;
+    transition: all 0.2s ease-out;
+  }
+  
+  .fa-bars {
+    color: #fff;
+  }
+  
+  .menu-icon {
+    color: white;
+  }
+  @media screen and (max-width: 960px) {
+    .NavbarItems {
+      position: relative;
+    }
+    
+    .nav-menu.active {
+      background: #242222;
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+  
+    .nav-links {
+      text-align: center;
+      padding: 2rem;
+      width: 100%;
+      display: table;
+    }
+  
+    .nav-links:hover {
+      background-color: #fff;
+      color: #242424;
+      border-radius: 0;
+    }
+  
+      
+      
+    .fa-times {
+      color: #fff;
+      font-size: 2rem;
+    }
+  
+    .nav-links-mobile {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      border-radius: 4px;
+      width: 80%;
+      text-decoration: none;
+      font-size: 1.5rem;
+      background-color: transparent;
+      color: #fff;
+      padding: 14px 20px;
+      border: 1px solid #fff;
+      transition: all 0.3s ease-out;
+    }
+  
+    .nav-links-mobile:hover  {
+      background: #fff;
+      color: #242424;
+      transition: 250ms;
+    }
+  }
+
+  .customer-name {
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    text-decoration: none;
+    list-style: none;
+    display: block;
+
+  }

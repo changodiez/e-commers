@@ -19,7 +19,7 @@ const SearchBar = (props) => {
       <div className="search-bar">
         <div className={isOpen ? "container-open" : "container-closed"}>
           <p style={{color:"white"}}>What are you looking for?</p>
-          <div>
+          
             <input
               id="inputSearch"
               type="text"
@@ -37,7 +37,7 @@ const SearchBar = (props) => {
                 Search
               </button>
             </Link>
-          </div>
+          
         </div>
       </div>
     </div>

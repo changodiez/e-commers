@@ -6,6 +6,8 @@ import Cart from "./Cart";
 import { Link } from "react-router-dom";
 
 const NavigationBar = (props) => {
+
+
   // Login Button
   const [isLoginOpen, setLoginOpen] = useState(false);
   const LoginOpen = () => {
@@ -98,7 +100,13 @@ const NavigationBar = (props) => {
         <div ref={ref}>
           <div className="nav-container">
             <div className="logo">
-              <Link to="/">Hasan's Tailor</Link>
+              <Link
+                to={{
+                  pathname: "/",
+                }}
+              >
+                Hasan's Tailor
+              </Link>
             </div>
             {!auth ? (
               <ul>
@@ -119,7 +127,7 @@ const NavigationBar = (props) => {
             )}
           </div>
           <SearchBar isOpen={isSearchOpen} searchValue={searchValue} />
-          </div>
+        </div>
       </div>
 
       {isLoginOpen ? (

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import NavigationBar from "./components/NavigationBar";
+import NavigationBarMovile from "./components/NavigationBarMovile";
 import ProductsContainer from "./components/ProductsContainer";
 import ProductDetail from "./components/ProductDetail";
 import Footer from "./components/Footer";
@@ -43,10 +44,31 @@ useEffect(() => {
   setSearchValue("");
 }, []);
 
+// movile Navbar
+
+const [ isMovile, SetMovile ] = useState (false)
+
+const showMovile = () => {
+  if(window.innerWidth <= 960){
+    SetMovile(true)
+  } else {
+    SetMovile(false)
+  }
+}
+
+useEffect(() => {
+  showMovile()
+  
+}, [])
+
+window.addEventListener("resize", showMovile)
+
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar auth={isAuthenticated} setAuth={setAuth} searchValue={setSearchValue} />
+        {isMovile ? <NavigationBarMovile auth={isAuthenticated} setAuth={setAuth} searchValue={setSearchValue} />: <NavigationBar auth={isAuthenticated} setAuth={setAuth} searchValue={setSearchValue} />}
+        
+        <Switch>
         <Route
           path="/"
           exact={true}
@@ -64,7 +86,7 @@ useEffect(() => {
           render={(props) => <ProductsContainer {...props} searchValue={search}  />}
         />
         <Route path="/product/:id" render={() => <ProductDetail />} />
-
+        </Switch>
         <Footer />
       </div>
     </BrowserRouter>

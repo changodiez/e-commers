@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import Men from "./../Assets/4.jpeg";
@@ -8,7 +8,7 @@ const ProductsCategory = (props) => {
   const choseCategory = props.choseCategory;
 
   return (
-    <div>
+    <Fragment>
       <Link to={`/products`}>
        
         <div id="mini-banner">
@@ -41,7 +41,7 @@ const ProductsCategory = (props) => {
           </div>
         </Link>
       </div>
-    </div>
+      </Fragment>
   );
 };
 

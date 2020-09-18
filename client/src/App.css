@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Antic", sans-serif;
 }
 
 a {
@@ -88,11 +89,10 @@ p {
   font-weight: 700;
   letter-spacing: 2px;
   width: 50%;
-
 }
 
 .nav-bar .logo a {
-  color: var(--white)
+  color: var(--white);
 }
 
 .nav-bar ul {
@@ -127,16 +127,16 @@ p {
 }
 
 .banner-text {
-  /*font-family: "Antic Slab", serif;*/
   font-family: "Overlock", cursive;
   font-size: 2rem;
   background-color: var(--color3);
-  opacity: .7;
+  opacity: 0.7;
   max-width: 35%;
   padding: 2rem;
   color: var(--white);
   margin: auto;
   text-align: center;
+  border-radius: 5px;
 }
 /* /////////////////////////////////// modal Login ///////////////////////////////////////////// */
 
@@ -223,10 +223,9 @@ p {
   display: flex;
   transition: ease-out 0ms;
   transform: translate(0px, -10px);
-  width: 50%;
+  width: 100%;
   margin: auto;
   opacity: 0;
-  display: none;
 }
 
 .search-bar input {
@@ -337,10 +336,11 @@ p {
   border: none;
   background-color: transparent;
   padding: 0;
-  padding-bottom:0;
+  padding-bottom: 0;
   margin: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 /* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
@@ -364,7 +364,7 @@ p {
 }
 
 .nothing-here p {
-display: block;
+  display: block;
 }
 
 /* /////////////////////////////////// PRODUCTS GRID ///////////////////////////////////////////// */
@@ -460,4 +460,147 @@ display: block;
 .footer li {
   cursor: pointer;
   list-style: none;
+}
+
+@media screen and (max-width: 960px) {
+  /* Banner  */
+
+  .banner-text {
+    max-width: 80%;
+  }
+  /* Products Categories  */
+  #mini-banner {
+    height: 30vh;
+  }
+
+  .text-block {
+    background-color: transparent;
+    opacity: 1;
+  }
+
+  .products-category {
+    flex-direction: column;
+  }
+
+  .products-category img {
+    height: 30vh;
+  }
+
+  /* Seach */
+
+  .search-bar-open {
+    width: 100%;
+    margin-top: 0rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .search-bar .container-open {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+  }
+  .search-bar .container-open p {
+    display: none;
+  }
+  .search-bar-open {
+    width: 100%;
+    transition: ease-in all 200ms;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: black;
+  }
+
+  .search-bar-closed {
+    width: 100%;
+    transition: ease-out all 400ms;
+    height: 0.5rem;
+    pointer-events: all;
+  }
+
+  .search-bar input {
+    width: 60%;
+    margin: 0;
+  }
+
+  input {
+    font-size: 1rem;
+    padding-bottom: 2px;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1.5px solid var(--color3);
+  }
+
+  /* Products Details */
+
+  .product-detail {
+    flex-direction: column;
+  }
+
+  .product-detail .img-container {
+    width: 100%;
+  }
+
+  .detail-img {
+    width: 75%;
+  }
+
+  .detail-body {
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .detail-price {
+    text-align: center;
+  }
+
+  .detail-button {
+    width: 100%;
+  }
+
+  /* MODAL LOGIN AND REGISTER */
+
+  .modal {
+    position: static;
+    height: 100%;
+    background-color: transparent;
+  }
+  .modal .Login-modal {
+    position: static;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding-top: 10vh;
+    border:none;
+    background-color: rgba(0, 0, 0, 1);
+    color: whitesmoke;
+  }
+
+  .modal form {
+    margin: 1rem auto 0rem auto;
+    padding-bottom: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #LoginbuttonClose {
+    display: none;
+  }
+
+  .error-message {
+    text-align: center;
+    border-radius: 15px;
+    background-color: var(--error);
+    width: 100%;
+  }
+
+  .success-message {
+    text-align: center;
+    border-radius: 15px;
+    background-color: var(--success);
+    width: 100%;
+  }
 }
