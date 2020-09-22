@@ -71,7 +71,7 @@ const NavigationBar = (props) => {
 
   async function getName() {
     try {
-      const response = await fetch("http://localhost:4000/auth/dashboard", {
+      const response = await fetch("/auth/dashboard", {
         method: "GET",
         headers: { token: localStorage.token },
       });

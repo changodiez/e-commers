@@ -13,30 +13,30 @@ const ShowProducts = (props) => {
     if (respuesta) {
       try {
         const response = await fetch(
-          `http://localhost:4000/admin/products/${id}`,
+          `/admin/products/${id}`,
           {
             method: "DELETE",
           }
         );
         const res = await response.json();
-        console.log(res)
+
       } catch (error) {
         console.error(error);
       }
-      props.refresh(true);
+      props.refresh(Math.random());
     }
   };
 
   return (
     <tr>
       <th>{data.id}</th>
-      <th>{data.product_name}</th>
-      <th>{data.category}</th>
-      <th>{data.unit_price}</th>
+      <th>{data.product_name || data.first_name} </th>
+      <th>{data.category || data.last_name || "undefined"}</th>
+      <th>{data.unit_price || data.email }</th>
       <th>
-        <img src={`${data.image}`} alt="" />
+        {<img src={`${data.image}`} alt="" /> || data.address + data.city + data.postcode + data.country}
       </th>
-      <th>{data.description}</th>
+      <th>{data.description || data.movile || "undefined"}</th>
 
       <th>
         <Link to={`/admin/products/update/${data.id}`}>

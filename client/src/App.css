@@ -5,6 +5,8 @@
   --color3: #7645e7;
   --error: #ff0033;
   --success: #4bb543;
+  background-color: var(--white);
+  color: var(--color1);
 }
 
 /* ///////////////////////////////////GENERALES ///////////////////////////////////////////// */
@@ -18,11 +20,6 @@
 a {
   color: var(--color1);
   text-decoration: none;
-}
-
-.App {
-  background-color: var(--white);
-  color: var(--color1);
 }
 
 .container {

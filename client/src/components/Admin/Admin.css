@@ -90,3 +90,16 @@ th button {
 .img-preview {
     width: 15vw;
 }
+
+#navbarAdmin {
+    opacity: 1;
+    z-index: 9999;
+}
+
+#navbarAdmin .logo {
+    color:white;
+}
+
+#navbarAdmin li a {
+    color:white;
+}

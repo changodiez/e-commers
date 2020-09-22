@@ -6,7 +6,7 @@ const ProductCard = (props) => {
   const product = props.value
 
   return (
-    <Link to={'/product/'+ product.id}>
+    <Link to={'/products/'+ product.id}>
     <div className="card">      
       <img className="card-img" src={product.image} alt="Product" />
       <div className="card-body ">

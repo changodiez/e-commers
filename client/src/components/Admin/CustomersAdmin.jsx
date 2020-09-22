@@ -1,47 +1,45 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-import AddProducts from "./AddProducts";
 import ShowProducts from "./ShowProducts";
 
-const ProductsAdmin = () => {
+const CustomersAdmin = () => {
   const [refres, setRefres] = useState(Math.random());
 
-  const [productsData, setProductsData] = useState([]);
+  const [customersData, setCustomersData] = useState([]);
 
   useEffect(() => {
-    const fetchLink = `/admin/products`;
+    const fetchLink = `/admin/customers`;
 
     fetch(fetchLink)
       .then((res) => res.json())
       .then((json) => {
-        setProductsData(json);
+        setCustomersData(json);
       });
     
   }, [refres]);
 
   return (
     <Fragment>
-      <AddProducts data={productsData[0]} refresh={setRefres} />
       <div className="all-products-container">
         <div className="titles">
-          <h1>ALL YOUR PRODUCTS</h1>
+          <h1>ALL YOUR CUSTOMERS</h1>
         </div>
         <table className="table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Description</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>PHONE</th>
               <th>UPDATE</th>
               <th>DELETE</th>
             </tr>
           </thead>
           <tbody>
-            {productsData
-              ? productsData.map((product, index) => (
+            {customersData
+              ? customersData.map((product, index) => (
                   <ShowProducts
                     data={product}
                     index={index}
@@ -56,4 +54,4 @@ const ProductsAdmin = () => {
   );
 };
 
-export default ProductsAdmin;
+export default CustomersAdmin;

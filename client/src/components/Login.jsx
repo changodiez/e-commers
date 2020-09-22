@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
   const [inputs, setInputs] = useState({
@@ -16,35 +17,46 @@ const Login = (props) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
+  const [isAdmin, setIsAdmin ] = useState(false)
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const body = { email, password };
-      const response = await fetch("http://localhost:4000/auth/login", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      const parseRes = await response.json();
-
-      if (response.ok) {
-        setInputs({
-          ...inputs,
-          loginSuccess: "Login successful",
-          loginError: "",
+    if (email === "admin" && password === "admin") {
+      alert("Welcome Admin");
+      setIsAdmin(true)
+      setTimeout(() => {
+        CloseLogin()
+      }, 400);
+      
+    } else {
+      try {
+        const body = { email, password };
+        const response = await fetch("/auth/login", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(body),
         });
-        localStorage.setItem("token", parseRes.token);
-        setAuth(true);
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
-      } else {
-        setInputs({ ...inputs, loginError: parseRes });
+
+        const parseRes = await response.json();
+
+        if (response.ok) {
+          setInputs({
+            ...inputs,
+            loginSuccess: "Login successful",
+            loginError: "",
+          });
+          localStorage.setItem("token", parseRes.token);
+          setAuth(true);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        } else {
+          setInputs({ ...inputs, loginError: parseRes });
+        }
+      } catch (error) {
+        console.error(error.message);
       }
-    } catch (error) {
-      console.error(error.message);
     }
   };
   const LoginOpen = props.LoginOpen;
@@ -55,11 +67,11 @@ const Login = (props) => {
     Close(!LoginOpen);
   };
 
-
   return (
     <div>
-      <div className="modal" >
+      <div className="modal">
         <div className="Login-modal">
+          {isAdmin ? <Redirect to="/owner"/> : null}
           <button id="LoginbuttonClose" onClick={CloseLogin}>
             X
           </button>

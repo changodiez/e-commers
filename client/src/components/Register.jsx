@@ -20,7 +20,7 @@ const Register = (props) => {
 
     const body = { username, email, password };
     try {
-      const response = await fetch("http://localhost:4000/auth/register", {
+      const response = await fetch("/auth/register", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
