@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { useParams } from "react-router-dom";
 
-const ProductsContainer = () => {
+const ProductsContainer = (props) => {
+  //Search
+
+  const searchValue = props.searchValue;
+
   const [productsData, setProductsData] = useState([]);
-  let { category } = useParams();
-
-  let fetchLink = "";
-
+  
   useEffect(() => {
-    if (category === "men") {
-      fetchLink = "http://localhost:4000/products/category/men";
-    } else if (category === "women") {
-      fetchLink = "http://localhost:4000/products/category/women";
-    } else {
-      fetchLink = "http://localhost:4000/products";
-    }
-    fetch(fetchLink)
-      .then((res) => res.json())
-      .then((json) => {
-        setProductsData(json);
-      });
-  }, []);
+
+      const fetchLink = `http://localhost:4000/products?name=${searchValue}`
+
+      fetch(fetchLink)
+        .then((res) => res.json())
+        .then((json) => {
+          setProductsData(json);
+        });
+  }, [searchValue]);
 
   return (
     <div>
       <div className="products-container">
         <div id="products-list" className="cards-grid">
-          {productsData ? (
+          {productsData.length === 0 ? (
+            <div className="nothing-here">
+           <p>No exact matches found for {searchValue} try again</p>
+           </div>
+          ) : (
             productsData.map((product, index) => (
               <ProductCard value={product} key={index} />
             ))
-          ) : (
-            <p>Loading</p>
+            
           )}
         </div>
       </div>

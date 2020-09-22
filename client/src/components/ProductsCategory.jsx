@@ -1,40 +1,47 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import Men from "./../Assets/4.jpeg";
 import Women from "./../Assets/5.jpeg";
 
+const ProductsCategory = (props) => {
+  const choseCategory = props.choseCategory;
 
-const ProductsCategory = () => {
   return (
-<div>
-    <Link to={`/products`}>
+    <Fragment>
+      <Link to={`/products`}>
+       
         <div id="mini-banner">
+        <button className="chose-category-button" onClick={(e) => choseCategory("")}>
           <h1>All our products!</h1>
+          </button>
         </div>
+        
       </Link>
-    <div className="products-category">
-      
-
-      <Link to={`/products/category/men`}>
-        <div className="img-category">
-          <img src={Men} alt="" />
-          <div className="text-block">
-            <h2>MEN</h2>
+      <div className="products-category">
+        <Link to={`/products`}>
+          <div className="img-category">
+            <button className="chose-category-button" onClick={(e) => choseCategory("men")}>
+              <img src={Men} alt="" />
+              <div className="text-block">
+                <h2>MEN</h2>
+              </div>
+            </button>
           </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to={`/products/category/women`}>
-        <div className="img-category">
-          <img src={Women} alt="" />
-          <div className="text-block">
-            <h2>Women</h2>
+        <Link to={`/products`}>
+          <div className="img-category">
+            <button className="chose-category-button" onClick={(e) => choseCategory("women")}>
+              <img src={Women} alt="" />
+              <div className="text-block">
+                <h2>Women</h2>
+              </div>
+            </button>
           </div>
-        </div>
-      </Link>
-    </div>
-    </div>
+        </Link>
+      </div>
+      </Fragment>
   );
 };
 

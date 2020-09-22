@@ -1,0 +1,92 @@
+
+.titles {
+    font-size: large;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: auto;
+}
+.contenedor-add {
+    width: 100%;
+    display: flex;
+     padding-top: 20vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+.container-form {
+    padding: 1rem;
+    margin: auto;
+    
+}
+
+form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+form input {
+    border: solid 1px black;
+    padding: 1rem;    
+}
+
+form button{
+    color: black;
+    background-color: blueviolet;
+    border: solid 1px black;
+    padding: 1rem;  
+    width: 100%;  
+}   
+
+/* All products */
+
+.all-products-container {
+    width: 90%;
+    margin: auto;
+}
+
+.table {
+    border: solid 2 px black;
+    
+}
+
+th {
+    padding: 1rem;
+}
+
+th img {
+    max-width: 10vw;
+}
+
+tr {
+    border-bottom: solid 1px black;
+}
+
+th button {
+    color: black;
+}
+
+.button-update:hover {
+    color: black;
+    font-weight: bold;
+    background-color: yellow;
+}
+.button-delete:hover {
+    color: black;
+    font-weight: bold;
+    background-color: red;
+}
+
+.img-preview {
+    width: 15vw;
+}

@@ -1,5 +1,5 @@
 :root {
-  --background: #ffffff;
+  --white: #ffffff;
   --color1: #040c10;
   --color2: #846c5b;
   --color3: #7645e7;
@@ -12,15 +12,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Antic", sans-serif;
 }
 
 a {
-  color: inherit;
+  color: var(--color1);
   text-decoration: none;
 }
 
 .App {
-  background-color: var(--background);
+  background-color: var(--white);
   color: var(--color1);
 }
 
@@ -54,7 +55,7 @@ button {
 button:hover {
   transition: all 200ms;
   background-color: var(--color3);
-  color: var(--background);
+  color: var(--white);
 }
 
 p {
@@ -68,10 +69,11 @@ p {
 .nav-bar {
   width: 100%;
   position: fixed;
-  background-color: var(--background);
+  background-color: var(--color1);
   opacity: 0.9;
   z-index: 499;
   pointer-events: all;
+  padding: 1rem;
 }
 
 .nav-container {
@@ -89,6 +91,10 @@ p {
   width: 50%;
 }
 
+.nav-bar .logo a {
+  color: var(--white);
+}
+
 .nav-bar ul {
   display: flex;
   width: 30%;
@@ -101,6 +107,7 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
   font-weight: bold;
+  color: var(--white);
 }
 
 .nav-bar li:hover {
@@ -120,12 +127,16 @@ p {
 }
 
 .banner-text {
-  /*font-family: "Antic Slab", serif;*/
   font-family: "Overlock", cursive;
-  font-size: 3rem;
-  color: var(--background);
+  font-size: 2rem;
+  background-color: var(--color3);
+  opacity: 0.7;
+  max-width: 35%;
+  padding: 2rem;
+  color: var(--white);
   margin: auto;
   text-align: center;
+  border-radius: 5px;
 }
 /* /////////////////////////////////// modal Login ///////////////////////////////////////////// */
 
@@ -191,7 +202,7 @@ p {
 .search-bar-open {
   width: 100%;
   transition: ease-in all 200ms;
-  background-color: var(--background);
+  background-color: var(--color1);
   margin-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -212,19 +223,19 @@ p {
   display: flex;
   transition: ease-out 0ms;
   transform: translate(0px, -10px);
-  width: 50%;
+  width: 100%;
   margin: auto;
   opacity: 0;
-  display: none;
 }
 
 .search-bar input {
   width: 80%;
   font-size: 1.5rem;
+  color: var(--white);
 }
 
 .search-button {
-  color: var(--color1);
+  color: var(--white);
 }
 
 /* /////////////////////////////////// CART ///////////////////////////////////////////// */
@@ -238,7 +249,7 @@ p {
   width: 30%;
   height: 100%;
   pointer-events: all;
-  color: var(--background);
+  color: var(--white);
   display: flex;
   z-index: 500;
 }
@@ -270,15 +281,7 @@ p {
   font-size: 2rem;
 }
 
-/* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
-
-.products-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 15vh;
-}
-
+/* /////////////////////////////////// HOME ///////////////////////////////////////////// */
 #mini-banner {
   display: flex;
   align-items: center;
@@ -303,7 +306,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--background);
+  background-color: var(--white);
   color: var(--color1);
   width: 100%;
   height: 100%;
@@ -329,9 +332,45 @@ p {
   object-fit: cover;
 }
 
+.chose-category-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  padding-bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* /////////////////////////////////// PRODUCTS CONTAINER ///////////////////////////////////////////// */
+
+.products-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15vh;
+}
+
+.nothing-here {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  margin: auto;
+  color: #040c10;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.nothing-here p {
+  display: block;
+}
+
 /* /////////////////////////////////// PRODUCTS GRID ///////////////////////////////////////////// */
 
 .cards-grid {
+  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-column-gap: 40px;
@@ -376,6 +415,7 @@ p {
   padding-bottom: 2rem;
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
 }
 
 .product-detail .img-container {
@@ -420,4 +460,148 @@ p {
 .footer li {
   cursor: pointer;
   list-style: none;
+}
+
+@media screen and (max-width: 960px) {
+  /* Banner  */
+
+  .banner-text {
+    max-width: 80%;
+  }
+  /* Products Categories  */
+  #mini-banner {
+    height: 30vh;
+  }
+
+  .text-block {
+    background-color: transparent;
+    opacity: 1;
+  }
+
+  .products-category {
+    flex-direction: column;
+  }
+
+  .products-category img {
+    height: 30vh;
+  }
+
+  /* Seach */
+
+  .search-bar-open {
+    width: 100%;
+    margin-top: 0rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .search-bar .container-open {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+  }
+  .search-bar .container-open p {
+    display: none;
+  }
+  .search-bar-open {
+    width: 100%;
+    transition: ease-in all 200ms;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: black;
+  }
+
+  .search-bar-closed {
+    width: 100%;
+    transition: ease-out all 400ms;
+    height: 0.5rem;
+    pointer-events: all;
+  }
+
+  .search-bar input {
+    width: 60%;
+    margin: 0;
+  }
+
+  input {
+    font-size: 1rem;
+    padding-bottom: 2px;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1.5px solid var(--color3);
+  }
+
+  /* Products Details */
+
+  .product-detail {
+    flex-direction: column;
+  }
+
+  .product-detail .img-container {
+    width: 100%;
+  }
+
+  .detail-img {
+    width: 75%;
+  }
+
+  .detail-body {
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .detail-price {
+    text-align: center;
+  }
+
+  .detail-button {
+    width: 100%;
+  }
+
+  /* MODAL LOGIN AND REGISTER */
+
+  .modal {
+    position: static;
+    height: 100%;
+    background-color: transparent;
+  }
+  .modal .Login-modal {
+    position: static;
+    display: flex;
+    width: 100%;
+    min-height: 98vh;
+    margin: auto;
+    padding-top: 10vh;
+    border:none;
+    background-color: rgba(0, 0, 0, 1);
+    color: whitesmoke;
+  }
+
+  .modal form {
+    margin: auto;
+    padding-bottom: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #LoginbuttonClose {
+    display: none;
+  }
+
+  .error-message {
+    text-align: center;
+    border-radius: 15px;
+    background-color: var(--error);
+    width: 100%;
+  }
+
+  .success-message {
+    text-align: center;
+    border-radius: 15px;
+    background-color: var(--success);
+    width: 100%;
+  }
 }
