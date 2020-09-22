@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect
+} from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route
+} from "react-router-dom";
 
 import NavigationBar from "./components/NavigationBar";
 import ProductsContainer from "./components/ProductsContainer";
@@ -8,6 +14,7 @@ import ProductDetail from "./components/ProductDetail";
 import Footer from "./components/Footer";
 import Banner from "./components/Banner";
 import ProductsCategory from "./components/ProductsCategory";
+import Cart from "./components/Cart"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -20,7 +27,9 @@ function App() {
     try {
       const res = await fetch("http://localhost:4000/auth/verify", {
         method: "POST",
-        headers: { token: localStorage.token },
+        headers: {
+          token: localStorage.token
+        },
       });
 
       const parseRes = await res.json();
@@ -35,37 +44,81 @@ function App() {
     checkAuthentication();
   }, []);
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <NavigationBar auth={isAuthenticated} setAuth={setAuth} />
-        <Route
-          path="/"
-          exact={true}
-          render={() => (
-            <div>
-              <Banner />
-              <ProductsCategory />
-            </div>
-          )}
-        />
+  return ( <
+    BrowserRouter >
+    <
+    div className = "App" >
+    <
+    NavigationBar auth = {
+      isAuthenticated
+    }
+    setAuth = {
+      setAuth
+    }
+    /> <
+    Route path = "/"
+    exact = {
+      true
+    }
+    render = {
+      () => ( <
+        div >
+        <
+        Banner / >
+        <
+        ProductsCategory / >
+        <
+        /div>
+      )
+    }
+    />
 
-        <Route
-          path="/products"
-          exact={true}
-          render={() => <ProductsContainer />}
-        />
-        <Route path="/product/:id" render={() => <ProductDetail />} />
+    <
+    Route path = "/products"
+    exact = {
+      true
+    }
+    render = {
+      () => < ProductsContainer / >
+    }
+    /> <
+    Route path = "/product/:id"
+    render = {
+      () => < ProductDetail / >
+    }
+    /> <
+    Route path = "/product/:id"
+    render = {
+      () => < ProductDetail / >
+    }
+    />
+    //======================================
+    <
+    Route path = "/cart/"
+    exact = {
+      true
+    }
+    render = {
+      () => < Cart / >
+    }
+    />
+    //======================================
 
-        <Route
-          path="/products/category/:category"
-          exact={true}
-          render={() => <ProductsContainer />}
-        />
+    <
+    Route path = "/products/category/:category"
+    exact = {
+      true
+    }
+    render = {
+      () => < ProductsContainer / >
+    }
+    />
 
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <
+    Footer / >
+    <
+    /div> < /
+    BrowserRouter >
   );
 }
 

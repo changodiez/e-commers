@@ -1,10 +1,24 @@
 const pool = require("../db");
 const router = require("express").Router();
 
+
+//=====================================
+router.get("/cart", async (req, res) => {
+
+  const dbquery =
+    "SELECT * FROM PRODUCTS WHERE CATEGORY = 'men clothing' OR CATEGORY = 'women clothing' OR CATEGORY='jewelery'";
+
+  const allProducts = await pool.query(dbquery);
+  res.json(allProducts.rows);
+
+});
+
+//=======================
+
 //GET ALL PRODUCTS
 router.get("/", async (req, res) => {
   const dbquery =
-    "SELECT * FROM PRODUCTS WHERE CATEGORY = 'men clothing' OR CATEGORY = 'women clothing' OR CATEGORY='jewelery';";
+    "SELECT * FROM PRODUCTS WHERE CATEGORY = 'men clothing' OR CATEGORY = 'women clothing' OR CATEGORY='jewelery'";
 
   const allProducts = await pool.query(dbquery);
   res.json(allProducts.rows);
@@ -13,7 +27,9 @@ router.get("/", async (req, res) => {
 //GET SPECIFIC PRODUCT
 router.get("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
     const product = await pool.query("SELECT * FROM products WHERE id = $1", [
       id,
     ]);

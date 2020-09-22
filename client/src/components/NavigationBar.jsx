@@ -6,6 +6,9 @@ import Cart from "./Cart";
 import { Link } from "react-router-dom";
 
 const NavigationBar = (props) => {
+  //cart items
+  const [cartlength, setCartLength] = useState(0);
+
   // Login Button
   const [isLoginOpen, setLoginOpen] = useState(false);
   const LoginOpen = () => {
@@ -70,6 +73,7 @@ const NavigationBar = (props) => {
     getName();
   });
 
+  var cart = `Cart ${cartlength}`;
   return (
     <div>
       <div className="nav-bar">
@@ -106,7 +110,11 @@ const NavigationBar = (props) => {
       {isRegisterOpen ? (
         <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} />
       ) : null}
-      <Cart isCartOpen={isCartOpen} CloseCart={CloseCart} />
+      <Cart
+        isCartOpen={isCartOpen}
+        CloseCart={CloseCart}
+        setCartLength={setCartLength}
+      />
     </div>
   );
 };
