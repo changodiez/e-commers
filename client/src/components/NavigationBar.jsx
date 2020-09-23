@@ -140,7 +140,7 @@ const NavigationBar = (props) => {
       {isRegisterOpen ? (
         <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} />
       ) : null}
-      <Cart isCartOpen={isCartOpen} CloseCart={CloseCart} />
+      <Cart isCartOpen={isCartOpen} CloseCart={CloseCart} reloadCart={props.reloadCart} setReloadCart={props.setReloadCart}/>
     </Fragment>
   );
 };

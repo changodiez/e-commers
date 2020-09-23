@@ -2,14 +2,13 @@ const pool = require("../db");
 const router = require("express").Router();
 
 //===============================Get Order items============================
-router.get("/:id", async (req, res) => {
-  const {
-    id
-  } = req.params;
+router.get("/", async (req, res) => {
 
+  // SELECT order_items.quantity, products.product_name, products.unit_price, products.image
+  // FROM order_items ON orders.id=order_items.order_id  INNER JOIN products ON products.id=order_items.product_id 
   try {
-    const updateQuery = "Select * FROM order_items  WHERE id=$1";
-    const newUser = await pool.query(updateQuery, [id]);
+    const updateQuery = "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image FROM order_items INNER JOIN products ON products.id=order_items.product_id ";
+    const newUser = await pool.query(updateQuery);
 
     return res.json(newUser.rows)
   } catch (error) {
@@ -33,14 +32,16 @@ router.post("/", async (req, res) => {
   }
 });
 
-//Post endpoint
+//ADD a product to ORDER
 router.post("/:id", async (req, res) => {
   const {
     id
   } = req.params;
+  const { qty } = req.body;
+
   try {
-    const insertQuery = "INSERT INTO order_items (product_id ) VALUES ($1)";
-    const newUser = await pool.query(insertQuery, [id]);
+    const insertQuery = "INSERT INTO order_items (product_id, quantity ) VALUES ($1, $2)";
+    const newUser = await pool.query(insertQuery, [id, qty]);
     return res.status(200).json("Order added succesfully");
   } catch (error) {
     console.error(error.message);

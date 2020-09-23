@@ -7,6 +7,8 @@ const NavBar = (props) => {
 const isAuthenticated = props.isAuthenticated
 const setAuth = props.setAuth
 const setSearchValue = props.setSearchValue
+const setReloadCart = props.setReloadCart
+const reloadCart = props.reloadCart
 
     const [isMovile, SetMovile] = useState(false);
 
@@ -34,12 +36,16 @@ const setSearchValue = props.setSearchValue
             auth={isAuthenticated}
             setAuth={setAuth}
             searchValue={setSearchValue}
+            setReloadCart={setReloadCart}
+            reloadCart={reloadCart}
           />
         ) : (
           <NavigationBar
             auth={isAuthenticated}
             setAuth={setAuth}
             searchValue={setSearchValue}
+            setReloadCart={setReloadCart}
+            reloadCart={reloadCart}
           />
         )}
         </Fragment>

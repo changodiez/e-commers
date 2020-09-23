@@ -97,7 +97,6 @@ router.get("/products/:id", async (req, res) => {
 
 router.post("/products/add", async (req, res) => {
   const { product_name, category, price, image, description } = req.body;
-  console.log(req.body)
   try {
    const insertQuery =
       "INSERT INTO products (product_name, category, unit_price, image, description ) VALUES ($1, $2, $3, $4, $5)";

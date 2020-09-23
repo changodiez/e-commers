@@ -50,12 +50,18 @@ function App() {
   }, []);
 
 
+  //Cart Reloaded 
+
+  const [ reloadCart, setReloadCart] = useState(Math.random())
+
   return (
     <Router>
       <NavBar
           isAuthenticated={isAuthenticated}
           setAuth={setAuth}
           setSearchValue={setSearchValue}
+          setReloadCart={setReloadCart}
+          reloadCart={reloadCart}
         />
       <Switch>
         <Route
@@ -68,7 +74,7 @@ function App() {
             </div>
           )}
         />
-        <Route path="/products/:id" render={() => <ProductDetail />} />
+        <Route path="/products/:id" render={(props) => <ProductDetail {...props} reloadCart={setReloadCart}/>} />
 
         <Route
           path="/products"
