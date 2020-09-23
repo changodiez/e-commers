@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const UpdateProduct = () => {
-    return ( <div>ESTE ES OTRO DIV</div> );
+    return ( <Fragment>
+        <div className="navbar-space"></div>
+        <div className="basic-container">ESTE ES OTRO DIV</div>
+        </Fragment> );
 }
  
 export default UpdateProduct;

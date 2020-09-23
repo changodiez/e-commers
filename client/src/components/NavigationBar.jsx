@@ -6,8 +6,6 @@ import Cart from "./Cart";
 import { Link } from "react-router-dom";
 
 const NavigationBar = (props) => {
-
-
   // Login Button
   const [isLoginOpen, setLoginOpen] = useState(false);
   const LoginOpen = () => {
@@ -66,6 +64,11 @@ const NavigationBar = (props) => {
   // Authentication and getting the user's name
   const setAuth = props.setAuth;
   const auth = props.auth;
+  let quantity = 0;
+  props.order.forEach((a) => {
+    quantity += a.quantity;
+  });
+
 
   const [name, setName] = useState("");
 
@@ -114,7 +117,7 @@ const NavigationBar = (props) => {
                 <li onClick={RegisterOpen}>Register</li>
                 <li onClick={SearchOpen}>Search</li>
                 <li onClick={CartOpen} id="cartbutton">
-                  Cart
+            {quantity ? <p> Cart({quantity})</p> : "Cart"}
                 </li>
               </ul>
             ) : (
@@ -122,7 +125,7 @@ const NavigationBar = (props) => {
                 <li>Hello {name}!</li>
                 <li onClick={(e) => logout(e)}>Logout</li>
                 <li onClick={SearchOpen}>Search</li>
-                <li onClick={CartOpen}>Cart</li>
+                <li onClick={CartOpen}>Cart {quantity}</li>
               </ul>
             )}
           </div>
@@ -140,7 +143,13 @@ const NavigationBar = (props) => {
       {isRegisterOpen ? (
         <Register RegisterOpen={isRegisterOpen} CloseRegister={CloseRegister} />
       ) : null}
-      <Cart isCartOpen={isCartOpen} CloseCart={CloseCart} reloadCart={props.reloadCart} setReloadCart={props.setReloadCart}/>
+      <Cart
+        isCartOpen={isCartOpen}
+        CloseCart={CloseCart}
+        order={props.order}
+        setReloadCart={props.setReloadCart}
+        quantity={quantity}
+      />
     </Fragment>
   );
 };

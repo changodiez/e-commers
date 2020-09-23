@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -14,6 +13,7 @@ import ProductsCategory from "./components/ProductsCategory";
 import NavBar from "./components/NavBar";
 import Admin from "./components/Admin/Admin";
 import "./App.css";
+import CheckOut from "./CheckOut";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,20 +49,28 @@ function App() {
     setSearchValue("");
   }, []);
 
+  //Cart FETCH AND FUNCTION
 
-  //Cart Reloaded 
+  const [reloadCart, setReloadCart] = useState(Math.random());
+  const [order, setOrder] = useState([]);
 
-  const [ reloadCart, setReloadCart] = useState(Math.random())
+  useEffect(() => {
+    fetch(`/carts`)
+      .then((res) => res.json())
+      .then((json) => {
+        setOrder(json);
+      });
+  }, [reloadCart]);
 
   return (
     <Router>
       <NavBar
-          isAuthenticated={isAuthenticated}
-          setAuth={setAuth}
-          setSearchValue={setSearchValue}
-          setReloadCart={setReloadCart}
-          reloadCart={reloadCart}
-        />
+        isAuthenticated={isAuthenticated}
+        setAuth={setAuth}
+        setSearchValue={setSearchValue}
+        setReloadCart={setReloadCart}
+        order={order}
+      />
       <Switch>
         <Route
           path="/"
@@ -74,13 +82,25 @@ function App() {
             </div>
           )}
         />
-        <Route path="/products/:id" render={(props) => <ProductDetail {...props} reloadCart={setReloadCart}/>} />
+        <Route
+          path="/products/:id"
+          render={(props) => (
+            <ProductDetail {...props} reloadCart={setReloadCart} />
+          )}
+        />
 
         <Route
           path="/products"
           exact={true}
           render={(props) => (
             <ProductsContainer {...props} searchValue={search} />
+          )}
+        />
+        <Route
+          path="/checkout:id"
+          exact={true}
+          render={(props) => (
+            <CheckOut {...props} order={order} setReloadCart={setReloadCart}/>
           )}
         />
         <Admin />

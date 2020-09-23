@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "./Button/BackButton";
+
 const ProductDetail = (props) => {
   // eslint-disable-next-line
   let { id } = useParams();
@@ -28,7 +30,7 @@ const ProductDetail = (props) => {
     } catch (error) {
       console.error(error);
     }
-    props.reloadCart(Math.random())
+    props.reloadCart(Math.random());
   };
 
   const setQtyLess = () => {
@@ -37,38 +39,43 @@ const ProductDetail = (props) => {
     } else {
       setQty(1);
     }
-   
   };
 
   return (
-    <div>
-      {product ? (
-        <div className="product-detail">
-          <div className="img-container">
-            <img className="detail-img" src={product.image} alt="Product" />
-          </div>
-          <div className="detail-body ">
-            <h1 className="detail-title">{product.product_name}</h1>
-            <h3 className="detail-description">{product.description} </h3>
-            <h1 className="detail-price">{product.unit_price} €</h1>
-            <div className="select-qty">
-              <button className="detail-button" onClick={setQtyLess}>
-                -
-              </button>
-              <h1>{qty}</h1>
-              <button className="detail-button" onClick={() => setQty(qty + 1)}>
-                +
+    <Fragment>
+      <div className="basic-container">
+        {product ? (
+          <div className="product-detail">
+            <BackButton />
+            <div className="img-container">
+              <img className="detail-img" src={product.image} alt="Product" />
+            </div>
+            <div className="detail-body ">
+              <h1 className="detail-title">{product.product_name}</h1>
+              <h3 className="detail-description">{product.description} </h3>
+              <h1 className="detail-price">{product.unit_price} €</h1>
+              <div className="select-qty">
+                <button className="detail-button" onClick={setQtyLess}>
+                  -
+                </button>
+                <h1>{qty}</h1>
+                <button
+                  className="detail-button"
+                  onClick={() => setQty(qty + 1)}
+                >
+                  +
+                </button>
+              </div>
+              <button className="detail-button" onClick={AddProduct}>
+                Add to cart
               </button>
             </div>
-            <button className="detail-button" onClick={AddProduct}>
-              Add to cart
-            </button>
           </div>
-        </div>
-      ) : (
-        <div>...Loading</div>
-      )}
-    </div>
+        ) : (
+          <div>...Loading</div>
+        )}
+      </div>
+    </Fragment>
   );
 };
 

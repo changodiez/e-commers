@@ -8,7 +8,7 @@ const isAuthenticated = props.isAuthenticated
 const setAuth = props.setAuth
 const setSearchValue = props.setSearchValue
 const setReloadCart = props.setReloadCart
-const reloadCart = props.reloadCart
+const order = props.order
 
     const [isMovile, SetMovile] = useState(false);
 
@@ -37,7 +37,7 @@ const reloadCart = props.reloadCart
             setAuth={setAuth}
             searchValue={setSearchValue}
             setReloadCart={setReloadCart}
-            reloadCart={reloadCart}
+            order={order}
           />
         ) : (
           <NavigationBar
@@ -45,7 +45,7 @@ const reloadCart = props.reloadCart
             setAuth={setAuth}
             searchValue={setSearchValue}
             setReloadCart={setReloadCart}
-            reloadCart={reloadCart}
+            order={order}
           />
         )}
         </Fragment>

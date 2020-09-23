@@ -22,7 +22,7 @@ const ProductsContainer = (props) => {
 
   return (
     <div>
-      <div className="products-container">
+      <div className="products-container basic-container">
         <div id="products-list" className="cards-grid">
           {productsData.length === 0 ? (
             <div className="nothing-here">

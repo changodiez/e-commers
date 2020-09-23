@@ -26,6 +26,10 @@ a {
   width: 90%;
 }
 
+.basic-container {
+  min-height: 80vh;
+}
+
 input {
   color: inherit;
   font-size: 1.2rem;
@@ -68,6 +72,10 @@ p {
   padding-bottom: 0.5rem;
 }
 
+.navbar-space {
+  width: 100vw;
+  height: 15vh;
+}
 /* Navbar  */
 
 .nav-bar {
@@ -454,6 +462,13 @@ p {
   display: flex;
   margin:auto;
   align-items: center;
+}
+
+.back-button {
+float: left;
+}
+.back-button button {
+  color: black;
 }
 
 /*  ------------ PRODUCT - CART - MODAL ---------------  */
