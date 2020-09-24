@@ -1,21 +1,34 @@
 const pool = require("../db");
 const router = require("express").Router();
+const authorize = require("../middleware/authorize");
 
 //===============================Get Order items============================
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
 
-  // SELECT order_items.quantity, products.product_name, products.unit_price, products.image
-  // FROM order_items ON orders.id=order_items.order_id  INNER JOIN products ON products.id=order_items.product_id 
+//   try {
+//     const updateQuery = "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image FROM order_items INNER JOIN products ON products.id=order_items.product_id ";
+//     const newUser = await pool.query(updateQuery);
+
+//     return res.json(newUser.rows)
+//   } catch (error) {
+//     console.error(error.message);
+//     return res.status(error.status).json("Something went wrong");
+//   }
+// });
+
+router.get("/", authorize, async (req, res) => {
   try {
-    const updateQuery = "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image FROM order_items INNER JOIN products ON products.id=order_items.product_id ";
-    const newUser = await pool.query(updateQuery);
+    const { id } = req.user;
+    const getOrderQuery = "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id  INNER JOIN products ON products.id=order_items.product_id WHERE customer.id=($1) ";
+    const orders = await pool.query(getOrderQuery, [id]);
 
-    return res.json(newUser.rows)
+    res.json(orders);
   } catch (error) {
     console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
+    return res.status(500).json("Server error");
   }
 });
+
 //create order
 router.post("/", async (req, res) => {
   const {

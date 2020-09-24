@@ -22,7 +22,7 @@ const ProductsAdmin = () => {
   return (
     <Fragment>
       <AddProducts data={productsData[0]} refresh={setRefres} />
-      <div className="all-products-container">
+      <div className="all-products-container basic-container">
         <div className="titles">
           <h1>ALL YOUR PRODUCTS</h1>
         </div>

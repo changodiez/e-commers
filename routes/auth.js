@@ -10,7 +10,6 @@ const authorize = require("../middleware/authorize");
 //REGISTER NEW USER
 router.post("/register", validInfo, async (req, res) => {
   const { username, email, password } = req.body;
-  console.log(username, "dale gateo")
   try {
     const verificationQuery = "SELECT * FROM customers WHERE email=$1";
     const insertQuery =

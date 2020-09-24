@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import ProductsCart from './components/ProductsCart';
+import ProductsCart from './ProductsCart';
 
 const CheckOut = (props) => {
     const order = props.order

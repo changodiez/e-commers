@@ -13,7 +13,7 @@ import ProductsCategory from "./components/ProductsCategory";
 import NavBar from "./components/NavBar";
 import Admin from "./components/Admin/Admin";
 import "./App.css";
-import CheckOut from "./CheckOut";
+import CheckOut from "./components/CheckOut";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,7 +41,8 @@ function App() {
     checkAuthentication();
   }, []);
 
-  //Seach Function
+
+  //////////////////////////////////////////////////////////////////////////////////////Seach Function
 
   const [search, setSearchValue] = useState("");
 
@@ -55,11 +56,17 @@ function App() {
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    fetch(`/carts`)
-      .then((res) => res.json())
-      .then((json) => {
-        setOrder(json);
+    try {
+      const response = fetch(`/carts/${id}`, {
+        method: "GET",
+        headers: { token: localStorage.token },
       });
+      const products = response.json();
+
+      setOrder(products);
+    } catch (error) {
+      console.error(error.message);
+    };
   }, [reloadCart]);
 
   return (
