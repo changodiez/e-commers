@@ -4,8 +4,10 @@ import BackButton from "./Button/BackButton";
 
 const ProductDetail = (props) => {
   // eslint-disable-next-line
-  let { id } = useParams();
 
+  const orderID = props.orderID.id
+  let  id  = useParams().id
+  
   const [product, setProducts] = useState();
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const ProductDetail = (props) => {
   const [qty, setQty] = useState(1);
 
   const AddProduct = async () => {
-    const body = { qty };
+    const body = { qty, orderID };
 
     try {
       const response = await fetch(`/carts/${id}`, {

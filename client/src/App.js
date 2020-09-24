@@ -54,20 +54,34 @@ function App() {
 
   const [reloadCart, setReloadCart] = useState(Math.random());
   const [order, setOrder] = useState([]);
+  const [orderID, setOrderID ] = useState ([])
 
-  useEffect(() => {
+  const getOrder = async () => {
     try {
-      const response = fetch(`/carts/${id}`, {
+      let response = await fetch(`/carts`, {
         method: "GET",
         headers: { token: localStorage.token },
       });
-      const products = response.json();
+      const products = await response.json();
 
       setOrder(products);
+
+      response = await fetch(`/carts/orderID`, {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const orderID = await response.json();
+
+      setOrderID(orderID);
+
     } catch (error) {
       console.error(error.message);
     };
-  }, [reloadCart]);
+  }
+
+  useEffect(() => {
+   getOrder()
+  }, [reloadCart, isAuthenticated]);
 
   return (
     <Router>
@@ -92,7 +106,7 @@ function App() {
         <Route
           path="/products/:id"
           render={(props) => (
-            <ProductDetail {...props} reloadCart={setReloadCart} />
+            <ProductDetail {...props} reloadCart={setReloadCart} orderID={orderID} />
           )}
         />
 

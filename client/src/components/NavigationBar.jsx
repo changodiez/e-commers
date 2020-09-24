@@ -64,12 +64,16 @@ const NavigationBar = (props) => {
   // Authentication and getting the user's name
   const setAuth = props.setAuth;
   const auth = props.auth;
+  
+  const order = props.order
   let quantity = 0;
-  props.order.forEach((a) => {
+
+  const isAnArray = Array.isArray(order)
+  
+  if(isAnArray) {order.forEach((a) => {
     quantity += a.quantity;
-  });
-
-
+  })}
+ 
   const [name, setName] = useState("");
 
   async function getName() {
@@ -125,7 +129,9 @@ const NavigationBar = (props) => {
                 <li>Hello {name}!</li>
                 <li onClick={(e) => logout(e)}>Logout</li>
                 <li onClick={SearchOpen}>Search</li>
-                {quantity ? <p> Cart({quantity})</p> : "Cart"}
+                <li onClick={CartOpen} id="cartbutton">
+            {quantity ? <p> Cart({quantity})</p> : "Cart"}
+                </li>
               </ul>
             )}
           </div>
@@ -146,7 +152,7 @@ const NavigationBar = (props) => {
       <Cart
         isCartOpen={isCartOpen}
         CloseCart={CloseCart}
-        order={props.order}
+        order={order}
         setReloadCart={props.setReloadCart}
         quantity={quantity}
       />
