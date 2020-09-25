@@ -14,6 +14,7 @@ import NavBar from "./components/NavBar";
 import Admin from "./components/Admin/Admin";
 import "./App.css";
 import CheckOut from "./components/CheckOut";
+import Profile from "./components/Profile";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -124,6 +125,7 @@ function App() {
             <CheckOut {...props} order={order} setReloadCart={setReloadCart}/>
           )}
         />
+        <Route path="/profile" component={Profile}/>
         <Admin />
       </Switch>
       <Footer />

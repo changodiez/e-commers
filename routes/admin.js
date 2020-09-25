@@ -111,7 +111,7 @@ router.post("/products/add", async (req, res) => {
 });
 
 
-//Modificate products
+//UPDATE PRODUCT
 router.put("/products/:id", async (req, res) => { 
   const { product_name, category, price, image, description } = req.body;
   
@@ -129,7 +129,7 @@ router.put("/products/:id", async (req, res) => {
 });
 
 
-//Borrar costumer
+//DELETE PRODUCT
 router.delete("/products/:id", (req, res) => {
   const { id } = req.params;
 try {

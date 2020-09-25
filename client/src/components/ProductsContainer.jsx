@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "./Button/Loader";
 import ProductCard from "./ProductCard";
 
 const ProductsContainer = (props) => {
@@ -20,20 +21,32 @@ const ProductsContainer = (props) => {
         });
   }, [searchValue]);
 
+
   return (
     <div>
       <div className="products-container basic-container">
         <div id="products-list" className="cards-grid">
-          {productsData.length === 0 ? (
+        {(() => {
+        if (productsData.length === 0 && searchValue.length === 0) {
+          return (
+            <Loader/>
+          )
+        } else if (productsData.length === 0 && searchValue.length > 0) {
+          return (
             <div className="nothing-here">
-           <p>No exact matches found for {searchValue} try again</p>
-           </div>
-          ) : (
+            <p>No exact matches found for {searchValue} try again</p>
+            </div>
+            
+          )
+        } else {
+          return (
             productsData.map((product, index) => (
               <ProductCard value={product} key={index} />
             ))
-            
-          )}
+          )
+        }
+      })()}
+         
         </div>
       </div>
     </div>

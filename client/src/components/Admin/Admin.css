@@ -56,8 +56,12 @@ form button{
 }
 
 .table {
-    border: solid 2 px black;
-    
+    border: solid 2px black;
+    width: 100%;
+}
+
+thead {
+    width: 80%;
 }
 
 th {
@@ -69,6 +73,7 @@ th img {
 }
 
 tr {
+    width: 100%;
     border-bottom: solid 1px black;
 }
 

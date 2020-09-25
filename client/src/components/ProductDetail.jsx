@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import BackButton from "./Button/BackButton";
+import Loader from "./Button/Loader";
 
 const ProductDetail = (props) => {
   // eslint-disable-next-line
@@ -74,7 +75,7 @@ const ProductDetail = (props) => {
             </div>
           </div>
         ) : (
-          <div>...Loading</div>
+          <Loader/>
         )}
       </div>
     </Fragment>

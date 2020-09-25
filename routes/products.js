@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
    }
 
    else {  const searchProducts = await pool.query("SELECT * FROM products WHERE product_name ILIKE $1;",[`%${name}%`]);
-   res.json(searchProducts.rows);}
+   res.json(searchProducts.rows)}
   
   }
 

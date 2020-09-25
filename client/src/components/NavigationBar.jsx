@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Cart from "./Cart";
 import { Link } from "react-router-dom";
+import Logo from "../Assets/Logo.svg"
 
 const NavigationBar = (props) => {
   // Login Button
@@ -106,15 +107,16 @@ const NavigationBar = (props) => {
       <div className="nav-bar">
         <div ref={ref}>
           <div className="nav-container">
-            <div className="logo">
-              <Link
+          <Link
                 to={{
                   pathname: "/",
                 }}
               >
-                Hasan's Tailor
+            <div className="logo">
+             
+               <img src={Logo} alt="React Logo" /> </div>
               </Link>
-            </div>
+           
             {!auth ? (
               <ul>
                 <li onClick={LoginOpen}>Login</li>
@@ -126,7 +128,7 @@ const NavigationBar = (props) => {
               </ul>
             ) : (
               <ul>
-                <li>Hello {name}!</li>
+                <Link to="/profile" ><li>Hello {name}!</li></Link>
                 <li onClick={(e) => logout(e)}>Logout</li>
                 <li onClick={SearchOpen}>Search</li>
                 <li onClick={CartOpen} id="cartbutton">

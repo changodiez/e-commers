@@ -6,7 +6,6 @@ const express = require("express");
 const jwtGenerator = require("../utils/jwtGenerator");
 const authorize = require("../middleware/authorize");
 
-
 //REGISTER NEW USER
 router.post("/register", validInfo, async (req, res) => {
   const { username, email, password } = req.body;
@@ -24,7 +23,11 @@ router.post("/register", validInfo, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const bcryptpassword = await bcrypt.hash(password, salt);
 
-    const newUser = await pool.query(insertQuery, [username, email, bcryptpassword]);
+    const newUser = await pool.query(insertQuery, [
+      username,
+      email,
+      bcryptpassword,
+    ]);
 
     //Do we assign jwt here? ask in meeting
     return res.status(200).json("User created succesfully");
@@ -83,6 +86,20 @@ router.get("/dashboard", authorize, async (req, res) => {
   } catch (error) {
     console.error(error.message);
     return res.status(500).json("Server error");
+  }
+});
+
+//USED TO GET THE USER NAME
+router.get("/profile", authorize, async (req, res) => {
+  try {
+    const { id } = req.user;
+    const nameQuery = "SELECT * FROM customers WHERE id=$1";
+    const name = await pool.query(nameQuery, [id]);
+
+    res.json(name.rows);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json("Server error");
   }
 });
 
