@@ -107,7 +107,6 @@ router.post("/products/add", async (req, res) => {
     return res.status(200).json("Product created succesfully");
   } catch (error) {
     console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
   }
 });
 
