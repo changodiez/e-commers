@@ -1,56 +1,59 @@
-import React, { Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import ProductsCart from './ProductsCart';
+import React, { Fragment } from "react";
+import { Link, Redirect } from "react-router-dom";
+import ProductsCart from "./ProductsCart";
 
 const CheckOut = (props) => {
-    const order = props.order
-    const setReloadCart = props.setReloadCart
-    const isAuthenticated = props.isAuthenticated
+  const order = props.order;
+  const setReloadCart = props.setReloadCart;
+  const isAuthenticated = props.isAuthenticated;
 
-    let totalImport = 0;
+  let totalImport = 0;
   props.order.forEach((a) => {
     totalImport += parseFloat(a.unit_price * a.quantity);
   });
 
-    return ( <Fragment>
+  return (
+    <Fragment>
       {(() => {
         if (isAuthenticated) {
           return (
             <Fragment>
-            <div className="navbar-space"></div>
-            <div className="cart-container basic-container">
-            <h1>Check out </h1>
-            <div className="shiping-info">
-                get shiping info from customer 
-            </div>
-            <div className="body-cart">
-      {order.length > 0 ? order.map((product, index) => (
+              <div className="navbar-space"></div>
+              <div className="cart-container basic-container">
+                <h1>Check out </h1>
+                <div className="shiping-info">
+                  get shiping info from customer
+                </div>
+                <div className="body-cart">
+                  {order.length > 0 ? (
+                    order.map((product, index) => (
                       <ProductsCart
                         product={product}
                         index={index}
                         setReloadCart={setReloadCart}
-                        
                       />
-                      
-                    )) : <div><div>Your cart is empty</div>
-            <p>Add a product to your cart</p></div> }
-            </div>
-            <button><Link to="/products">Add more products</Link></button>
-      <div>TOTAL IMPORT: {totalImport} €</div>
-            <button className="button2">BUY NOW</button>
-          </div>
+                    ))
+                  ) : (
+                    <div>
+                      <div>Your cart is empty</div>
+                      <p>Add a product to your cart</p>
+                    </div>
+                  )}
+                </div>
+                <button>
+                  <Link to="/products">Add more products</Link>
+                </button>
+                <div>TOTAL IMPORT: {totalImport} €</div>
+                <button className="button2">BUY NOW</button>
+              </div>
             </Fragment>
-          )
+          );
         } else {
-          return (
-            <Redirect/>
-            
-          )
-        } 
+          return <Redirect />;
+        }
       })()}
-      </Fragment>
-       
-     );
-}
- 
+    </Fragment>
+  );
+};
+
 export default CheckOut;
