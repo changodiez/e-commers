@@ -122,7 +122,7 @@ function App() {
           path="/checkout:id"
           exact={true}
           render={(props) => (
-            <CheckOut {...props} order={order} setReloadCart={setReloadCart}/>
+            <CheckOut {...props} order={order} setReloadCart={setReloadCart} isAuthenticated={isAuthenticated}/>
           )}
         />
         <Route path="/profile" component={Profile}/>

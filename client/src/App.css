@@ -28,6 +28,8 @@ a {
 
 .basic-container {
   width: 90%;
+  display: flex;
+  flex-direction: column;
   min-height: 80vh;
   margin:auto;
 }
@@ -76,7 +78,7 @@ p {
 
 .navbar-space {
   width: 100vw;
-  height: 15vh;
+  height: 20vh;
 }
 /* Navbar  */
 
@@ -363,7 +365,7 @@ max-height: 17vh;
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 15vh;
+  padding-top: 20vh;
 }
 
 .nothing-here {
@@ -556,6 +558,10 @@ margin: auto;
 }
 
 @media screen and (max-width: 960px) {
+
+  .navbar-space {
+    height: 15vh;
+  }
   /* Banner  */
 
   .banner-text {

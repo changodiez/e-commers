@@ -129,7 +129,7 @@ const NavigationBar = (props) => {
             ) : (
               <ul>
                 <Link to="/profile" ><li>Hello {name}!</li></Link>
-                <li onClick={(e) => logout(e)}>Logout</li>
+                <Link to="/"><li onClick={(e) => logout(e)}>Logout</li></Link>
                 <li onClick={SearchOpen}>Search</li>
                 <li onClick={CartOpen} id="cartbutton">
             {quantity ? <p> Cart({quantity})</p> : "Cart"}

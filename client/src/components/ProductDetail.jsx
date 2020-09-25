@@ -49,7 +49,8 @@ const ProductDetail = (props) => {
       <div className="basic-container">
         {product ? (
           <div className="product-detail">
-            <BackButton />
+                  <BackButton />
+
             <div className="img-container">
               <img className="detail-img" src={product.image} alt="Product" />
             </div>

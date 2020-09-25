@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     font-size: 1.2rem;
     position: fixed;
     z-index: 999;
@@ -22,7 +21,7 @@
   
   .navbar-buttons {
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: space-between;
     margin: 1rem auto 0.3rem auto;
     align-items: center;
@@ -72,6 +71,10 @@
     color: #fff;
   }
   
+.cart-mobile {
+  color: white;
+}
+
   .menu-icon {
     color: white;
   }

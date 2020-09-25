@@ -5,6 +5,12 @@ import Register from "./Register";
 import Cart from "./Cart";
 import { Link, Route, Switch } from "react-router-dom";
 import "./NavigationBarMovile.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
+
 const NavigationBar = (props) => {
   const [click, setClick] = useState(false);
 
@@ -71,6 +77,15 @@ const NavigationBar = (props) => {
   const setAuth = props.setAuth;
   const auth = props.auth;
 
+  const order = props.order
+  let quantity = 0;
+
+  const isAnArray = Array.isArray(order)
+  
+  if(isAnArray) {order.forEach((a) => {
+    quantity += a.quantity;
+  })}
+
   const [name, setName] = useState("");
 
   async function getName() {
@@ -113,18 +128,18 @@ const NavigationBar = (props) => {
               </Link>
             </div>
             <div className="menu-icon" onClick={SearchOpen}>
-              O
-            </div>
+            <FontAwesomeIcon icon={faSearch} />            </div>
             <div className="menu-icon" onClick={menuOpen}>
-              |||
+            <FontAwesomeIcon icon={faBars} />
             </div>
           </div>
+          {auth && quantity > 0 ?  <Link to="/checkout:id"><div className="cart-mobile"><FontAwesomeIcon icon={faShoppingCart} /> {`(${quantity})`}</div></Link> : null }
           {auth ? (
             <div className="customer-name">Hello {name}!</div>
           ) : (
             <div className="customer-name" style={{ fontSize: "0" }}>
-              {" "}
-              Hello!{" "}
+             
+              Hello!
             </div>
           )}
           <SearchBar isOpen={isSearchOpen} searchValue={searchValue} />
@@ -144,26 +159,18 @@ const NavigationBar = (props) => {
                   Register
                 </li>
               </Link>
-              <Link to="/cart">
-                <li
-                  onClick={CartOpen}
-                  onClick={menuOpen}
-                  id="cartbutton"
-                  className="nav-item"
-                >
-                  Cart
-                </li>
-              </Link>
+              
             </ul>
           ) : (
             <ul className={click ? "nav-menu active" : "nav-menu"}>
-              <li onClick={(e) => logout(e)} className="nav-item">
+              <Link to="/"><li onClick={(e) => logout(e)} className="nav-item">
                 Logout
-              </li>
+              </li></Link>
 
-              <li onClick={CartOpen} id="cartbutton" className="nav-item">
+              <Link to="checkout:id">
+              <li id="cartbutton" className="nav-item" onClick={menuOpen}>
                 Cart
-              </li>
+              </li></Link>
             </ul>
           )}
         </div>

@@ -35,7 +35,7 @@ const Register = (props) => {
         });
         setTimeout(() => {
           window.location.href = "/";
-        }, 2000);
+        }, 400);
       } else {
         setInputs({ ...inputs, registrationError: parseRes });
       }

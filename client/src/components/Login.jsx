@@ -50,7 +50,7 @@ const Login = (props) => {
           setAuth(true);
           setTimeout(() => {
             window.location.href = "/";
-          }, 2000);
+          }, 400);
         } else {
           setInputs({ ...inputs, loginError: parseRes });
         }
