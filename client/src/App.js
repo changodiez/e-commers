@@ -125,7 +125,9 @@ function App() {
             <CheckOut {...props} order={order} setReloadCart={setReloadCart} isAuthenticated={isAuthenticated}/>
           )}
         />
-        <Route path="/profile" component={Profile}/>
+        <Route path="/profile" render={(props) => (
+            <Profile {...props} isAuthenticated={isAuthenticated}/>
+          )}/>
         <Admin />
       </Switch>
       <Footer />

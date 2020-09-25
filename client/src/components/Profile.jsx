@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (props) => {
   // FETCH DATA CURRENT CUSTOMER
+  const isAuthenticated = props.isAuthenticated
 
   const [refresh, setRefresh] = useState(Math.random());
   const [profile, setProfile] = useState([]);
@@ -78,6 +80,7 @@ const Profile = () => {
   };
 
   return (
+    isAuthenticated ? 
     <Fragment>
       <div className="navbar-space"></div>
       <div className=" profile basic-container ">
@@ -252,7 +255,7 @@ const Profile = () => {
         </div>
       </div>
       <div className="navbar-space"></div>
-    </Fragment>
+    </Fragment> : <Redirect to="/"/>
   );
 };
 
