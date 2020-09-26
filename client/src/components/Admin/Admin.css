@@ -37,7 +37,7 @@ form {
 
 form input {
     border: solid 1px black;
-    padding: 1rem;    
+    padding: 0.2rem;    
 }
 
 form button{
@@ -97,6 +97,7 @@ th button {
 }
 
 #navbarAdmin {
+    height: 17vh;
     opacity: 1;
     z-index: 9999;
 }

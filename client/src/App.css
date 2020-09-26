@@ -94,7 +94,7 @@ p {
 
 .nav-container {
   width: 90%;
-  margin: 1rem auto auto auto;
+  margin: 0.5rem auto auto auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -303,14 +303,17 @@ max-height: 17vh;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 20vh;
-  background-color: var(--color2);
+  height: 30vh;
+  background-image: url("./Assets/telas.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
   text-align: center;
 }
 
 #mini-banner:hover {
   transition: all 200ms;
-  opacity: 0.65;
+  opacity: 0.8;
 }
 
 .img-category {
@@ -475,6 +478,16 @@ float: left;
   color: black;
 }
 
+.login-ask {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.login-ask h3 {
+  margin: auto;
+}
 /*  ------------ PRODUCT - CART - MODAL ---------------  */
 
 .products-cart {
@@ -577,12 +590,19 @@ margin: auto;
     opacity: 1;
   }
 
+  .products-container {
+    padding-top: 12vh;
+  }
   .products-category {
     flex-direction: column;
   }
 
   .products-category img {
     height: 30vh;
+  }
+
+  .cards-grid {
+    display: block;
   }
 
   /* Seach */
@@ -594,10 +614,10 @@ margin: auto;
   }
 
   .search-bar .container-open {
-    width: 100%;
+    width: 85%;
     margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-bottom: 1rem;
   }
   .search-bar .container-open p {
@@ -636,6 +656,7 @@ margin: auto;
 
   .product-detail {
     flex-direction: column;
+    padding-top: 12vh;
   }
 
   .product-detail .img-container {
@@ -651,7 +672,18 @@ margin: auto;
     width: 100%;
   }
 
+  .detail-body h1{
+font-size: 1.4rem;
+margin-bottom: 0.2rem;
+  }
+
+  .detail-body h3{
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+      }
+
   .detail-price {
+    font-size: 2rem !important;
     text-align: center;
   }
 
@@ -703,4 +735,13 @@ margin: auto;
     background-color: var(--success);
     width: 100%;
   }
+
+  .profile button {
+ max-width: 90%;
+  }
+  .orders-table {
+    display:none;
+  }
+
+
 }

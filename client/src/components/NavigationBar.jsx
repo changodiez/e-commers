@@ -6,6 +6,10 @@ import Cart from "./Cart";
 import { Link } from "react-router-dom";
 import Logo from "../Assets/Logo.svg"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
 const NavigationBar = (props) => {
   // Login Button
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -123,7 +127,7 @@ const NavigationBar = (props) => {
                 <li onClick={RegisterOpen}>Register</li>
                 <li onClick={SearchOpen}>Search</li>
                 <li onClick={CartOpen} id="cartbutton">
-            {quantity ? <p> Cart({quantity})</p> : "Cart"}
+            {quantity ? <div><FontAwesomeIcon icon={faShoppingCart} /> ({quantity})</div> : <FontAwesomeIcon icon={faShoppingCart} />}
                 </li>
               </ul>
             ) : (
@@ -132,7 +136,7 @@ const NavigationBar = (props) => {
                 <Link to="/"><li onClick={(e) => logout(e)}>Logout</li></Link>
                 <li onClick={SearchOpen}>Search</li>
                 <li onClick={CartOpen} id="cartbutton">
-            {quantity ? <p> Cart({quantity})</p> : "Cart"}
+            {quantity ? <div><FontAwesomeIcon icon={faShoppingCart} /> ({quantity})</div> : <FontAwesomeIcon icon={faShoppingCart} />}
                 </li>
               </ul>
             )}
@@ -157,6 +161,7 @@ const NavigationBar = (props) => {
         order={order}
         setReloadCart={props.setReloadCart}
         quantity={quantity}
+        auth = {auth}
       />
     </Fragment>
   );

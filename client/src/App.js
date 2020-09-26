@@ -107,7 +107,7 @@ function App() {
         <Route
           path="/products/:id"
           render={(props) => (
-            <ProductDetail {...props} reloadCart={setReloadCart} orderID={orderID} />
+            <ProductDetail {...props} reloadCart={setReloadCart} orderID={orderID} isAuthenticated={isAuthenticated} />
           )}
         />
 

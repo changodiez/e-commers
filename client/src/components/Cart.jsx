@@ -1,3 +1,4 @@
+import { faFontAwesomeLogoFull } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import ProductsCart from "./ProductsCart";
@@ -5,7 +6,7 @@ import ProductsCart from "./ProductsCart";
 const Cart = (props) => {
 
   const isOpen = props.isCartOpen;
-
+  const auth = props.auth
   const Close = props.CloseCart;
   const order = props.order
   const setReloadCart = props.setReloadCart
@@ -15,9 +16,7 @@ const Cart = (props) => {
     Close(!isOpen);
   };
 
-  // Add products function
-
-
+  console.log(order)
 
   return (
     <div className={isOpen ? "cart-open" : "cart-closed"}>
@@ -25,18 +24,28 @@ const Cart = (props) => {
         <div><button onClick={CloseCart} id="cart-close-button">X</button></div>
         <div className="title">Cart</div>
         <div className="body-cart">
-  {order.length > 0 ? order.map((product, index) => (
-                  <ProductsCart
-                    product={product}
-                    index={index}
-                    setReloadCart={setReloadCart}
-                    
-                  />
-                  
-                )) : <div><div>Your cart is empty</div>
-        <p>Add a product to your cart</p></div> }
-        </div>
-        <Link to="/checkout:id"><button className="search-button" onClick={CloseCart}>Proceed to checkout ({quantity}) items</button></Link>
+        {(() => {
+        if (auth &&  order.length > 0 ) {
+          return (order.map((product, index) => (
+            <ProductsCart
+              product={product}
+              index={index}
+              setReloadCart={setReloadCart}
+              
+            /> )))
+          
+        } else if (auth &&  order.length === 0){
+          return (<div>Your cart is empty</div>)
+          
+        } else if (!auth) {
+          return (<h2>You have to login to add products in to your cart</h2>)
+        }
+        
+        
+      })()}
+  </div>
+        {auth ? <Link to="/checkout:id"><button className="search-button" onClick={CloseCart}>Proceed to checkout ({quantity}) items</button></Link> : null}
+        
       </div>
     </div>
   );

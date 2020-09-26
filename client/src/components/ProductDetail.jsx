@@ -2,13 +2,16 @@ import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import BackButton from "./Button/BackButton";
 import Loader from "./Button/Loader";
+import LoginAsk from "./Button/LoginAsk";
 
 const ProductDetail = (props) => {
   // eslint-disable-next-line
 
-  const orderID = props.orderID.id
-  let  id  = useParams().id
-  
+  const orderID = props.orderID.id;
+  const isAuthenticated = props.isAuthenticated;
+
+  let id = useParams().id;
+
   const [product, setProducts] = useState();
 
   useEffect(() => {
@@ -44,12 +47,20 @@ const ProductDetail = (props) => {
     }
   };
 
+  // OPEN AND CLOSE LOGIN ASK
+  const [state, setState] = useState(false)
+
+  const LoginAskModal = () => {
+    setState(!state)
+  }
+
   return (
     <Fragment>
+      <LoginAsk state={state} setState={setState}/> 
       <div className="basic-container">
         {product ? (
           <div className="product-detail">
-                  <BackButton />
+            <BackButton />
 
             <div className="img-container">
               <img className="detail-img" src={product.image} alt="Product" />
@@ -70,13 +81,19 @@ const ProductDetail = (props) => {
                   +
                 </button>
               </div>
-              <button className="detail-button" onClick={AddProduct}>
-                Add to cart
-              </button>
+              {isAuthenticated ? (
+                <button className="detail-button" onClick={AddProduct}>
+                  Add to cart
+                </button>
+              ) : (
+                <button className="detail-button" onClick={LoginAskModal}>
+                  Add to cart
+                </button>
+              )}
             </div>
           </div>
         ) : (
-          <Loader/>
+          <Loader />
         )}
       </div>
     </Fragment>

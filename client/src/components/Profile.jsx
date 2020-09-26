@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 const Profile = (props) => {
   // FETCH DATA CURRENT CUSTOMER
-  const isAuthenticated = props.isAuthenticated
+  const isAuthenticated = props.isAuthenticated;
 
   const [refresh, setRefresh] = useState(Math.random());
   const [profile, setProfile] = useState([]);
@@ -79,8 +79,7 @@ const Profile = (props) => {
     setRefresh(Math.random());
   };
 
-  return (
-    isAuthenticated ? 
+  return isAuthenticated ? (
     <Fragment>
       <div className="navbar-space"></div>
       <div className=" profile basic-container ">
@@ -194,68 +193,75 @@ const Profile = (props) => {
               <div className="title">
                 <h3>Change Your Password</h3>
               </div>
-<div className="col">
-              <label>
-                <h3> Current password</h3>
-
-                <input
-                  type="password"
-                  placeholder={profile.password}
-                  name="password"
-                  value={password}
-                  onChange={(e) => onChange(e)}
-                ></input>
-              </label></div>
               <div className="col">
-              <label>
-                <h3> New password</h3>
+                <label>
+                  <h3> Current password</h3>
 
-                <input
-                  type="password"
-                  placeholder={profile.password}
-                  name="password"
-                  value={password}
-                  onChange={(e) => onChange(e)}
-                ></input>
-              </label></div>
+                  <input
+                    type="password"
+                    placeholder={profile.password}
+                    name="password"
+                    value={password}
+                    onChange={(e) => onChange(e)}
+                  ></input>
+                </label>
+              </div>
               <div className="col">
-              <label>
-                <h3> Confirm password</h3>
+                <label>
+                  <h3> New password</h3>
 
-                <input
-                  type="password"
-                  placeholder={profile.password}
-                  name="password"
-                  value={password}
-                  onChange={(e) => onChange(e)}
-                ></input>
-              </label></div>
+                  <input
+                    type="password"
+                    placeholder={profile.password}
+                    name="password"
+                    value={password}
+                    onChange={(e) => onChange(e)}
+                  ></input>
+                </label>
+              </div>
+              <div className="col">
+                <label>
+                  <h3> Confirm password</h3>
+
+                  <input
+                    type="password"
+                    placeholder={profile.password}
+                    name="password"
+                    value={password}
+                    onChange={(e) => onChange(e)}
+                  ></input>
+                </label>
+              </div>
               <div className="button-container">
                 <button type="submit">Change your Password</button>
               </div>
             </div>
           </div>
         </form>
-        <div className="title">
-          <h1>Your orders</h1>
-        </div>
-        <div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ORDER ID</th>
-                <th>Date of order</th>
-                <th>Products</th>
-                <th>Quandity</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+        <div className="orders-table">
+          <div className="title">
+            <h1>Your orders</h1>
+          </div>
+          <div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>ORDER ID</th>
+                  <th>Date of order</th>
+                  <th>Products</th>
+                  <th>Quandity</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div className="navbar-space"></div>
-    </Fragment> : <Redirect to="/"/>
+    </Fragment>
+  ) : (
+    <Redirect to="/" />
   );
 };
 

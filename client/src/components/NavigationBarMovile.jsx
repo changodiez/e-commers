@@ -145,7 +145,7 @@ const NavigationBar = (props) => {
               <li className="nav-item" onClick={menuOpen}>CLOSE</li>
               <Link to="/login">
                 <li onClick={LoginOpen} onClick={menuOpen} className="nav-item">
-                  Login
+                  LOGIN
                 </li>
               </Link>
               <Link to="/register">
@@ -156,7 +156,7 @@ const NavigationBar = (props) => {
                   onClick={menuOpen}
                   className="nav-item"
                 >
-                  Register
+                  REGISTER
                 </li>
               </Link>
               
@@ -165,12 +165,12 @@ const NavigationBar = (props) => {
             <ul className={click ? "nav-menu active" : "nav-menu"}>
              <li className="nav-item" onClick={menuOpen}>CLOSE</li>
               <Link to="/"><li onClick={(e) => logout(e)} className="nav-item">
-                Logout
+                LOGOUT
               </li></Link>
 
               <Link to="checkout:id">
               <li id="cartbutton" className="nav-item" onClick={menuOpen}>
-                Cart
+                CART
               </li></Link>
             </ul>
           )}
@@ -201,7 +201,7 @@ const NavigationBar = (props) => {
         <Route
           path="/cart"
           render={(props) => (
-            <Cart {...props} isCartOpen={isCartOpen} CloseCart={CloseCart} />
+            <Cart {...props} isCartOpen={isCartOpen} CloseCart={CloseCart}  />
           )}
         />
       </Switch>
