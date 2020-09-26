@@ -32,7 +32,6 @@ const ProductsCart = (props) => {
           </div>
           <div className="product-cart-body ">
             <p className="price">{product.product_name}</p>
-            <p className="description">{product.description} </p>
             <p >Quantity:{product.quantity}</p>
             <p >{product.unit_price} €</p>
             <button className="button2" onClick={deleteProduct}>Delete</button>
