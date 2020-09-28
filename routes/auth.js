@@ -89,18 +89,50 @@ router.get("/dashboard", authorize, async (req, res) => {
   }
 });
 
-//USED TO GET THE USER NAME
+//USED TO GET THE CUSTOMER INFORMATION
 router.get("/profile", authorize, async (req, res) => {
   try {
     const { id } = req.user;
-    const nameQuery = "SELECT * FROM customers WHERE id=$1";
-    const name = await pool.query(nameQuery, [id]);
-
-    res.json(name.rows);
+    const customerQuery = "SELECT * FROM customers WHERE id=$1";
+    const customer = await pool.query(customerQuery, [id]);
+    res.json(customer.rows);
   } catch (error) {
     console.error(error.message);
     res.status(500).json("Server error");
   }
+});
+
+// UPDATE CUSTOMER INFORMATION
+
+router.put("/profile/update",authorize, async (req, res) => {
+  const {id}  = req.user ;
+  const {
+    first_name,
+    last_name,
+    address,
+    city,
+    postcode,
+    country,
+    mobile,
+  } = req.body;
+  console.log(req.body)
+  try {
+    const customerQuery =
+      "UPDATE customers SET first_name =$1, last_name =$2, address=$3, city=$4, postcode=$5, country=$6, mobile=$7 WHERE customers.id =$8";
+    const customer = await pool.query(customerQuery, [
+      first_name,
+      last_name,
+      address,
+      city,
+      postcode,
+      country,
+      mobile,
+      id,
+    ]);
+    res.json(customer.rows);
+  } catch (error) {
+    console.error(error.message);
+   }
 });
 
 module.exports = router;

@@ -20,12 +20,11 @@ const AddProducts = (props) => {
     const body = { product_name, category, price, image, description };
 
     try {
-      const response = await fetch("/admin/products/add", {
+      await fetch("/admin/products/add", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
