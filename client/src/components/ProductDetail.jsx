@@ -22,13 +22,15 @@ const ProductDetail = (props) => {
       });
   }, []);
 
+
+  // ADD PRODUCTS TO THE CART
   const [qty, setQty] = useState(1);
 
   const AddProduct = async () => {
     const body = { qty, orderID };
 
     try {
-      const response = await fetch(`/carts/${id}`, {
+       await fetch(`/carts/${id}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),

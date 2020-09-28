@@ -49,7 +49,7 @@ const Login = (props) => {
           localStorage.setItem("token", parseRes.token);
           setAuth(true);
           setTimeout(() => {
-            window.location.href = "/";
+            CloseLogin();
           }, 400);
         } else {
           setInputs({ ...inputs, loginError: parseRes });

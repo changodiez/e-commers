@@ -16,13 +16,13 @@ const Cart = (props) => {
     Close(!isOpen);
   };
 
-  console.log(order)
 
   return (
     <div className={isOpen ? "cart-open" : "cart-closed"}>
       <div className="cart-container">
         <div><button onClick={CloseCart} id="cart-close-button">X</button></div>
         <div className="title">Cart</div>
+        <div className="overflow-hiden">
         <div className="body-cart">
         {(() => {
         if (auth &&  order.length > 0 ) {
@@ -43,7 +43,7 @@ const Cart = (props) => {
         
         
       })()}
-  </div>
+  </div></div>
         {auth ? <Link to="/checkout:id"><button className="search-button" onClick={CloseCart}>Proceed to checkout ({quantity}) items</button></Link> : null}
         
       </div>
