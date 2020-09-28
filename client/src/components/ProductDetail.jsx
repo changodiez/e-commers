@@ -31,7 +31,7 @@ const ProductDetail = (props) => {
 
     try {
        await fetch(`/carts/${id}`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });

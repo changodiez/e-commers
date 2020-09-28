@@ -33,16 +33,27 @@ router.get("/orderID", authorize, async (req, res) => {
 });
 
 //ADD a product to ORDER
-router.post("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { qty, orderID } = req.body;
-  console.log(req.body);
 
   try {
-    const insertQuery =
-      "INSERT INTO order_items ( order_id, product_id, quantity ) VALUES ($1, $2, $3 )";
-    await pool.query(insertQuery, [orderID, id, qty]);
-    return res.status(200).json("Order added succesfully");
+    const verificationQuery =
+      "SELECT * FROM order_items WHERE order_id=$1 AND product_id=$2";
+
+    const repeated = await pool.query(verificationQuery, [orderID, id]);
+
+    if (repeated.rows.length) {
+      newQty = repeated.rows[0].quantity + qty;
+      const updateQuery = "UPDATE order_items SET quantity=$1 WHERE order_id=$2 AND product_id=$3";
+      pool.query(updateQuery, [newQty, orderID, id]);
+      res.status(200).json("Qty updated");
+    } else {
+      const insertQuery =
+        "INSERT INTO order_items ( order_id, product_id, quantity ) VALUES ($1, $2, $3 )";
+      await pool.query(insertQuery, [orderID, id, qty]);
+      return res.status(200).json("Order added succesfully");
+    }
   } catch (error) {
     console.error(error.message);
     return res.status(error.status).json("Something went wrong");
