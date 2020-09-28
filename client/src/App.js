@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ProductsContainer from "./components/ProductsContainer";
 import ProductDetail from "./components/ProductDetail";
@@ -42,7 +38,6 @@ function App() {
     checkAuthentication();
   }, []);
 
-
   //////////////////////////////////////////////////////////////////////////////////////Seach Function
 
   const [search, setSearchValue] = useState("");
@@ -55,7 +50,7 @@ function App() {
 
   const [reloadCart, setReloadCart] = useState(Math.random());
   const [order, setOrder] = useState([]);
-  const [orderID, setOrderID ] = useState ([])
+  const [orderID, setOrderID] = useState([]);
 
   const getOrder = async () => {
     try {
@@ -74,14 +69,13 @@ function App() {
       const orderID = await response.json();
 
       setOrderID(orderID);
-
     } catch (error) {
       console.error(error.message);
-    };
-  }
+    }
+  };
 
   useEffect(() => {
-   getOrder()
+    getOrder();
   }, [reloadCart, isAuthenticated]);
 
   return (
@@ -107,7 +101,12 @@ function App() {
         <Route
           path="/products/:id"
           render={(props) => (
-            <ProductDetail {...props} reloadCart={setReloadCart} orderID={orderID} isAuthenticated={isAuthenticated} />
+            <ProductDetail
+              {...props}
+              reloadCart={setReloadCart}
+              orderID={orderID}
+              isAuthenticated={isAuthenticated}
+            />
           )}
         />
 
@@ -122,12 +121,31 @@ function App() {
           path="/checkout:id"
           exact={true}
           render={(props) => (
-            <CheckOut {...props} order={order} setReloadCart={setReloadCart} isAuthenticated={isAuthenticated}/>
+            <CheckOut
+              {...props}
+              order={order}
+              setReloadCart={setReloadCart}
+              isAuthenticated={isAuthenticated}
+            />
           )}
         />
-        <Route path="/profile" render={(props) => (
-            <Profile {...props} isAuthenticated={isAuthenticated}/>
-          )}/>
+        <Route
+          path="/profile"
+          render={(props) => (
+            <Profile {...props} isAuthenticated={isAuthenticated} />
+          )}
+        />
+        <Route
+          path="/products/:id"
+          render={(props) => (
+            <ProductDetail
+              {...props}
+              reloadCart={setReloadCart}
+              orderID={orderID}
+              isAuthenticated={isAuthenticated}
+            />
+          )}
+        />
         <Admin />
       </Switch>
       <Footer />

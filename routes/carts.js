@@ -45,7 +45,8 @@ router.put("/:id", async (req, res) => {
 
     if (repeated.rows.length) {
       newQty = repeated.rows[0].quantity + qty;
-      const updateQuery = "UPDATE order_items SET quantity=$1 WHERE order_id=$2 AND product_id=$3";
+      const updateQuery =
+        "UPDATE order_items SET quantity=$1 WHERE order_id=$2 AND product_id=$3";
       pool.query(updateQuery, [newQty, orderID, id]);
       res.status(200).json("Qty updated");
     } else {
@@ -66,7 +67,7 @@ router.get("/orders/inActive/:id", async (req, res) => {
 
   try {
     const getClosedOrder =
-      "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
+      "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
     const newUser = await pool.query(getClosedOrder, [id, "TRUE"]);
 
     return res.json(newUser.rows);
@@ -77,7 +78,7 @@ router.get("/orders/inActive/:id", async (req, res) => {
 });
 
 //=================================================Closed order date===========================================
-router.get("/orders/closed/date/:id", async (req, res) => {
+/* router.get("/orders/closed/date/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -91,15 +92,17 @@ router.get("/orders/closed/date/:id", async (req, res) => {
     console.error(error.message);
     return res.status(error.status).json("Something went wrong");
   }
-});
+}); */
 
 //create order
 router.post("/neworder/:id", async (req, res) => {
   const { id } = req.params;
+  const now = new Date();
   try {
     console.log(id);
-    const insertQuery = "INSERT INTO orders (customer_id ) VALUES ($1)";
-    const newUser = await pool.query(insertQuery, [id]);
+    const insertQuery =
+      "INSERT INTO orders (open_date, customer_id, open ) VALUES ($1, $2, FALSE)";
+    const order = await pool.query(insertQuery, [now, id]);
     return res.status(200).json("Order added succesfully");
   } catch (error) {
     console.error(error.message);

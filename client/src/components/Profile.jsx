@@ -72,7 +72,6 @@ const Profile = (props) => {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
