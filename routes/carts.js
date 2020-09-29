@@ -18,6 +18,7 @@ router.get("/", authorize, async (req, res) => {
   }
 });
 
+// GET THE OPEN ORDER ID OF A CUSTOMER
 router.get("/orderID", authorize, async (req, res) => {
   try {
     const { id } = req.user;
@@ -53,7 +54,7 @@ router.put("/:id", async (req, res) => {
       const insertQuery =
         "INSERT INTO order_items ( order_id, product_id, quantity ) VALUES ($1, $2, $3 )";
       await pool.query(insertQuery, [orderID, id, qty]);
-      return res.status(200).json("Order added succesfully");
+      return res.status(200).json("order item added succesfully");
     }
   } catch (error) {
     console.error(error.message);
@@ -62,15 +63,20 @@ router.put("/:id", async (req, res) => {
 });
 
 //=================================================Closed orders===========================================
-router.get("/orders/inActive/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/orders/inActive", authorize, async (req, res) => {
+  const { id } = req.user;
 
   try {
     const getClosedOrder =
+<<<<<<< HEAD
       "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
+=======
+      "SELECT order_items.quantity,  products.product_name, products.unit_price, products.image FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
+>>>>>>> updateProfile
     const newUser = await pool.query(getClosedOrder, [id, "TRUE"]);
-
+   
     return res.json(newUser.rows);
+    
   } catch (error) {
     console.error(error.message);
     return res.status(error.status).json("Something went wrong");
@@ -82,7 +88,6 @@ router.get("/orders/inActive/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    console.log(1111, id);
     const getDate =
       "SELECT orders.order_close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE customers.id=$1";
     const newUser = await pool.query(getDate, [id]);
@@ -99,10 +104,15 @@ router.post("/neworder/:id", async (req, res) => {
   const { id } = req.params;
   const now = new Date();
   try {
+<<<<<<< HEAD
     console.log(id);
     const insertQuery =
       "INSERT INTO orders (open_date, customer_id, open ) VALUES ($1, $2, FALSE)";
     const order = await pool.query(insertQuery, [now, id]);
+=======
+    const insertQuery = "INSERT INTO orders (customer_id ) VALUES ($1)";
+    const newUser = await pool.query(insertQuery, [id]);
+>>>>>>> updateProfile
     return res.status(200).json("Order added succesfully");
   } catch (error) {
     console.error(error.message);
@@ -122,7 +132,8 @@ router.put("/:id", async (req, res) => {
     return res.status(error.status).json("Something went wrong");
   }
 });
-//delete endpoint
+
+//DELETE PRODUCT FROM THE CART
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -135,33 +146,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//=============================Post order_items with modifying quantity============================
-router.put("/quantity/:id", (req, res) => {
-  const { id } = req.params;
-  const { quantity } = req.body;
-  pool
-    .query("SELECT * FROM order_items WHERE product_id=$1 and order_id=$2", [
-      id,
-      order_items.order_id,
-    ])
-    .then((result) => {
-      if (result.rows.length > 1) {
-        const updateQuery = "UPDATE order_items SET quantity=$1";
-        const newuser = pool
-          .query(query, [quantity++])
-          .then(() => console.log("Products quantity updated!"))
-          .catch((e) => console.error(e));
 
-        console.log("A Products with the same id already exists!");
-      } else {
-        const query =
-          "INSERT INTO order_items (product_id, quantity ) VALUES ($1, $2)";
-        const newuser = pool
-          .query(query, [id, quantity])
-          .then(() => console.log("New order_items inserted!"))
-          .catch((e) => console.error(e));
-      }
-    });
-});
 
 module.exports = router;

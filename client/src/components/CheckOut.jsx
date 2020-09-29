@@ -24,7 +24,7 @@ const CheckOut = (props) => {
                 <div className="shiping-info">
                   get shiping info from customer
                 </div>
-                <div className="body-cart">
+                <div className="body-checkout">
                   {order.length > 0 ? (
                     order.map((product, index) => (
                       <ProductsCart

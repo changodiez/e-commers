@@ -22,18 +22,15 @@ const Profile = (props) => {
     }
   };
 
-  useEffect(() => {
-    getProfile();
-  }, [refresh]);
-
   // UPDATE DATA
+
+
   const [inputs, setInputs] = useState({
     first_name: "",
     last_name: "",
-    password: "",
     address: "",
     city: "",
-    poscode: "",
+    postcode: "",
     country: "",
     mobile: "",
   });
@@ -41,10 +38,9 @@ const Profile = (props) => {
   const {
     first_name,
     last_name,
-    password,
     address,
     city,
-    poscode,
+    postcode,
     country,
     mobile,
   } = inputs;
@@ -58,25 +54,50 @@ const Profile = (props) => {
     const body = {
       first_name,
       last_name,
-      password,
       address,
       city,
-      poscode,
+      postcode,
       country,
       mobile,
     };
-
     try {
-      const response = await fetch("/auth/profile/update", {
+      await fetch("/auth/profile/update", {
         method: "PUT",
-        headers: { "Content-type": "application/json" },
+        headers: {
+          "Content-type": "application/json",
+          token: localStorage.token,
+        },
         body: JSON.stringify(body),
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> updateProfile
     } catch (error) {
       console.error(error);
     }
     setRefresh(Math.random());
   };
+
+  const [orderData, setOrderData] = useState([]);
+  const getOrderData = async () => {
+    try {
+      let response = await fetch(`/carts/orders/inActive`, {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const orderData = await response.json();
+
+      setOrderData(orderData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+    getOrderData();
+  }, [refresh]);
 
   return isAuthenticated ? (
     <Fragment>
@@ -101,7 +122,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   placeholder={profile.first_name}
-                  name="product_name"
+                  name="first_name"
                   value={first_name}
                   onChange={(e) => onChange(e)}
                 ></input>
@@ -113,7 +134,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   placeholder={profile.last_name}
-                  name="product_name"
+                  name="last_name"
                   value={last_name}
                   onChange={(e) => onChange(e)}
                 ></input>
@@ -130,7 +151,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   placeholder={profile.address}
-                  name="product_name"
+                  name="address"
                   value={address}
                   onChange={(e) => onChange(e)}
                 ></input>
@@ -142,7 +163,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   placeholder={profile.city}
-                  name="product_name"
+                  name="city"
                   value={city}
                   onChange={(e) => onChange(e)}
                 ></input>
@@ -153,9 +174,9 @@ const Profile = (props) => {
                 <h3>Poscode</h3>
                 <input
                   type="text"
-                  placeholder={profile.poscode}
-                  name="product_name"
-                  value={poscode}
+                  placeholder={profile.postcode}
+                  name="postcode"
+                  value={postcode}
                   onChange={(e) => onChange(e)}
                 ></input>
               </label>
@@ -166,7 +187,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   placeholder={profile.country}
-                  name="product_name"
+                  name="country"
                   value={country}
                   onChange={(e) => onChange(e)}
                 ></input>
@@ -179,7 +200,7 @@ const Profile = (props) => {
               <input
                 type="text"
                 placeholder={profile.mobile}
-                name="product_name"
+                name="mobile"
                 value={mobile}
                 onChange={(e) => onChange(e)}
               ></input>
@@ -200,7 +221,7 @@ const Profile = (props) => {
                     type="password"
                     placeholder={profile.password}
                     name="password"
-                    value={password}
+                    value="password"
                     onChange={(e) => onChange(e)}
                   ></input>
                 </label>
@@ -213,7 +234,7 @@ const Profile = (props) => {
                     type="password"
                     placeholder={profile.password}
                     name="password"
-                    value={password}
+                    value="{password}"
                     onChange={(e) => onChange(e)}
                   ></input>
                 </label>
@@ -226,7 +247,7 @@ const Profile = (props) => {
                     type="password"
                     placeholder={profile.password}
                     name="password"
-                    value={password}
+                    value="{password}"
                     onChange={(e) => onChange(e)}
                   ></input>
                 </label>

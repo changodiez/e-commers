@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Logo from "../Assets/Logo.svg"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const NavigationBar = (props) => {
@@ -42,11 +41,10 @@ const NavigationBar = (props) => {
   const handleClickOutside = (e) => {
     if (!ref.current.contains(e.target)) {
       SearchOpen();
-    } else if (e.target.id === "cartbutton") {
-      SearchOpen();
-    }
+    } 
   };
 
+  
   useEffect(() => {
     if (isSearchOpen) {
       document.addEventListener("click", handleClickOutside, true);
@@ -57,19 +55,21 @@ const NavigationBar = (props) => {
     };
   }, [isSearchOpen]);
 
+  
   // Cart Button
   const [isCartOpen, setCartOpen] = useState(false);
   const CartOpen = () => {
     setCartOpen(!isCartOpen);
+    setSearchOpen(false)
   };
   const CloseCart = (Close) => {
     setCartOpen(Close);
   };
 
-  // Authentication and getting the user's name
-  const setAuth = props.setAuth;
-  const auth = props.auth;
+
   
+
+  //Quantity on Carts button
   const order = props.order
   let quantity = 0;
 
@@ -79,6 +79,11 @@ const NavigationBar = (props) => {
     quantity += a.quantity;
   })}
  
+// Authentication and getting the user's name
+const setAuth = props.setAuth;
+const auth = props.auth;
+
+  //Geting name of customer
   const [name, setName] = useState("");
 
   async function getName() {
@@ -95,6 +100,10 @@ const NavigationBar = (props) => {
     }
   }
 
+  useEffect(() => {
+    getName();
+  },[auth]);
+
   //Log out button
 
   const logout = (e) => {
@@ -102,10 +111,8 @@ const NavigationBar = (props) => {
     localStorage.removeItem("token");
     setAuth(false);
   };
-  useEffect(() => {
-    getName();
-  });
 
+ 
   return (
     <Fragment>
       <div className="nav-bar">
