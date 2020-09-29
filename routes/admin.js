@@ -42,6 +42,7 @@ router.get("/customers/orders/:id", async (req, res) => {
     console.error(error);
   }
 });
+
 //Modificate costumer
 router.put("/customers/:id", async (req, res) => {
   const { first_name, email, password } = req.body;

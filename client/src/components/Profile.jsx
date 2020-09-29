@@ -8,6 +8,9 @@ const Profile = (props) => {
   const [refresh, setRefresh] = useState(Math.random());
   const [profile, setProfile] = useState([]);
 
+
+  const [dataProfile, setDataProfile ] = useState([])
+
   const getProfile = async () => {
     try {
       let response = await fetch(`/auth/profile`, {
@@ -24,9 +27,8 @@ const Profile = (props) => {
 
   // UPDATE DATA
 
-
   const [inputs, setInputs] = useState({
-    first_name: "",
+    first_name: dataProfile.first_name,
     last_name: "",
     address: "",
     city: "",
@@ -34,6 +36,7 @@ const Profile = (props) => {
     country: "",
     mobile: "",
   });
+
 
   const {
     first_name,
@@ -49,8 +52,8 @@ const Profile = (props) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
+
   const updateData = async (e) => {
-    e.preventDefault();
     const body = {
       first_name,
       last_name,
@@ -72,6 +75,7 @@ const Profile = (props) => {
     } catch (error) {
       console.error(error);
     }
+    setDataProfile(body)
     setRefresh(Math.random());
   };
 
@@ -89,10 +93,10 @@ const Profile = (props) => {
       console.error(error.message);
     }
   };
-
   useEffect(() => {
     getProfile();
     getOrderData();
+    setDataProfile(profile)
   }, [refresh]);
 
   return isAuthenticated ? (
@@ -167,7 +171,7 @@ const Profile = (props) => {
             </div>
             <div className="col">
               <label>
-                <h3>Poscode</h3>
+                <h3>Postcode</h3>
                 <input
                   type="text"
                   placeholder={profile.postcode}

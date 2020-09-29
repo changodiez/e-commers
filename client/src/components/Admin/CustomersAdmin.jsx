@@ -19,8 +19,8 @@ const CustomersAdmin = () => {
   }, [refres]);
 
   return (
-    <Fragment>
-      <div className="all-products-container">
+      <Fragment>
+      <div className="all-products-container basic-container">
         <div className="titles">
           <h1>ALL YOUR CUSTOMERS</h1>
         </div>
@@ -32,9 +32,9 @@ const CustomersAdmin = () => {
               <th>Last Name</th>
               <th>Email</th>
               <th>Address</th>
-              <th>PHONE</th>
-              <th>UPDATE</th>
+              <th>PHONE</th>             
               <th>DELETE</th>
+              <th>ORDERS</th>
             </tr>
           </thead>
           <tbody>
@@ -50,7 +50,7 @@ const CustomersAdmin = () => {
           </tbody>
         </table>
       </div>
-    </Fragment>
+      </Fragment>
   );
 };
 

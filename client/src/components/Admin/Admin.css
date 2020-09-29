@@ -51,8 +51,8 @@ form button{
 /* All products */
 
 .all-products-container {
-    width: 90%;
-    margin: auto;
+   padding: 20vh 0 4rem 0;
+
 }
 
 .table {

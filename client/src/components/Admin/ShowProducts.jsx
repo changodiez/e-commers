@@ -50,16 +50,18 @@ const ShowProducts = (props) => {
       <th>{data.category || data.last_name || "undefined"}</th>
       <th>{data.unit_price || data.email}</th>
       <th>
-        {<img src={`${data.image}`} alt="" /> ||
-          data.address + data.city + data.postcode + data.country}
+        { (data.image ? (<img src={`${data.image}`} alt="" /> ):
+          data.address +" "+ data.city +" "+ data.postcode +" "+ data.country) || "undefined"}
       </th>
-      <th>{data.description || data.movile || "undefined"}</th>
+      <th>{ data.description ? data.description : data.mobile || "undefined"}</th>
+      {data.first_name ? null : (
+        <th>
+          <Link to={`/admin/products/update/${data.id}`}>
+            <button className="button-update">UPDATE</button>
+          </Link>
+        </th>
+      )}
 
-      <th>
-        <Link to={`/admin/products/update/${data.id}`}>
-          <button className="button-update">UPDATE</button>
-        </Link>
-      </th>
       <th>
         <button
           onClick={() => deleteProduct(data.id)}
@@ -75,7 +77,7 @@ const ShowProducts = (props) => {
           </Link>
         </th>
       ) : (
-        ""
+        null
       )}
     </tr>
   );

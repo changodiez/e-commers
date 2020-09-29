@@ -12,17 +12,13 @@ const Admin = () => {
     <Fragment>
       <Route path="/owner" component={NavBar} />
       <Route path="/owner" exact render={() => <ProductsAdmin />} />
-      <Route path="/owner/:id" exact render={() => <UpdateProduct />} />
+
       <Route
         path="/owner/costumers"
         exact={true}
         render={() => <CustomersAdmin />}
       />
-      <Route
-        path="/owner/cosutmers/:id"
-        exact
-        render={() => <UpdateProduct />}
-      />
+      <Route path="/owner/product/:id" exact render={() => <UpdateProduct />} />
       <Route
         path="/owner/customers/orders/:id"
         render={() => <CustomerOrdersList />}

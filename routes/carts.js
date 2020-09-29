@@ -62,6 +62,19 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+//DELETE PRODUCT FROM THE CART
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteQuery = "DELETE FROM order_items WHERE id=($1)";
+    const newUser = await pool.query(deleteQuery, [id]);
+    return res.status(200).json("order deleted succesfully");
+  } catch (error) {
+    console.error(error.message);
+    return res.status(error.status).json("Something went wrong");
+  }
+});
+
 //=================================================Closed orders===========================================
 router.get("/orders/inActive", authorize, async (req, res) => {
   const { id } = req.user;
@@ -100,15 +113,10 @@ router.post("/neworder/:id", async (req, res) => {
   const { id } = req.params;
   const now = new Date();
   try {
-<<<<<<< HEAD
     console.log(id);
     const insertQuery =
       "INSERT INTO orders (open_date, customer_id, open ) VALUES ($1, $2, FALSE)";
     const order = await pool.query(insertQuery, [now, id]);
-=======
-    const insertQuery = "INSERT INTO orders (customer_id ) VALUES ($1)";
-    const newUser = await pool.query(insertQuery, [id]);
->>>>>>> updateProfile
     return res.status(200).json("Order added succesfully");
   } catch (error) {
     console.error(error.message);
@@ -129,18 +137,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-//DELETE PRODUCT FROM THE CART
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleteQuery = "DELETE FROM order_items WHERE id=($1)";
-    const newUser = await pool.query(deleteQuery, [id]);
-    return res.status(200).json("order deleted succesfully");
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-});
+
 
 
 
