@@ -1,0 +1,111 @@
+
+.titles {
+    font-size: large;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: auto;
+}
+.contenedor-add {
+    width: 100%;
+    display: flex;
+     padding-top: 20vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+.container-form {
+    padding: 1rem;
+    margin: auto;
+    
+}
+
+form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+form input {
+    border: solid 1px black;
+    padding: 0.2rem;    
+}
+
+form button{
+    color: black;
+    background-color: blueviolet;
+    border: solid 1px black;
+    padding: 1rem;  
+    width: 100%;  
+}   
+
+/* All products */
+
+.all-products-container {
+   padding: 20vh 0 4rem 0;
+
+}
+
+.table {
+    border: solid 2px black;
+    width: 100%;
+}
+
+thead {
+    width: 80%;
+}
+
+th {
+    padding: 1rem;
+}
+
+th img {
+    max-width: 10vw;
+}
+
+tr {
+    width: 100%;
+    border-bottom: solid 1px black;
+}
+
+th button {
+    color: black;
+}
+
+.button-update:hover {
+    color: black;
+    font-weight: bold;
+    background-color: yellow;
+}
+.button-delete:hover {
+    color: black;
+    font-weight: bold;
+    background-color: red;
+}
+
+.img-preview {
+    width: 15vw;
+}
+
+#navbarAdmin {
+    height: 17vh;
+    opacity: 1;
+    z-index: 9999;
+}
+
+#navbarAdmin .logo {
+    color:white;
+}
+
+#navbarAdmin li a {
+    color:white;
+}
