@@ -68,11 +68,7 @@ router.get("/orders/inActive", authorize, async (req, res) => {
 
   try {
     const getClosedOrder =
-<<<<<<< HEAD
       "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
-=======
-      "SELECT order_items.quantity,  products.product_name, products.unit_price, products.image FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
->>>>>>> updateProfile
     const newUser = await pool.query(getClosedOrder, [id, "TRUE"]);
    
     return res.json(newUser.rows);

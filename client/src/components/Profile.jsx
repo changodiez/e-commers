@@ -69,10 +69,6 @@ const Profile = (props) => {
         },
         body: JSON.stringify(body),
       });
-<<<<<<< HEAD
-=======
-
->>>>>>> updateProfile
     } catch (error) {
       console.error(error);
     }
