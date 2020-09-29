@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ProductsCart from "./ProductsCart";
+import Thanks from "./Button/Thanks"
 
 const CheckOut = (props) => {
   const order = props.order;
@@ -12,39 +13,120 @@ const CheckOut = (props) => {
     totalImport += parseFloat(a.unit_price * a.quantity);
   });
 
+  // PROFILE INFO
+  const [profile, setProfile] = useState([]);
+
+  const getProfile = async () => {
+    try {
+      let response = await fetch(`/auth/profile`, {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const profile = await response.json();
+
+      setProfile(profile[0]);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+
+// CHECKOUT 
+
+const [state, setState] = useState(false)
+
+const handleCheckout = () => {
+
+  //do the fetch to close the order an create a new one
+setState(!state)
+
+
+}
+
   return (
     <Fragment>
       {(() => {
         if (isAuthenticated) {
           return (
             <Fragment>
+              <Thanks state={state} setState={setState} />
               <div className="navbar-space"></div>
               <div className="cart-container basic-container">
                 <h1>Check out </h1>
-                <div className="shiping-info">
-                  get shiping info from customer
-                </div>
-                <div className="body-checkout">
-                  {order.length > 0 ? (
-                    order.map((product, index) => (
-                      <ProductsCart
-                        product={product}
-                        index={index}
-                        setReloadCart={setReloadCart}
-                      />
-                    ))
-                  ) : (
-                    <div>
-                      <div>Your cart is empty</div>
-                      <p>Add a product to your cart</p>
+                <div className="checkout-colums">
+                  <div className="left-side">
+                    <div className="shiping-info">
+                      <h2> Your shipping address:</h2>
+                      <p className="price">
+                        Full Name:{" "}
+                        {profile.first_name + " " + profile.last_name}
+                      </p>
+                      <p className="price">
+                        Address:
+                        {profile.address +
+                          ", " +
+                          profile.city +
+                          " " +
+                          profile.postcode +
+                          ", " +
+                          profile.country}{" "}
+                      </p>
+                      <p className="price">Phone: {profile.mobile}</p>
                     </div>
-                  )}
+                    <div className="card-detail">
+                   
+                      <div class="credit-info">
+                      <h2> Pay Method:</h2>
+                        <div class="credit-info-content">
+                                                    Card Number
+                          <input required class="input-field"></input>
+                          Card Holder
+                          <input required class="input-field"></input>
+                          <table class="half-input-table">
+                            <tr>
+                              <td>
+                                {" "}
+                                Expires
+                                <input required class="input-field"></input>
+                              </td>
+                              <td>
+                                CVC
+                                <input required class="input-field"></input>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="body-checkout">
+                    {order.length > 0 ? (
+                      order.map((product, index) => (
+                        <ProductsCart
+                          product={product}
+                          index={index}
+                          setReloadCart={setReloadCart}
+                        />
+                      ))
+                    ) : (
+                      <div>
+                        <div>Your cart is empty</div>
+                        <p>Add a product to your cart</p>
+                      </div>
+                    )}
+                    <h2>TOTAL IMPORT: {totalImport} €</h2>
+                  </div>
                 </div>
-                <button>
-                  <Link to="/products">Add more products</Link>
-                </button>
-                <div>TOTAL IMPORT: {totalImport} €</div>
-                <button className="button2">BUY NOW</button>
+                <div className="checkout-button-container">
+                  <button className="checkout-button">
+                    <Link to="/products">Add more products</Link>
+                  </button>
+                  <button className="button2 checkout-button" onClick={handleCheckout}>BUY NOW</button>
+                </div>
               </div>
             </Fragment>
           );
