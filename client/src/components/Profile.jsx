@@ -142,6 +142,8 @@ const Profile = (props) => {
       console.error(error.message);
     }
   };
+
+  console.log(orderData)
   useEffect(() => {
     getProfile();
     getOrderData();
@@ -319,7 +321,7 @@ const Profile = (props) => {
             </div>
           </div>
         </form>
-        <div className="orders-table">
+        {/* <div className="orders-table">
           <div className="title">
             <h1>Your orders</h1>
           </div>
@@ -330,15 +332,23 @@ const Profile = (props) => {
                   <th>ORDER ID</th>
                   <th>Date of order</th>
                   <th>Products</th>
-                  <th>Quandity</th>
+                  <th>Quantity</th>
                   <th>Total Price</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+            {orderData.map((order)=> <tr>
+      <th>{order.id}</th>
+      <th>{!order.status ? "OPEN" : "CLOSED"}</th>
+      <th>{order.order_date}</th>
+      <th>{order.close_date || "---"}</th>
+    </tr>)}
+    
+    </tbody>
             </table>
           </div>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
       <div className="navbar-space"></div>
     </Fragment>
   ) : (

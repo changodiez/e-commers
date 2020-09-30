@@ -135,34 +135,6 @@ router.put("/profile/update",authorize, async (req, res) => {
    }
 });
 
-//==========================Change Password=============================
-
-router.post("/register", validInfo, async (req, res) => {
-  const { username, email, password } = req.body;
-  console.log(username, "dale gateo")
-  try {
-    const verificationQuery = "SELECT * FROM customers WHERE email=$1";
-    const insertQuery =
-      "INSERT INTO customers (first_name, email, password) VALUES ($1, $2, $3)";
-
-    const user = await pool.query(verificationQuery, [email]);
-
-    if (user.rows.length != 0) {
-      return res.status(401).json("A user with that email already exists");
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const bcryptpassword = await bcrypt.hash(password, salt);
-
-    const newUser = await pool.query(insertQuery, [username, email, bcryptpassword]);
-
-    //Do we assign jwt here? ask in meeting
-    return res.status(200).json("User created succesfully");
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-});
 
 //===============================UPDATE PASSWORD=======================================
 router.put("/password",authorize, async (req, res) => {

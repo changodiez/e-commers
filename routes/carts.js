@@ -75,70 +75,23 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//=================================================Closed orders===========================================
-router.get("/orders/inActive", authorize, async (req, res) => {
-  const { id } = req.user;
+// GET ORDERS CLOSED FOR COSTUMERS  
 
-  try {
-    const getClosedOrder =
-      "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
-    const newUser = await pool.query(getClosedOrder, [id, "TRUE"]);
+// router.get("/orders/inActive",  async (req, res) => {
+//   const { id } = 15;
+
+//   try {
+//     const getClosedOrder =
+//       "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
+//     const newUser = await pool.query(getClosedOrder, [id, "false"]);
    
-    return res.json(newUser.rows);
+//     return res.json(newUser.rows);
     
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-});
-
-//=================================================Closed order date===========================================
-/* router.get("/orders/closed/date/:id", async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const getDate =
-      "SELECT orders.order_close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE customers.id=$1";
-    const newUser = await pool.query(getDate, [id]);
-
-    return res.json(newUser.rows);
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-}); */
-
-//create order
-router.post("/neworder/:id", async (req, res) => {
-  const { id } = req.params;
-  const now = new Date();
-  try {
-    console.log(id);
-    const insertQuery =
-      "INSERT INTO orders (open_date, customer_id, open ) VALUES ($1, $2, FALSE)";
-    const order = await pool.query(insertQuery, [now, id]);
-    return res.status(200).json("Order added succesfully");
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-});
-
-//if we need an update endpoint
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const updateQuery = "";
-    const newUser = await pool.query(updateQuery, [id]);
-    return res.status(200).json("order created succesfully");
-  } catch (error) {
-    console.error(error.message);
-    return res.status(error.status).json("Something went wrong");
-  }
-});
-
-
-
+//   } catch (error) {
+//     console.error(error.message);
+//     return res.status(error.status).json("Something went wrong");
+//   }
+// });
 
 
 module.exports = router;
