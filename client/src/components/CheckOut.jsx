@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ProductsCart from "./ProductsCart";
-import Thanks from "./Button/Thanks"
+import PopUpMessage from "./Button/PopUpMessage"
 
 const CheckOut = (props) => {
   const order = props.order;
@@ -53,7 +53,7 @@ setState(!state)
         if (isAuthenticated) {
           return (
             <Fragment>
-              <Thanks state={state} setState={setState} />
+              <PopUpMessage state={state} setState={setState} text="Thaks for your order!" />
               <div className="navbar-space"></div>
               <div className="cart-container basic-container">
                 <h1>Check out </h1>

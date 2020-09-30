@@ -1,16 +1,16 @@
 import React from "react";
 
-const LoginAsk = (props) => {
+const PopUpMessage = (props) => {
   const state = props.state;
   const setState = props.setState;
   const text = props.text
 
   return (
-    <div>
+    <div className="popup-message">
       {state ? (
-        <div className="modal">
+         <div className="modal">
           <div className="Login-modal">
-            <button id="LoginbuttonClose" onClick={() => setState(!state)}>
+            <button className="popup-button" onClick={() => setState(!state)}>
               X
             </button>
             <div className="login-ask">
@@ -23,4 +23,4 @@ const LoginAsk = (props) => {
   );
 };
 
-export default LoginAsk;
+export default PopUpMessage;
