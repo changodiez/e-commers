@@ -42,6 +42,7 @@ const UpdateProduct = () => {
   };
 
   const UpdateProduct = async (e) => {
+    e.preventDefault()
     const body = { product_name, category, price, image, description, id };
 
     try {
@@ -64,7 +65,7 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     setData();
-  }, [productData]);
+  }, [refresh, productData]);
 
   return (
     <Fragment>
