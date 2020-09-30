@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const ShowProducts = (props) => {
@@ -13,10 +13,9 @@ const ShowProducts = (props) => {
       );
       if (respuesta) {
         try {
-          const response = await fetch(`/admin/products/${id}`, {
+          await fetch(`/admin/products/${id}`, {
             method: "DELETE",
           });
-          const responseMessage = await response.json();
 
           //We can do something visual with the answer
         } catch (error) {
@@ -30,11 +29,10 @@ const ShowProducts = (props) => {
       );
       if (respuesta) {
         try {
-          const response = await fetch(`/admin/customers/${id}`, {
+          await fetch(`/admin/customers/${id}`, {
             method: "DELETE",
           });
-          const responseMessage = await response.json();
-          //We can do something visual with the answer
+
         } catch (error) {
           console.error(error);
         }
@@ -50,10 +48,21 @@ const ShowProducts = (props) => {
       <th>{data.category || data.last_name || "undefined"}</th>
       <th>{data.unit_price || data.email}</th>
       <th>
-        { (data.image ? (<img src={`${data.image}`} alt="" /> ):
-          data.address +" "+ data.city +" "+ data.postcode +" "+ data.country) || "undefined"}
+        {(data.image ? (
+          <img src={`${data.image}`} alt="" />
+        ) : (
+          data.address +
+          " " +
+          data.city +
+          " " +
+          data.postcode +
+          " " +
+          data.country
+        )) || "undefined"}
       </th>
-      <th>{ data.description ? data.description : data.mobile || "undefined"}</th>
+      <th>
+        {data.description ? data.description : data.mobile || "undefined"}
+      </th>
       {data.first_name ? null : (
         <th>
           <Link to={`/owner/product/${data.id}`}>
@@ -76,9 +85,7 @@ const ShowProducts = (props) => {
             <button>ORDERS</button>
           </Link>
         </th>
-      ) : (
-        null
-      )}
+      ) : null}
     </tr>
   );
 };

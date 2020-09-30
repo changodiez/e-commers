@@ -128,25 +128,24 @@ const Profile = (props) => {
 
   // GET ORDER DATA
 
-  const [orderData, setOrderData] = useState([]);
-  const getOrderData = async () => {
-    try {
-      let response = await fetch(`/carts/orders/inActive`, {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-      const orderData = await response.json();
+  // const [orderData, setOrderData] = useState([]);
+  // const getOrderData = async () => {
+  //   try {
+  //     let response = await fetch(`/carts/orders/inActive`, {
+  //       method: "GET",
+  //       headers: { token: localStorage.token },
+  //     });
+  //     const orderData = await response.json();
 
-      setOrderData(orderData);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  //     setOrderData(orderData);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
 
-  console.log(orderData)
   useEffect(() => {
     getProfile();
-    getOrderData();
+    // getOrderData();
   }, [refresh]);
 
   useEffect(() => {

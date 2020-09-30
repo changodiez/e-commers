@@ -37,6 +37,8 @@ const CheckOut = (props) => {
   // CHECKOUT
 
   const [state, setState] = useState(false);
+  const [goBack, setGoBack ] = useState(false)
+
 
   const handleCheckout = async () => {
     try {
@@ -50,10 +52,12 @@ const CheckOut = (props) => {
       console.error(error);
     }
     setState(!state);
+    setGoBack(true)
   };
 
   return (
     <Fragment>
+      {goBack && !state ? <Redirect to="/"/> : null}
       {(() => {
         if (isAuthenticated) {
           return (

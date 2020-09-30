@@ -7,7 +7,7 @@ const NavBar = () => {
       <div className="nav-bar" id="navbarAdmin" >
         <div className="nav-container">
           <div className="logo" style={{ color: "white" }}>
-            Admin Tools
+            <h3>Admin Tools</h3>
           </div>
           <ul>
             <li>

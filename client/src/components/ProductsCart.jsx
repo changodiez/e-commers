@@ -16,7 +16,7 @@ const ProductsCart = (props) => {
               method: "DELETE",
             }
           );
-          const res = await response.json();
+          await response.json();
   
         } catch (error) {
           console.error(error);
