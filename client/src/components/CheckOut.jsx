@@ -51,13 +51,14 @@ const CheckOut = (props) => {
     } catch (error) {
       console.error(error);
     }
+    setReloadCart(Math.random())
     setState(!state);
     setGoBack(true)
   };
 
   return (
     <Fragment>
-      {goBack && !state ? <Redirect from='/checkout:id' to='/'/> : null}
+      {goBack && !state ? <Redirect to='/'/> : null}
       {(() => {
         if (isAuthenticated) {
           return (
