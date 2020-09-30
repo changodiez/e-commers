@@ -150,7 +150,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     setProfileData();
-  }, [profile]);
+  }, [profile, refresh]);
 
   return isAuthenticated ? (
     <Fragment>
