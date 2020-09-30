@@ -144,14 +144,14 @@ router.post("/checkout", authorize, async (req, res) => {
   const closeOrderQuery =
     "UPDATE orders SET status = true, close_date = $1 WHERE customer_id = $2 AND status = false";
   const newOrderQuery =
-    "INSERT INTO orders (open_date, customer_id, status) VALUES ($1, $2, false)";
+    "INSERT INTO orders (customer_id, status) VALUES ($1, false)";
 
   pool
     .query(closeOrderQuery, [now, id])
     .then((response) => {
       if (response.rowCount !== 0) {
         pool
-          .query(newOrderQuery, [now, id])
+          .query(newOrderQuery, [id])
           .then((resp) => {
             return res.status(200).json("Checkout successful");
           })

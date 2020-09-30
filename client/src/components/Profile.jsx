@@ -340,7 +340,7 @@ const Profile = (props) => {
             {orderData.map((order)=> <tr>
       <th>{order.id}</th>
       <th>{!order.status ? "OPEN" : "CLOSED"}</th>
-      <th>{order.order_date}</th>
+      <th>{order.open_date}</th>
       <th>{order.close_date || "---"}</th>
     </tr>)}
     

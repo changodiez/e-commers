@@ -25,7 +25,7 @@ CREATE TABLE CUSTOMERS(
      
   CREATE TABLE orders(
    ID serial  primary key,	
-   order_date DATE default NOW(),
+   open_date DATE default NOW(),
    customer_id INT references customers(id),
    status boolean default (false)
    )
@@ -144,10 +144,10 @@ update products set supplier_id=5 where id=20;
 
 //=========================================add column to order================================
 alter table orders drop column status  boolean;
-alter table orders drop column order_date;
+alter table orders drop column open_date;
 ALTER TABLE products ALTER id SET DEFAULT (0)
 
-alter table orders add column order_date   date default NOW();
+alter table orders add column open_date   date default NOW();
 alter table orders add column status boolean default (false);
 
 delete  from orders 

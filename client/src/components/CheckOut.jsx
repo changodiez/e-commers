@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ProductsCart from "./ProductsCart";
-import PopUpMessage from "./Button/PopUpMessage"
+import PopUpMessage from "./Button/PopUpMessage";
 
 const CheckOut = (props) => {
   const order = props.order;
@@ -34,18 +34,23 @@ const CheckOut = (props) => {
     getProfile();
   }, []);
 
+  // CHECKOUT
 
-// CHECKOUT 
+  const [state, setState] = useState(false);
 
-const [state, setState] = useState(false)
-
-const handleCheckout = () => {
-
-  //do the fetch to close the order an create a new one
-setState(!state)
-
-
-}
+  const handleCheckout = async () => {
+    try {
+      await fetch("/carts/checkout", {
+        method: "POST",
+        headers: {
+          token: localStorage.token,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    setState(!state);
+  };
 
   return (
     <Fragment>
@@ -53,7 +58,11 @@ setState(!state)
         if (isAuthenticated) {
           return (
             <Fragment>
-              <PopUpMessage state={state} setState={setState} text="Thaks for your order!" />
+              <PopUpMessage
+                state={state}
+                setState={setState}
+                text="Thanks for your order!"
+              />
               <div className="navbar-space"></div>
               <div className="cart-container basic-container">
                 <h1>Check out </h1>
@@ -78,11 +87,10 @@ setState(!state)
                       <p className="price">Phone: {profile.mobile}</p>
                     </div>
                     <div className="card-detail">
-                   
                       <div class="credit-info">
-                      <h2> Pay Method:</h2>
+                        <h2> Pay Method:</h2>
                         <div class="credit-info-content">
-                                                    Card Number
+                          Card Number
                           <input required class="input-field"></input>
                           Card Holder
                           <input required class="input-field"></input>
@@ -125,7 +133,12 @@ setState(!state)
                   <button className="checkout-button">
                     <Link to="/products">Add more products</Link>
                   </button>
-                  <button className="button2 checkout-button" onClick={handleCheckout}>BUY NOW</button>
+                  <button
+                    className="button2 checkout-button"
+                    onClick={handleCheckout}
+                  >
+                    BUY NOW
+                  </button>
                 </div>
               </div>
             </Fragment>
