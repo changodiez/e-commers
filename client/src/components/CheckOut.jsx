@@ -57,7 +57,7 @@ const CheckOut = (props) => {
 
   return (
     <Fragment>
-      {goBack && !state ? window.location.reload() : null}
+      {goBack && !state ? <Redirect from='/checkout:id' to='/'/> : null}
       {(() => {
         if (isAuthenticated) {
           return (
