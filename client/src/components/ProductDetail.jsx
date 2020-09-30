@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import BackButton from "./Button/BackButton";
 import Loader from "./Button/Loader";
-import LoginAsk from "./Button/LoginAsk";
+import PopUpMessage from "./Button/PopUpMessage";
 
 const ProductDetail = (props) => {
   // eslint-disable-next-line
@@ -58,7 +58,7 @@ const ProductDetail = (props) => {
 
   return (
     <Fragment>
-      <LoginAsk state={state} setState={setState}/> 
+      <PopUpMessage state={state} setState={setState} text="You have to Login to add products to your cart"/> 
       <div className="basic-container">
         {product ? (
           <div className="product-detail">

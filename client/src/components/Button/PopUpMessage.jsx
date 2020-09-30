@@ -3,6 +3,7 @@ import React from "react";
 const LoginAsk = (props) => {
   const state = props.state;
   const setState = props.setState;
+  const text = props.text
 
   return (
     <div>
@@ -13,7 +14,7 @@ const LoginAsk = (props) => {
               X
             </button>
             <div className="login-ask">
-            <h3>You have to Login to add products to your cart</h3>
+      <h3>{text}</h3>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import PopUpMessage from "./Button/PopUpMessage";
 
 const Profile = (props) => {
   // FETCH DATA CURRENT CUSTOMER
@@ -28,7 +29,7 @@ const Profile = (props) => {
   // UPDATE DATA
 
   const [inputs, setInputs] = useState({
-    first_name: dataProfile.first_name,
+    first_name: "",
     last_name: "",
     address: "",
     city: "",
@@ -79,6 +80,55 @@ const Profile = (props) => {
     setRefresh(Math.random());
   };
 
+
+  // UPDATE PASSWORD
+
+  const [passKey, setPasskey ] = useState({
+    password:"",
+    newPassword: "",
+    confirmPassword: "",
+  })
+
+  const {
+    password,
+    newPassword,
+    confirmPassword
+  } = passKey;
+
+  const onChangePassword = (e) => {
+    setPasskey({ ...passKey, [e.target.name]: e.target.value });
+  };
+
+  const [state, setState] = useState(false)
+  const [textMessage, setTextMessage] = useState ("")
+
+  const updatePassword = async (e) => {
+    e.preventDefault()
+    
+      const body = passKey
+    try {
+      const updatePassword = await fetch("/auth/password", {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(body),
+      });
+    
+      const res = await updatePassword.json();
+
+      setState(!state)
+      setTextMessage(res)
+    } catch (error) {
+      console.error(error);
+    }
+    
+  
+  };
+
+  // GET ORDER DATA 
+
   const [orderData, setOrderData] = useState([]);
   const getOrderData = async () => {
     try {
@@ -101,6 +151,8 @@ const Profile = (props) => {
 
   return isAuthenticated ? (
     <Fragment>
+      {state ? <PopUpMessage state={state} setState={setState} text={textMessage}/> 
+: null}
       <div className="navbar-space"></div>
       <div className=" profile basic-container ">
         <div className="title">
@@ -195,7 +247,7 @@ const Profile = (props) => {
             </div>
             <div className="col">
               <label>
-                <h3>Movile contac number</h3>
+                <h3>Movile contact number</h3>
               </label>
               <input
                 type="text"
@@ -219,10 +271,11 @@ const Profile = (props) => {
 
                   <input
                     type="password"
-                    placeholder={profile.password}
+                    placeholder="Current Password"
                     name="password"
-                    value="password"
-                    onChange={(e) => onChange(e)}
+                    value={password}
+                    required
+                    onChange={(e) => onChangePassword(e)}
                   ></input>
                 </label>
               </div>
@@ -232,10 +285,11 @@ const Profile = (props) => {
 
                   <input
                     type="password"
-                    placeholder={profile.password}
-                    name="password"
-                    value="{password}"
-                    onChange={(e) => onChange(e)}
+                    placeholder="New Password"
+                    name="newPassword"
+                    value={newPassword}
+                    required
+                    onChange={(e) => onChangePassword(e)}
                   ></input>
                 </label>
               </div>
@@ -245,15 +299,16 @@ const Profile = (props) => {
 
                   <input
                     type="password"
-                    placeholder={profile.password}
-                    name="password"
-                    value="{password}"
-                    onChange={(e) => onChange(e)}
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    required
+                    onChange={(e) => onChangePassword(e)}
                   ></input>
                 </label>
               </div>
               <div className="button-container">
-                <button type="submit">Change your Password</button>
+                <button type="submit" onClick={updatePassword}>Change your Password</button>
               </div>
             </div>
           </div>

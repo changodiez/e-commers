@@ -165,9 +165,9 @@ router.post("/register", validInfo, async (req, res) => {
 });
 
 //===============================UPDATE PASSWORD=======================================
-router.put("/password/:id", async (req, res) => {
-  const {password, newPassword } = req.body;
-  const { id } = req.params;
+router.put("/password",authorize, async (req, res) => {
+  const {password, newPassword, confirmPassword } = req.body;
+  const { id } = req.user;
 
   const dbquery = "SELECT * FROM customers WHERE id=$1";
   const updateQuery =
@@ -180,6 +180,10 @@ router.put("/password/:id", async (req, res) => {
 
     if (!validPassword) {
       return res.status(401).json("Invalid current password");
+    }else if(newPassword !== confirmPassword){
+      return res.status(401).json("Invalid confirmation password");
+    }else if(newPassword === password){
+      return res.status(401).json("You have to use a new password!");
     } else {
     const salt = await bcrypt.genSalt(10);
     const bcryptpassword = await bcrypt.hash(newPassword, salt);
