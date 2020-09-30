@@ -57,7 +57,7 @@ const CheckOut = (props) => {
 
   return (
     <Fragment>
-      {goBack && !state ? window.href.location = "/" : null}
+      {goBack && !state ? window.location.reload() : null}
       {(() => {
         if (isAuthenticated) {
           return (
