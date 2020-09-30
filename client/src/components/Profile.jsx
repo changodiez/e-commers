@@ -62,6 +62,7 @@ const Profile = (props) => {
   };
 
   const updateData = async (e) => {
+    e.preventDefault();
     const body = {
       first_name,
       last_name,
