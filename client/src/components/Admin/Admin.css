@@ -94,6 +94,7 @@ th button {
 
 .img-preview {
     width: 15vw;
+    margin: auto;
 }
 
 #navbarAdmin {
@@ -108,4 +109,39 @@ th button {
 
 #navbarAdmin li a {
     color:white;
+}
+
+/* UPDATE PRODUCTS  */
+
+.container-form-update {
+    display: flex;
+    flex-direction: row;
+}
+.form-row-update {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+   }
+
+   .form-row-update .col {
+       width: 100%;
+   }
+   .form-row-update input {
+  margin-bottom: 0.2rem;
+  margin-right: 0;
+  width: 100%;
+
+   }
+
+.img-preveiw-container {
+    display:flex;
+    width: 30%;
+    min-width: 150px;
+    min-height: 150px;
+   margin: 2rem;
+}
+
+.data-colum {
+    width: 50%;
 }

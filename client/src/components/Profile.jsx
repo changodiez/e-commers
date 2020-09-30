@@ -9,9 +9,6 @@ const Profile = (props) => {
   const [refresh, setRefresh] = useState(Math.random());
   const [profile, setProfile] = useState([]);
 
-
-  const [dataProfile, setDataProfile ] = useState([])
-
   const getProfile = async () => {
     try {
       let response = await fetch(`/auth/profile`, {
@@ -38,7 +35,6 @@ const Profile = (props) => {
     mobile: "",
   });
 
-
   const {
     first_name,
     last_name,
@@ -53,6 +49,17 @@ const Profile = (props) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
+  const setProfileData = () => {
+    setInputs({
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+      address: profile.address,
+      city: profile.city,
+      postcode: profile.postcode,
+      country: profile.country,
+      mobile: profile.mobile,
+    });
+  };
 
   const updateData = async (e) => {
     const body = {
@@ -76,36 +83,30 @@ const Profile = (props) => {
     } catch (error) {
       console.error(error);
     }
-    setDataProfile(body)
     setRefresh(Math.random());
   };
 
-
   // UPDATE PASSWORD
 
-  const [passKey, setPasskey ] = useState({
-    password:"",
+  const [passKey, setPasskey] = useState({
+    password: "",
     newPassword: "",
     confirmPassword: "",
-  })
+  });
 
-  const {
-    password,
-    newPassword,
-    confirmPassword
-  } = passKey;
+  const { password, newPassword, confirmPassword } = passKey;
 
   const onChangePassword = (e) => {
     setPasskey({ ...passKey, [e.target.name]: e.target.value });
   };
 
-  const [state, setState] = useState(false)
-  const [textMessage, setTextMessage] = useState ("")
+  const [state, setState] = useState(false);
+  const [textMessage, setTextMessage] = useState("");
 
   const updatePassword = async (e) => {
-    e.preventDefault()
-    
-      const body = passKey
+    e.preventDefault();
+
+    const body = passKey;
     try {
       const updatePassword = await fetch("/auth/password", {
         method: "PUT",
@@ -115,19 +116,17 @@ const Profile = (props) => {
         },
         body: JSON.stringify(body),
       });
-    
+
       const res = await updatePassword.json();
 
-      setState(!state)
-      setTextMessage(res)
+      setState(!state);
+      setTextMessage(res);
     } catch (error) {
       console.error(error);
     }
-    
-  
   };
 
-  // GET ORDER DATA 
+  // GET ORDER DATA
 
   const [orderData, setOrderData] = useState([]);
   const getOrderData = async () => {
@@ -146,13 +145,17 @@ const Profile = (props) => {
   useEffect(() => {
     getProfile();
     getOrderData();
-    setDataProfile(profile)
   }, [refresh]);
+
+  useEffect(() => {
+    setProfileData();
+  }, [profile]);
 
   return isAuthenticated ? (
     <Fragment>
-      {state ? <PopUpMessage state={state} setState={setState} text={textMessage}/> 
-: null}
+      {state ? (
+        <PopUpMessage state={state} setState={setState} text={textMessage} />
+      ) : null}
       <div className="navbar-space"></div>
       <div className=" profile basic-container ">
         <div className="title">
@@ -260,56 +263,59 @@ const Profile = (props) => {
             <div className="button-container">
               <button type="submit">UPDATE</button>
             </div>
+          </div>
+        </form>
+        <form onSubmit={updatePassword}>
+          <div className="form-row">
+            <div className="title">
+              <h3>Change Your Password</h3>
+            </div>
+            <div className="col">
+              <label>
+                <h3> Current password</h3>
 
-            <div className="form-row">
-              <div className="title">
-                <h3>Change Your Password</h3>
-              </div>
-              <div className="col">
-                <label>
-                  <h3> Current password</h3>
+                <input
+                  type="password"
+                  placeholder="Current Password"
+                  name="password"
+                  value={password}
+                  required
+                  onChange={(e) => onChangePassword(e)}
+                ></input>
+              </label>
+            </div>
+            <div className="col">
+              <label>
+                <h3> New password</h3>
 
-                  <input
-                    type="password"
-                    placeholder="Current Password"
-                    name="password"
-                    value={password}
-                    required
-                    onChange={(e) => onChangePassword(e)}
-                  ></input>
-                </label>
-              </div>
-              <div className="col">
-                <label>
-                  <h3> New password</h3>
+                <input
+                  type="password"
+                  placeholder="New Password"
+                  name="newPassword"
+                  value={newPassword}
+                  required
+                  onChange={(e) => onChangePassword(e)}
+                ></input>
+              </label>
+            </div>
+            <div className="col">
+              <label>
+                <h3> Confirm password</h3>
 
-                  <input
-                    type="password"
-                    placeholder="New Password"
-                    name="newPassword"
-                    value={newPassword}
-                    required
-                    onChange={(e) => onChangePassword(e)}
-                  ></input>
-                </label>
-              </div>
-              <div className="col">
-                <label>
-                  <h3> Confirm password</h3>
-
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    required
-                    onChange={(e) => onChangePassword(e)}
-                  ></input>
-                </label>
-              </div>
-              <div className="button-container">
-                <button type="submit" onClick={updatePassword}>Change your Password</button>
-              </div>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  required
+                  onChange={(e) => onChangePassword(e)}
+                ></input>
+              </label>
+            </div>
+            <div className="button-container">
+              <button type="submit" >
+                Change your Password
+              </button>
             </div>
           </div>
         </form>

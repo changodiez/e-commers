@@ -56,7 +56,7 @@ const ShowProducts = (props) => {
       <th>{ data.description ? data.description : data.mobile || "undefined"}</th>
       {data.first_name ? null : (
         <th>
-          <Link to={`/admin/products/update/${data.id}`}>
+          <Link to={`/owner/product/${data.id}`}>
             <button className="button-update">UPDATE</button>
           </Link>
         </th>

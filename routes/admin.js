@@ -141,11 +141,11 @@ router.post("/products/add", async (req, res) => {
 });
 
 //UPDATE PRODUCT
-router.put("/products/:id", async (req, res) => {
-  const { product_name, category, price, image, description } = req.body;
+router.put("/products/update", async (req, res) => {
+  const { product_name, category, price, image, description,id } = req.body;
 
   try {
-    const { id } = req.params;
+
     const insertQuery =
       "UPDATE products SET product_name = $1, category = $2, unit_price = $3, image = $4, description = $5  where id = $6";
 

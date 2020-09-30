@@ -646,15 +646,13 @@ justify-content: space-between;
  }
  
  .input-field {
-  background:rgba(255,255,255,0.1);
   margin-bottom:10px;
   margin-top:3px;
   line-height:1.5em;
   font-size:20px;
   font-size:1.3rem;
-  border:none;
   padding:5px 10px 5px 10px;
-  color:#fff;
+  color: black;
   box-sizing:border-box;
   width:100%;
   margin-left:auto;
@@ -666,10 +664,9 @@ justify-content: space-between;
 }
 
  .credit-info {
-  background: var(--color3);
   height:100%;
   width:100%;
-  color:#eee;
+  color:black;
   -webkit-box-pack:center;
   -webkit-justify-content:center;
       -ms-flex-pack:center;
@@ -684,18 +681,6 @@ justify-content: space-between;
   padding-right:25px;
  
 }
-
-/* .credit-info-content {
-  margin-top:25px;
-  -webkit-flex-flow:column;
-      -ms-flex-flow:column;
-          flex-flow:column;
-  display:-webkit-box;
-  display:-webkit-flex;
-  display:-ms-flexbox;
-  display:flex;
-  width:100%;
-} */
 
  .checkout-button-container {
    display: flex;
