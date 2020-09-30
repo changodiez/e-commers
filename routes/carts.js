@@ -76,16 +76,15 @@ router.delete("/:id", async (req, res) => {
 });
 
 //=================================================Closed orders===========================================
-router.get("/orders/inActive", authorize, async (req, res) => {
+router.get("/orders/inactive", authorize, async (req, res) => {
   const { id } = req.user;
 
   try {
     const getClosedOrder =
-      "SELECT order_items.quantity, order_items.id, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
+      "SELECT order_items.quantity, order_items.id, orders.close_date, products.product_name, products.unit_price, products.image, orders.close_date FROM customers  INNER JOIN orders ON customer_id=customers.id INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=order_items.product_id WHERE orders.customer_id=$1 AND orders.status=$2";
     const newUser = await pool.query(getClosedOrder, [id, "TRUE"]);
-   
+
     return res.json(newUser.rows);
-    
   } catch (error) {
     console.error(error.message);
     return res.status(error.status).json("Something went wrong");
@@ -137,8 +136,37 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+//CHECKOUT
+router.post("/checkout", authorize, async (req, res) => {
+  const { id } = req.user;
+  const now = new Date();
 
+  const closeOrderQuery =
+    "UPDATE orders SET status = true, close_date = $1 WHERE customer_id = $2 AND status = false";
+  const newOrderQuery =
+    "INSERT INTO orders (open_date, customer_id, status) VALUES ($1, $2, false)";
 
-
+  pool
+    .query(closeOrderQuery, [now, id])
+    .then((response) => {
+      if (response.rowCount !== 0) {
+        pool
+          .query(newOrderQuery, [now, id])
+          .then((resp) => {
+            return res.status(200).json("Checkout successful");
+          })
+          .catch((err) => {
+            console.error(err);
+            return res.status(500).json("Server error");
+          });
+      } else {
+        return res.status(500).json("No order open or customer does not exist");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json("Server error");
+    });
+});
 
 module.exports = router;
